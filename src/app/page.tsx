@@ -12,6 +12,7 @@ import { Education } from "@/components/education/Education";
 import { Contact } from "@/components/contact/Contact";
 import { Footer } from "@/components/layout/Footer";
 import { TerminalModal } from "@/components/terminal/TerminalModal";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export default function Home() {
   const [terminalOpen, setTerminalOpen] = useState(false);
@@ -25,25 +26,39 @@ export default function Home() {
       <Hero />
 
       {/* Factual Metrics Strip */}
-      <MetricsStrip />
+      <ScrollReveal direction="up" distance={20} duration={500}>
+        <MetricsStrip />
+      </ScrollReveal>
 
       {/* About & "How I Build" Engineering Philosophy */}
-      <About />
+      <ScrollReveal direction="up" distance={30} duration={600}>
+        <About />
+      </ScrollReveal>
 
       {/* Professional Experience (Vetanoia Solutions) */}
-      <Experience />
+      <ScrollReveal direction="up" distance={30} duration={600}>
+        <Experience />
+      </ScrollReveal>
 
       {/* Skills Matrix & Backend Stack Flow */}
-      <Skills />
+      <ScrollReveal direction="up" distance={30} duration={600}>
+        <Skills />
+      </ScrollReveal>
 
-      {/* Selected Work (Featured: Employee Leave Management + E-Commerce & CompetitionsHub) */}
-      <Projects />
+      {/* Selected Work Case Studies */}
+      <ScrollReveal direction="up" distance={30} duration={650}>
+        <Projects />
+      </ScrollReveal>
 
       {/* Education & Languages */}
-      <Education />
+      <ScrollReveal direction="up" distance={30} duration={600}>
+        <Education />
+      </ScrollReveal>
 
       {/* Contact & Availability */}
-      <Contact />
+      <ScrollReveal direction="up" distance={30} duration={600}>
+        <Contact />
+      </ScrollReveal>
 
       {/* Footer */}
       <Footer onOpenTerminal={() => setTerminalOpen(true)} />
@@ -56,3 +71,4 @@ export default function Home() {
     </main>
   );
 }
+

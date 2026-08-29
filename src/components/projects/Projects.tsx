@@ -11,6 +11,7 @@ import { ProjectComparisonMatrix } from "./ProjectComparisonMatrix";
 import { ProjectSectionCTA } from "./ProjectSectionCTA";
 import { ProjectCaseStudyModal } from "./ProjectCaseStudyModal";
 import { ProjectGalleryModal } from "./ProjectGalleryModal";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export const Projects: React.FC = () => {
   const [selectedCaseStudy, setSelectedCaseStudy] = useState<ProjectItem | null>(null);
@@ -30,31 +31,41 @@ export const Projects: React.FC = () => {
         />
 
         {/* 1. FLAGSHIP CASE STUDY: EMPLOYEE LEAVE MANAGEMENT SYSTEM */}
-        <EmployeeLeaveCaseStudy
-          project={leaveProject}
-          onOpenCaseStudyModal={() => setSelectedCaseStudy(leaveProject)}
-          onOpenGalleryModal={() => setSelectedGalleryProject(leaveProject)}
-        />
+        <ScrollReveal direction="up" distance={35} duration={700}>
+          <EmployeeLeaveCaseStudy
+            project={leaveProject}
+            onOpenCaseStudyModal={() => setSelectedCaseStudy(leaveProject)}
+            onOpenGalleryModal={() => setSelectedGalleryProject(leaveProject)}
+          />
+        </ScrollReveal>
 
         {/* 2. E-COMMERCE API CASE STUDY */}
-        <ECommerceCaseStudy
-          project={ecommerceProject}
-          onOpenCaseStudyModal={() => setSelectedCaseStudy(ecommerceProject)}
-          onOpenGalleryModal={() => setSelectedGalleryProject(ecommerceProject)}
-        />
+        <ScrollReveal direction="up" distance={35} duration={700}>
+          <ECommerceCaseStudy
+            project={ecommerceProject}
+            onOpenCaseStudyModal={() => setSelectedCaseStudy(ecommerceProject)}
+            onOpenGalleryModal={() => setSelectedGalleryProject(ecommerceProject)}
+          />
+        </ScrollReveal>
 
         {/* 3. COMPETITIONSHUB API CASE STUDY */}
-        <CompetitionsHubCaseStudy
-          project={competitionsProject}
-          onOpenCaseStudyModal={() => setSelectedCaseStudy(competitionsProject)}
-          onOpenGalleryModal={() => setSelectedGalleryProject(competitionsProject)}
-        />
+        <ScrollReveal direction="up" distance={35} duration={700}>
+          <CompetitionsHubCaseStudy
+            project={competitionsProject}
+            onOpenCaseStudyModal={() => setSelectedCaseStudy(competitionsProject)}
+            onOpenGalleryModal={() => setSelectedGalleryProject(competitionsProject)}
+          />
+        </ScrollReveal>
 
         {/* 4. TECHNICAL CAPABILITIES MATRIX */}
-        <ProjectComparisonMatrix />
+        <ScrollReveal direction="up" distance={30} duration={650}>
+          <ProjectComparisonMatrix />
+        </ScrollReveal>
 
         {/* 5. FINAL PROJECT SECTION CTA */}
-        <ProjectSectionCTA />
+        <ScrollReveal direction="up" distance={25} duration={600}>
+          <ProjectSectionCTA />
+        </ScrollReveal>
       </div>
 
       {/* Deep-Dive Case Study Modal */}

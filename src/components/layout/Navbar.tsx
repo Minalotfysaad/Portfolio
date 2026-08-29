@@ -29,13 +29,16 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
       setIsScrolled(window.scrollY > 20);
 
       const sections = navLinks.map((link) => link.href.substring(1));
-      const scrollPosition = window.scrollY + 200;
+      const viewportThreshold = 220; // Target distance from top of viewport
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = document.getElementById(sections[i]);
-        if (section && section.offsetTop <= scrollPosition) {
-          setActiveSection(sections[i]);
-          break;
+        if (section) {
+          const rect = section.getBoundingClientRect();
+          if (rect.top <= viewportThreshold) {
+            setActiveSection(sections[i]);
+            break;
+          }
         }
       }
     };
