@@ -4,8 +4,11 @@ import React, { useState } from "react";
 import { projectsData } from "@/data/projects";
 import { ProjectItem } from "@/types";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { FeaturedProjectShowcase } from "./FeaturedProjectShowcase";
-import { ProjectCard } from "./ProjectCard";
+import { EmployeeLeaveCaseStudy } from "./EmployeeLeaveCaseStudy";
+import { ECommerceCaseStudy } from "./ECommerceCaseStudy";
+import { CompetitionsHubCaseStudy } from "./CompetitionsHubCaseStudy";
+import { ProjectComparisonMatrix } from "./ProjectComparisonMatrix";
+import { ProjectSectionCTA } from "./ProjectSectionCTA";
 import { ProjectCaseStudyModal } from "./ProjectCaseStudyModal";
 import { ProjectGalleryModal } from "./ProjectGalleryModal";
 
@@ -13,55 +16,45 @@ export const Projects: React.FC = () => {
   const [selectedCaseStudy, setSelectedCaseStudy] = useState<ProjectItem | null>(null);
   const [selectedGalleryProject, setSelectedGalleryProject] = useState<ProjectItem | null>(null);
 
-  const featuredProject = projectsData.find((p) => p.isFeatured) || projectsData[0];
-  const secondaryProjects = projectsData.filter((p) => !p.isFeatured);
+  const leaveProject = projectsData.find((p) => p.id === "employee-leave-management") || projectsData[0];
+  const ecommerceProject = projectsData.find((p) => p.id === "ecommerce-api") || projectsData[1];
+  const competitionsProject = projectsData.find((p) => p.id === "competitionshub-api") || projectsData[2];
 
   return (
-    <section id="projects" className="py-20 lg:py-28 relative bg-[#0B0B0E]">
+    <section id="projects" className="py-20 lg:py-28 relative bg-[#09090C]">
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
         <SectionHeading
-          badge="SELECTED WORK"
-          title="PRODUCTION-STYLE BACKEND SYSTEMS"
-          subtitle="Enterprise backend architectures built around real business lifecycles, Clean Architecture, enterprise security, and transactional database consistency."
+          badge="PRODUCTION CASE STUDIES"
+          title="BACKEND SYSTEMS & ARCHITECTURAL CASE STUDIES"
+          subtitle="Real-world backend architectures engineered around complex business lifecycles, Clean Architecture, transactional data access, and enterprise security."
         />
 
-        {/* Masterpiece Centerpiece: Featured Project Showcase */}
-        <div className="mb-14">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-2 font-mono text-xs text-accent-light uppercase tracking-wider">
-              <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-              <span>PRIMARY ARCHITECTURAL CENTERPIECE</span>
-            </div>
-            <span className="font-mono text-[11px] text-muted hidden sm:inline">
-              INTERACTIVE SWAGGER & CLEAN ARCH TELEMETRY
-            </span>
-          </div>
+        {/* 1. FLAGSHIP CASE STUDY: EMPLOYEE LEAVE MANAGEMENT SYSTEM */}
+        <EmployeeLeaveCaseStudy
+          project={leaveProject}
+          onOpenCaseStudyModal={() => setSelectedCaseStudy(leaveProject)}
+          onOpenGalleryModal={() => setSelectedGalleryProject(leaveProject)}
+        />
 
-          <FeaturedProjectShowcase
-            project={featuredProject}
-            onOpenCaseStudy={(proj) => setSelectedCaseStudy(proj)}
-            onOpenGallery={(proj) => setSelectedGalleryProject(proj)}
-          />
-        </div>
+        {/* 2. E-COMMERCE API CASE STUDY */}
+        <ECommerceCaseStudy
+          project={ecommerceProject}
+          onOpenCaseStudyModal={() => setSelectedCaseStudy(ecommerceProject)}
+          onOpenGalleryModal={() => setSelectedGalleryProject(ecommerceProject)}
+        />
 
-        {/* Secondary Projects Grid */}
-        <div className="space-y-6">
-          <div className="flex items-center gap-2 font-mono text-xs text-muted uppercase tracking-wider">
-            <span className="w-1.5 h-1.5 rounded-full bg-secondary" />
-            <span>ADDITIONAL BACKEND SYSTEMS & REST APIS:</span>
-          </div>
+        {/* 3. COMPETITIONSHUB API CASE STUDY */}
+        <CompetitionsHubCaseStudy
+          project={competitionsProject}
+          onOpenCaseStudyModal={() => setSelectedCaseStudy(competitionsProject)}
+          onOpenGalleryModal={() => setSelectedGalleryProject(competitionsProject)}
+        />
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {secondaryProjects.map((project) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                onOpenCaseStudy={(proj) => setSelectedCaseStudy(proj)}
-                onOpenGallery={(proj) => setSelectedGalleryProject(proj)}
-              />
-            ))}
-          </div>
-        </div>
+        {/* 4. TECHNICAL CAPABILITIES MATRIX */}
+        <ProjectComparisonMatrix />
+
+        {/* 5. FINAL PROJECT SECTION CTA */}
+        <ProjectSectionCTA />
       </div>
 
       {/* Deep-Dive Case Study Modal */}
