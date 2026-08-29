@@ -8,9 +8,9 @@ export const projectsData: ProjectItem[] = [
     badge: "FEATURED PROJECT • ASP.NET CORE 9",
     isFeatured: true,
     shortDescription:
-      "Designed and developed a production-style HR management backend supporting leave requests, department allocations, multi-tier approvals, and role-based workflows.",
+      "Designed and developed a production-style HR management backend supporting leave requests, department management, and role-based workflows.",
     fullDescription:
-      "A complete enterprise-grade HR management backend engineered with ASP.NET Core 9 and Clean Architecture. The system handles complex business lifecycles for leave requests (Casual, Sick, Annual), departmental hierarchies, supervisor approval chains, and automated leave balance deductions while maintaining strict audit logs, token rotation security, and decoupled data persistence.",
+      "Designed and developed a production-style HR management backend supporting leave requests, department management, and role-based workflows. Implemented JWT authentication, Refresh Tokens, and ASP.NET Identity to secure Employee, Manager, and HR endpoints. Built Repository and Unit of Work patterns with Entity Framework Core to create a maintainable and testable data access layer. Enforced request validation using FluentValidation and integrated AutoMapper to simplify DTO-to-entity mapping. Developed RESTful APIs supporting pagination, filtering, search, centralized exception handling, structured logging, and Swagger documentation.",
     problemStatement:
       "HR departments in growing organizations face friction handling paper or uncoordinated leave requests, tracking remaining quotas across fiscal cycles, and enforcing multi-level approval hierarchies without security vulnerabilities or concurrency bottlenecks.",
     approach:
@@ -40,18 +40,11 @@ export const projectsData: ProjectItem[] = [
       "GitHub Actions",
     ],
     features: [
-      "Secure dual-token authentication (JWT access tokens + cryptographically random rotating refresh tokens)",
-      "ASP.NET Identity integration with custom user and role claims (Employee, Manager, HR Admin)",
-      "Multi-tier approval workflows (Employee submission → Manager approval / rejection → HR balance allocation)",
-      "Leave balance allocation engine enforcing leave types, quotas, and fiscal period roll-overs",
-      "Clean Architecture with strict layer isolation and Dependency Injection",
-      "Repository Pattern & Unit of Work for transactional database consistency across leave deductions",
-      "FluentValidation pipeline behavior for comprehensive DTO and command validation",
-      "AutoMapper profiles for bidirectional mapping between Domain entities and API contracts",
-      "Advanced server-side pagination, status filtering, and employee search queries in EF Core",
-      "Global exception handling middleware returning RFC 7807 Problem Details JSON",
-      "Structured logging with Serilog capturing contextual request IDs and error stacks",
-      "Comprehensive Swagger / OpenAPI UI with JWT Bearer security definitions",
+      "Production-style HR management backend supporting leave requests, department management, and role-based workflows",
+      "JWT authentication, Refresh Tokens, and ASP.NET Identity securing Employee, Manager, and HR endpoints",
+      "Repository & Unit of Work patterns built with Entity Framework Core for a maintainable and testable data access layer",
+      "FluentValidation request validation and AutoMapper integration simplifying DTO-to-entity mapping",
+      "RESTful APIs supporting pagination, filtering, search, centralized exception handling, structured logging, and Swagger documentation",
     ],
     architectureNodes: [
       {

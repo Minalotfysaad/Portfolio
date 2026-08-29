@@ -18,7 +18,7 @@ const categoryIconMap: Record<string, any> = {
 };
 
 export const Experience: React.FC = () => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(true);
   const exp = professionalExperience[0]; // Vetanoia Solutions
 
   return (

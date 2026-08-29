@@ -101,16 +101,41 @@ export const ECommerceCaseStudy: React.FC<ECommerceCaseStudyProps> = ({
     <article className="relative bg-[#111115] border border-border rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-xl hover:border-cyan-500/40 hover:shadow-glow-cyan/20 transition-all duration-300 mb-8 group">
       {/* Header Bar (Always Visible) */}
       <div
-        className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 cursor-pointer"
+        className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 cursor-pointer"
         onClick={() => setIsExpanded(!isExpanded)}
       >
-        <div className="flex-1">
-          <h3 className="text-2xl sm:text-3xl font-black text-foreground font-sans tracking-tight group-hover:text-cyan-400 transition-colors">
-            E-Commerce API
-          </h3>
-          <p className="font-mono text-xs sm:text-sm text-secondary mt-1">
-            High-throughput RESTful backend with Redis Shopping Basket, Specification Pattern & Stripe Integration
-          </p>
+        <div className="flex-1 space-y-3">
+          {/* Top Identifier & Status Pill */}
+          <div className="flex items-center gap-2.5">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-mono text-[10px] font-bold uppercase tracking-wider">
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+              CASE STUDY 02 • HIGH-THROUGHPUT API
+            </span>
+            <span className="font-mono text-[10px] text-muted uppercase tracking-wider hidden sm:inline-block">
+              E-COMMERCE BACKEND & PAYMENTS
+            </span>
+          </div>
+
+          <div>
+            <h3 className="text-2xl sm:text-3xl font-black text-foreground font-sans tracking-tight group-hover:text-cyan-400 transition-colors">
+              E-Commerce API
+            </h3>
+            <p className="font-mono text-xs sm:text-sm text-secondary mt-1">
+              High-throughput RESTful backend with Redis Shopping Basket & Stripe Payment Gateway
+            </p>
+          </div>
+
+          {/* Quick Key Technology Badges */}
+          <div className="flex flex-wrap items-center gap-1.5 pt-1">
+            {["ASP.NET Core", "Redis Cart", "Stripe API", "Specification Pattern", "SQL Server"].map((tech) => (
+              <span
+                key={tech}
+                className="font-mono text-[10px] px-2 py-0.5 rounded bg-surface/80 border border-border/80 text-secondary"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
         </div>
 
         <div className="flex items-center gap-3 shrink-0" onClick={(e) => e.stopPropagation()}>
@@ -151,17 +176,23 @@ export const ECommerceCaseStudy: React.FC<ECommerceCaseStudyProps> = ({
             {/* Large Screenshot Showcase */}
             <div className="lg:col-span-8 rounded-2xl border border-border/90 bg-[#09090C] overflow-hidden shadow-2xl">
               <div className="px-4 py-2.5 bg-[#131317] border-b border-border/80 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
-                  <span className="font-mono text-xs text-muted ml-2">
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
+                  </div>
+                  <div className="hidden sm:flex items-center gap-1.5 px-2 py-0.5 rounded bg-background/80 border border-border/60 text-[10px] font-mono text-muted">
+                    <span className="text-cyan-400 font-bold">GET</span>
+                    <span>/api/v1/products</span>
+                  </div>
+                  <span className="font-mono text-xs text-muted">
                     {currentScreenshot?.category || "E-Commerce System"}
                   </span>
                 </div>
                 <button
                   onClick={onOpenGalleryModal}
-                  className="flex items-center gap-1 font-mono text-[11px] text-muted hover:text-foreground px-2 py-0.5 rounded bg-surface border border-border transition-colors"
+                  className="flex items-center gap-1 font-mono text-[11px] text-muted hover:text-foreground px-2.5 py-1 rounded bg-surface border border-border transition-colors"
                 >
                   <Images className="w-3 h-3 text-cyan-400" />
                   <span>{project.screenshots.length} Screens</span>

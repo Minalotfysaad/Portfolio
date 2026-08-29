@@ -36,65 +36,65 @@ export const EmployeeLeaveCaseStudy: React.FC<EmployeeLeaveCaseStudyProps> = ({
   const pipelineSteps = [
     {
       step: "01",
-      title: "LEAVE SUBMISSION",
-      icon: Calendar,
-      description: "Employee submits leave request payload with date range, leave type (Casual, Sick, Annual), and reason.",
-      badge: "REST Endpoint",
+      title: "AUTH & ROLE SECURITY",
+      icon: Lock,
+      description: "JWT access tokens, Refresh Tokens, and ASP.NET Identity securing Employee, Manager, and HR endpoints.",
+      badge: "JWT & Identity (Day 2)",
     },
     {
       step: "02",
-      title: "INVARIANT CHECK",
+      title: "VALIDATION & DTO MAPPING",
       icon: FileCheck,
-      description: "FluentValidation pipeline verifies date ordering, quota availability, and department policies.",
-      badge: "FluentValidation",
+      description: "FluentValidation pipeline enforcing leave invariants & AutoMapper DTO-to-entity mappings.",
+      badge: "FluentValidation (Day 3)",
     },
     {
       step: "03",
-      title: "APPROVAL CHAIN",
-      icon: Workflow,
-      description: "Manager / HR Admin evaluates pending requests using role-based claims policies.",
-      badge: "RBAC & Claims",
+      title: "DATA ACCESS & QUERIES",
+      icon: Database,
+      description: "Repository & Unit of Work patterns with Entity Framework Core and Specification Pattern.",
+      badge: "Repo & Unit of Work (Day 3)",
     },
     {
       step: "04",
-      title: "ATOMIC DEDUCTION",
-      icon: Database,
-      description: "Unit of Work pattern executes atomic SQL transaction deducting quota and writing audit log.",
-      badge: "Unit of Work",
+      title: "APPROVAL & DEDUCTION",
+      icon: Workflow,
+      description: "Manager & HR multi-step approval workflow with atomic leave balance quota deductions.",
+      badge: "Approval Engine (Day 4-5)",
     },
     {
       step: "05",
-      title: "TOKEN SECURITY",
-      icon: Lock,
-      description: "15-minute JWT access tokens paired with cryptographically secure rotating refresh tokens.",
-      badge: "JWT & Identity",
+      title: "REDIS & LOGGING",
+      icon: Zap,
+      description: "Response caching with Redis, automated cache invalidation, Serilog structured logging & Swagger UI.",
+      badge: "Redis & Serilog (Day 7)",
     },
   ];
 
   const highlights = [
     {
-      title: "Clean Architecture Isolation",
-      desc: "Strictly separates Domain entities, Application use cases, and Infrastructure persistence into independent assemblies.",
+      title: "Production HR Management Backend",
+      desc: "Designed and developed a production-style HR management backend supporting leave requests, department management, and role-based workflows.",
     },
     {
-      title: "Dual-Token Security System",
-      desc: "Stateless short-lived JWT access tokens paired with rotating refresh tokens persisted in SQL Server with revocation tracking.",
+      title: "JWT, Refresh Tokens & ASP.NET Identity",
+      desc: "Implemented JWT authentication, Refresh Tokens, and ASP.NET Identity to secure Employee, Manager, and HR endpoints.",
     },
     {
-      title: "Repository & Unit of Work",
-      desc: "Encapsulates database operations into atomic commits, preventing leave quota discrepancies under concurrent approvals.",
+      title: "Repository & Unit of Work Patterns",
+      desc: "Built Repository and Unit of Work patterns with Entity Framework Core to create a maintainable and testable data access layer.",
     },
     {
-      title: "FluentValidation Invariants",
-      desc: "Executes strongly-typed business validation rules before controller execution, returning uniform RFC 7807 error shapes.",
+      title: "FluentValidation & AutoMapper",
+      desc: "Enforced request validation using FluentValidation and integrated AutoMapper to simplify DTO-to-entity mapping.",
     },
     {
-      title: "Serilog Observability",
-      desc: "Captures structured contextual JSON logs with execution correlation IDs, timers, and exception stack traces.",
+      title: "RESTful APIs & Serilog Observability",
+      desc: "Developed RESTful APIs supporting pagination, filtering, search, centralized exception handling, structured logging with Serilog, and Swagger documentation.",
     },
     {
-      title: "xUnit & Moq Test Suites",
-      desc: "Automated unit testing suites isolating repository interfaces to verify leave quota calculation algorithms.",
+      title: "Clean Architecture & Layer Isolation",
+      desc: "Architected solution into isolated Domain, Application, Infrastructure, and Presentation layers with strict Dependency Injection.",
     },
   ];
 
@@ -104,16 +104,41 @@ export const EmployeeLeaveCaseStudy: React.FC<EmployeeLeaveCaseStudyProps> = ({
     <article className="relative bg-[#111115] border border-border rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-xl hover:border-accent/40 hover:shadow-glow-card transition-all duration-300 mb-8 group">
       {/* Header Bar (Always Visible) */}
       <div
-        className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 cursor-pointer"
+        className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 cursor-pointer"
         onClick={() => setIsExpanded(!isExpanded)}
       >
-        <div className="flex-1">
-          <h3 className="text-2xl sm:text-3xl font-black text-foreground font-sans tracking-tight group-hover:text-accent-light transition-colors">
-            Employee Leave Management System
-          </h3>
-          <p className="font-mono text-xs sm:text-sm text-secondary mt-1">
-            Production-Style HR Management Backend • ASP.NET Core 9 & Clean Architecture
-          </p>
+        <div className="flex-1 space-y-3">
+          {/* Top Identifier & Status Pill */}
+          <div className="flex items-center gap-2.5">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-accent/10 border border-accent/30 text-accent-light font-mono text-[10px] font-bold uppercase tracking-wider">
+              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+              CASE STUDY 01 • HR SYSTEM
+            </span>
+            <span className="font-mono text-[10px] text-muted uppercase tracking-wider hidden sm:inline-block">
+              ENTERPRISE BACKEND ARCHITECTURE
+            </span>
+          </div>
+
+          <div>
+            <h3 className="text-2xl sm:text-3xl font-black text-foreground font-sans tracking-tight group-hover:text-accent-light transition-colors">
+              Employee Leave Management System
+            </h3>
+            <p className="font-mono text-xs sm:text-sm text-secondary mt-1">
+              Production-Style HR Management Backend
+            </p>
+          </div>
+
+          {/* Quick Key Technology Badges */}
+          <div className="flex flex-wrap items-center gap-1.5 pt-1">
+            {["C# / .NET 9", "EF Core 9", "SQL Server", "JWT & Identity", "Redis"].map((tech) => (
+              <span
+                key={tech}
+                className="font-mono text-[10px] px-2 py-0.5 rounded bg-surface/80 border border-border/80 text-secondary"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
         </div>
 
         <div className="flex items-center gap-3 shrink-0" onClick={(e) => e.stopPropagation()}>
@@ -154,17 +179,23 @@ export const EmployeeLeaveCaseStudy: React.FC<EmployeeLeaveCaseStudyProps> = ({
             {/* Large Screenshot Box / High-Tech Placeholder Frame */}
             <div className="lg:col-span-8 rounded-2xl border border-border/90 bg-[#09090C] overflow-hidden shadow-2xl">
               <div className="px-4 py-2.5 bg-[#131317] border-b border-border/80 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
-                  <span className="font-mono text-xs text-muted ml-2">
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
+                  </div>
+                  <div className="hidden sm:flex items-center gap-1.5 px-2 py-0.5 rounded bg-background/80 border border-border/60 text-[10px] font-mono text-muted">
+                    <span className="text-emerald-400 font-bold">GET</span>
+                    <span>/api/v1/leave-requests</span>
+                  </div>
+                  <span className="font-mono text-xs text-muted">
                     {currentScreenshot?.category || "HR System Architecture"}
                   </span>
                 </div>
                 <button
                   onClick={onOpenGalleryModal}
-                  className="flex items-center gap-1 font-mono text-[11px] text-muted hover:text-foreground px-2 py-0.5 rounded bg-surface border border-border transition-colors"
+                  className="flex items-center gap-1 font-mono text-[11px] text-muted hover:text-foreground px-2.5 py-1 rounded bg-surface border border-border transition-colors"
                 >
                   <Images className="w-3 h-3 text-accent-light" />
                   <span>{project.screenshots.length} Screens</span>
@@ -312,6 +343,156 @@ export const EmployeeLeaveCaseStudy: React.FC<EmployeeLeaveCaseStudyProps> = ({
                   <p className="text-xs text-secondary font-sans leading-relaxed">
                     {item.desc}
                   </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* 10-Day Implementation Roadmap Grid */}
+          <div className="pt-8 border-t border-border/80">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-2 font-mono text-xs text-accent-light uppercase tracking-wider">
+                <Workflow className="w-4 h-4" />
+                <span>10-DAY ENGINEERING IMPLEMENTATION ROADMAP:</span>
+              </div>
+              <span className="font-mono text-[10px] text-muted uppercase">
+                7 ARCHITECTURAL PHASES COMPLETED
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {[
+                {
+                  day: "DAY 1",
+                  title: "Clean Architecture & Domain",
+                  isDone: true,
+                  items: [
+                    "Clean Architecture Solution Structure",
+                    "Domain Entities & Relationships",
+                    "DbContext, SQL Server & EF Core",
+                    "ASP.NET Identity & Initial Migration",
+                  ],
+                },
+                {
+                  day: "DAY 2",
+                  title: "Authentication & JWT Security",
+                  isDone: true,
+                  items: [
+                    "JWT Config & Token Generation Service",
+                    "Register & Login REST Endpoints",
+                    "Seed Roles & Users (Employee, Manager, HR)",
+                    "JWT Middleware & Swagger Authorization",
+                  ],
+                },
+                {
+                  day: "DAY 3",
+                  title: "Employee Module & Patterns",
+                  isDone: true,
+                  items: [
+                    "DTOs, AutoMapper & FluentValidation",
+                    "Generic Repository & Unit of Work",
+                    "Specification Pattern for Queries",
+                    "Global Exception Handling Middleware",
+                  ],
+                },
+                {
+                  day: "DAY 4",
+                  title: "Leave Requests & Validation",
+                  isDone: true,
+                  items: [
+                    "Leave Request Lifecycle & Endpoints",
+                    "Employee Leave Balance Validation",
+                    "Overlapping Leave Date Check",
+                    "Role-Based Access Control Policies",
+                  ],
+                },
+                {
+                  day: "DAY 5",
+                  title: "Multi-Step Approval Engine",
+                  isDone: true,
+                  items: [
+                    "Multi-tier Approval (Manager & HR)",
+                    "Atomic Leave Quota Balance Deduction",
+                    "Business Invariants & Transaction Commit",
+                    "Exception Handling & Security Review",
+                  ],
+                },
+                {
+                  day: "DAY 6",
+                  title: "Holidays, Leave Types & Depts",
+                  isDone: true,
+                  items: [
+                    "Holiday & Leave Type Management",
+                    "Department Allocations & Rules",
+                    "Input Validation & Authorization",
+                    "API Refinements & Caching Prep",
+                  ],
+                },
+                {
+                  day: "DAY 7",
+                  title: "Redis, Serilog & Performance",
+                  isDone: true,
+                  items: [
+                    "Redis Integration & Response Caching",
+                    "Automated Cache Invalidation",
+                    "Serilog Structured Request Logging",
+                    "Performance Review & Clean Code",
+                  ],
+                },
+                {
+                  day: "DAYS 8–10",
+                  title: "Testing & DevOps Pipeline",
+                  isDone: false,
+                  items: [
+                    "xUnit & Moq Unit Test Strategy",
+                    "Docker & Docker Compose Containerization",
+                    "GitHub Actions CI/CD Build & Test Pipeline",
+                    "OpenAPI Polish & Production Configuration",
+                  ],
+                },
+              ].map((stage) => (
+                <div
+                  key={stage.day}
+                  className={cn(
+                    "p-4 rounded-xl border flex flex-col justify-between transition-all",
+                    stage.isDone
+                      ? "bg-[#111116] border-border hover:border-accent/40"
+                      : "bg-[#0E0E12]/60 border-border/50 opacity-80"
+                  )}
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-2 font-mono text-xs">
+                      <span
+                        className={cn(
+                          "font-bold",
+                          stage.isDone ? "text-accent-light" : "text-secondary"
+                        )}
+                      >
+                        {stage.day}
+                      </span>
+                      {stage.isDone ? (
+                        <span className="px-2 py-0.5 rounded text-[9px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                          COMPLETED
+                        </span>
+                      ) : (
+                        <span className="px-2 py-0.5 rounded text-[9px] font-bold bg-surface text-muted border border-border">
+                          PLANNED
+                        </span>
+                      )}
+                    </div>
+                    <h4 className="font-mono text-xs font-bold text-foreground mb-3">
+                      {stage.title}
+                    </h4>
+
+                    <ul className="space-y-1.5 font-sans text-[11px] text-secondary">
+                      {stage.items.map((item, iIdx) => (
+                        <li key={iIdx} className="flex items-start gap-1.5">
+                          <span className="text-muted shrink-0">•</span>
+                          <span className="leading-tight">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               ))}
             </div>

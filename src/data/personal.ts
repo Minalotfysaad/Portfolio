@@ -30,25 +30,25 @@ export const heroData = {
 
 export const quickMetrics: MetricItem[] = [
   {
-    value: "3",
+    value: "3+",
     label: "FEATURED BACKEND PROJECTS",
     sublabel: "HR Leave, E-Commerce, Competitions",
     highlight: true,
   },
   {
-    value: ".NET",
-    label: "BACKEND FOCUS",
-    sublabel: "C#, ASP.NET Core Web API, EF Core",
+    value: "100%",
+    label: "BACKEND .NET FOCUS",
+    sublabel: "C#, ASP.NET Core 9, Web API, EF Core",
+  },
+  {
+    value: "4",
+    label: "ENGINEERING PILLARS",
+    sublabel: "Clean Arch, Security, Speed, Quality",
   },
   {
     value: "REST",
     label: "API ARCHITECTURE",
-    sublabel: "Authentication, Caching, Validation",
-  },
-  {
-    value: "CLEAN",
-    label: "ENGINEERING PRACTICES",
-    sublabel: "SOLID, Repository & Unit of Work",
+    sublabel: "JWT Auth, Redis Caching, Validation",
   },
 ];
 

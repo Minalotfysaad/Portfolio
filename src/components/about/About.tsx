@@ -60,9 +60,6 @@ export const About: React.FC = () => {
                         <p className="font-mono text-xs text-accent-light mt-1">
                           .NET Backend Developer
                         </p>
-                        <div className="mt-4 pt-3 border-t border-border/60 w-full text-[11px] font-mono text-muted">
-                          Asset: /public/images/profile.jpg
-                        </div>
                       </div>
                     )}
 
