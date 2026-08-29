@@ -1,9 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { professionalExperience } from "@/data/experience";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Briefcase, Calendar, MapPin, Code2, Database, Shield, Layers, Users, FileText } from "lucide-react";
+import { Button } from "@/components/ui/Button";
+import { Briefcase, Calendar, MapPin, Code2, Database, Shield, Layers, Users, FileText, ChevronDown, ChevronUp } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const categoryIconMap: Record<string, any> = {
@@ -16,6 +17,7 @@ const categoryIconMap: Record<string, any> = {
 };
 
 export const Experience: React.FC = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
   const exp = professionalExperience[0]; // Vetanoia Solutions
 
   return (
@@ -30,18 +32,21 @@ export const Experience: React.FC = () => {
         {/* Main Experience Timeline Container */}
         <div className="relative max-w-5xl mx-auto">
           {/* Main Card */}
-          <div className="relative bg-[#111114] border border-border rounded-2xl p-6 sm:p-8 lg:p-10 shadow-xl overflow-hidden">
+          <div className="relative bg-[#111114] border border-border rounded-2xl p-6 sm:p-8 lg:p-10 shadow-xl hover:border-accent/40 hover:shadow-glow-card transition-all duration-300 group overflow-hidden">
             {/* Ambient subtle glow */}
             <div className="absolute top-0 right-0 w-80 h-80 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
 
-            {/* Header / Company & Role Info */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between pb-8 mb-8 border-b border-border gap-4">
+            {/* Header / Company & Role Info (Always Visible & Clickable) */}
+            <div
+              className="flex flex-col md:flex-row md:items-center justify-between gap-4 cursor-pointer"
+              onClick={() => setIsExpanded(!isExpanded)}
+            >
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-accent/10 border border-accent/30 text-accent-light font-mono text-xs mb-3">
                   <Briefcase className="w-3.5 h-3.5" />
                   <span>{exp.role}</span>
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-foreground font-sans tracking-tight">
+                <h3 className="text-2xl sm:text-3xl font-bold text-foreground font-sans tracking-tight group-hover:text-accent-light transition-colors">
                   {exp.company}
                 </h3>
                 <div className="flex flex-wrap items-center gap-4 mt-2 font-mono text-xs text-secondary">
@@ -56,60 +61,82 @@ export const Experience: React.FC = () => {
                   </div>
                 </div>
               </div>
+
+              <div className="shrink-0" onClick={(e) => e.stopPropagation()}>
+                <Button
+                  variant="primary"
+                  size="sm"
+                  onClick={() => setIsExpanded(!isExpanded)}
+                  icon={isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                  iconPosition="right"
+                  className="font-mono text-xs font-bold"
+                >
+                  {isExpanded ? "COLLAPSE DETAILS" : "EXPAND DETAILS"}
+                </Button>
+              </div>
             </div>
 
-            {/* Responsibilities Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {exp.categories.map((category) => {
-                const Icon = categoryIconMap[category.title] || Code2;
+            {/* Expandable Responsibilities Grid */}
+            <div
+              className={cn(
+                "grid transition-all duration-300 ease-in-out",
+                isExpanded ? "grid-rows-[1fr] opacity-100 mt-8 pt-8 border-t border-border/80" : "grid-rows-[0fr] opacity-0"
+              )}
+            >
+              <div className="overflow-hidden">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                  {exp.categories.map((category) => {
+                    const Icon = categoryIconMap[category.title] || Code2;
 
-                return (
-                  <div
-                    key={category.title}
-                    className="p-5 sm:p-6 rounded-xl bg-surface/50 border border-border/80 hover:border-accent/30 hover:bg-surface transition-all flex flex-col justify-between"
-                  >
-                    <div>
-                      {/* Category Header */}
-                      <div className="flex items-center gap-2.5 mb-3">
-                        <div className="w-8 h-8 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center text-accent-light shrink-0">
-                          <Icon className="w-4 h-4" />
-                        </div>
+                    return (
+                      <div
+                        key={category.title}
+                        className="p-5 sm:p-6 rounded-xl bg-surface/50 border border-border/80 hover:border-accent/30 hover:bg-surface transition-all flex flex-col justify-between"
+                      >
                         <div>
-                          <h4 className="font-mono text-xs sm:text-sm font-bold text-foreground tracking-tight">
-                            {category.title}
-                          </h4>
+                          {/* Category Header */}
+                          <div className="flex items-center gap-2.5 mb-3">
+                            <div className="w-8 h-8 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center text-accent-light shrink-0">
+                              <Icon className="w-4 h-4" />
+                            </div>
+                            <div>
+                              <h4 className="font-mono text-xs sm:text-sm font-bold text-foreground tracking-tight">
+                                {category.title}
+                              </h4>
+                            </div>
+                          </div>
+
+                          <p className="text-xs font-mono text-muted mb-4">
+                            {category.description}
+                          </p>
+
+                          {/* Bullets */}
+                          <ul className="space-y-2.5 mb-6">
+                            {category.bullets.map((bullet, bIdx) => (
+                              <li key={bIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-secondary leading-relaxed font-sans">
+                                <span className="w-1.5 h-1.5 rounded-full bg-accent/80 shrink-0 mt-2" />
+                                <span>{bullet}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        {/* Tech Badges */}
+                        <div className="flex flex-wrap gap-1.5 pt-3 border-t border-border/40">
+                          {category.tech.map((t) => (
+                            <span
+                              key={t}
+                              className="font-mono text-[10px] px-2 py-0.5 rounded bg-background border border-border text-secondary"
+                            >
+                              {t}
+                            </span>
+                          ))}
                         </div>
                       </div>
-
-                      <p className="text-xs font-mono text-muted mb-4">
-                        {category.description}
-                      </p>
-
-                      {/* Bullets */}
-                      <ul className="space-y-2.5 mb-6">
-                        {category.bullets.map((bullet, bIdx) => (
-                          <li key={bIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-secondary leading-relaxed font-sans">
-                            <span className="w-1.5 h-1.5 rounded-full bg-accent/80 shrink-0 mt-2" />
-                            <span>{bullet}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Tech Badges */}
-                    <div className="flex flex-wrap gap-1.5 pt-3 border-t border-border/40">
-                      {category.tech.map((t) => (
-                        <span
-                          key={t}
-                          className="font-mono text-[10px] px-2 py-0.5 rounded bg-background border border-border text-secondary"
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                );
-              })}
+                    );
+                  })}
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -7,7 +7,6 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { EmployeeLeaveCaseStudy } from "./EmployeeLeaveCaseStudy";
 import { ECommerceCaseStudy } from "./ECommerceCaseStudy";
 import { CompetitionsHubCaseStudy } from "./CompetitionsHubCaseStudy";
-import { ProjectSectionCTA } from "./ProjectSectionCTA";
 import { ProjectGalleryModal } from "./ProjectGalleryModal";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
@@ -49,11 +48,6 @@ export const Projects: React.FC = () => {
             project={competitionsProject}
             onOpenGalleryModal={() => setSelectedGalleryProject(competitionsProject)}
           />
-        </ScrollReveal>
-
-        {/* 4. FINAL PROJECT SECTION CTA */}
-        <ScrollReveal direction="up" distance={25} duration={600}>
-          <ProjectSectionCTA />
         </ScrollReveal>
       </div>
 
