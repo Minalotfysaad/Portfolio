@@ -45,28 +45,28 @@ export const CompetitionsHubCaseStudy: React.FC<CompetitionsHubCaseStudyProps> =
 
   const workflowHighlights = [
     {
-      title: "Role-Based Multi-Persona Workflows",
-      desc: "Distinct authorization policies separating Administrator event setup, Judge evaluation portals, and Contestant answer submissions.",
+      title: "5 Question Builder Types",
+      desc: "Supports Multiple Choice, Short Answer, Paragraph, Linear Scale, and Multiple Choice Grid questions with weighted marks and validation.",
     },
     {
-      title: "Manual Grading & Evaluation Rubrics",
-      desc: "Judge scoring interfaces recording structured point deductions, written critiques, and rubrics per question criteria.",
+      title: "Automated & Manual Grading Engine",
+      desc: "Instant score calculation for objective questions combined with an administrative review portal for grading paragraph essay submissions.",
     },
     {
-      title: "Automatic Scoring Computation",
-      desc: "Domain calculation algorithms computing weighted question scores, penalty adjustments, and total contestant tallies.",
+      title: "Contestant Submission Integrity",
+      desc: "Enforces submission rules preventing duplicate entries, post-submission answer modification, and access outside competition date windows.",
     },
     {
-      title: "Dynamic Leaderboard Generation",
-      desc: "Optimized LINQ aggregation queries generating real-time rank tables with multi-tier tie-breaking resolution.",
+      title: "Multi-Day Event Scheduling",
+      desc: "Organizes competitions across multiple competition days with automated active status evaluation based on real-time schedule dates.",
     },
     {
-      title: "Result Publishing & Audit Trail",
-      desc: "Lifecycle stage controls locking submissions, finalizing judging rounds, and publishing immutable result records.",
+      title: "Role-Based Access Control",
+      desc: "JWT-based ASP.NET Identity authentication enforcing strict authorization boundaries for Administrators, Judges, and Contestants.",
     },
     {
-      title: "Normalized Relational Data Architecture",
-      desc: "3NF SQL Server schema linking competitions, stages, questions, answers, and scores via clean EF Core mappings.",
+      title: "Dynamic Leaderboards & Results",
+      desc: "Optimized LINQ aggregation queries generating real-time leaderboard standings, score percentages, and verified contestant result records.",
     },
   ];
 

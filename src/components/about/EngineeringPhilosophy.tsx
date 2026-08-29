@@ -16,10 +16,6 @@ export const EngineeringPhilosophy: React.FC = () => {
       <ScrollReveal direction="up" distance={20} duration={500}>
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono tracking-wider uppercase border border-accent/30 bg-accent/10 text-accent-light mb-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-              ENGINEERING PRINCIPLES
-            </div>
             <h3 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">
               HOW I BUILD
             </h3>

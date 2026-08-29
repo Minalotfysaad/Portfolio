@@ -2,11 +2,11 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { aboutNarrative, personalInfo } from "@/data/personal";
+import { aboutNarrative } from "@/data/personal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { EngineeringPhilosophy } from "./EngineeringPhilosophy";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { MapPin, CheckCircle2, ShieldCheck, Database, Server } from "lucide-react";
+import { MapPin, CheckCircle2, Server } from "lucide-react";
 
 export const About: React.FC = () => {
   const [imageError, setImageError] = useState(false);
@@ -35,7 +35,6 @@ export const About: React.FC = () => {
                   {/* HUD Top Bar */}
                   <div className="flex items-center justify-between pb-2.5 mb-2.5 border-b border-border/60 font-mono text-[10px] text-muted">
                     <span className="text-secondary font-bold">ID: MINA LOTFY SAAD</span>
-                    <span className="text-accent-light">.NET CORE 9</span>
                   </div>
 
                   {/* Photo Frame */}
@@ -73,7 +72,7 @@ export const About: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Location & Status Footnote */}
+                  {/* Location Footnote */}
                   <div className="mt-3 px-1 py-1 flex items-center justify-between font-mono text-xs text-secondary border-t border-border/50">
                     <div className="flex items-center gap-1.5 text-accent-light">
                       <MapPin className="w-3.5 h-3.5" />
@@ -81,21 +80,6 @@ export const About: React.FC = () => {
                         Alexandria, Egypt
                       </span>
                     </div>
-                    <span className="text-[10px] text-emerald-400 font-semibold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
-                      OPEN TO RELOCATE
-                    </span>
-                  </div>
-                </div>
-
-                {/* Core Strengths Quick Badges */}
-                <div className="mt-4 grid grid-cols-2 gap-2.5 font-mono text-xs w-full">
-                  <div className="p-2.5 rounded-xl bg-surface/50 border border-border flex items-center gap-2">
-                    <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-                    <span className="text-foreground text-[11px]">JWT & RBAC Auth</span>
-                  </div>
-                  <div className="p-2.5 rounded-xl bg-surface/50 border border-border flex items-center gap-2">
-                    <Database className="w-4 h-4 text-blue-400 shrink-0" />
-                    <span className="text-foreground text-[11px]">EF Core & SQL</span>
                   </div>
                 </div>
               </div>
@@ -121,36 +105,6 @@ export const About: React.FC = () => {
                       {aboutNarrative.careerStatement}
                     </p>
                   </div>
-                </div>
-              </div>
-
-              {/* Quick Skills Summary Chips */}
-              <div className="mt-8 pt-6 border-t border-border/60">
-                <span className="font-mono text-xs text-muted block mb-3 uppercase tracking-wider">
-                  Key Competencies:
-                </span>
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    "Clean Architecture",
-                    "ASP.NET Core Web API",
-                    "C#",
-                    "Entity Framework Core",
-                    "SQL Server",
-                    "Redis Caching",
-                    "JWT Authentication",
-                    "Role-Based Authorization",
-                    "Repository Pattern",
-                    "Unit of Work",
-                    "FluentValidation",
-                    "Swagger / OpenAPI",
-                  ].map((item) => (
-                    <span
-                      key={item}
-                      className="font-mono text-xs px-2.5 py-1 rounded bg-surface border border-border text-secondary hover:text-foreground transition-colors"
-                    >
-                      {item}
-                    </span>
-                  ))}
                 </div>
               </div>
             </ScrollReveal>

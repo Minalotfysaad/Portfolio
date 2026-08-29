@@ -58,21 +58,14 @@ export const Skills: React.FC = () => {
                       {category.description}
                     </p>
 
-                    {/* Skills Badges */}
+                    {/* Skills Badges (Uniform, High-Contrast Style) */}
                     <div className="flex flex-wrap gap-2">
                       {category.skills.map((skill) => (
                         <span
                           key={skill.name}
-                          className={cn(
-                            "px-3 py-1.5 rounded-lg font-mono text-xs border flex items-center gap-1.5",
-                            skill.highlight
-                              ? "bg-surface text-foreground border-border"
-                              : "bg-[#141417] text-secondary border-border/80"
-                          )}
+                          className="px-3 py-1.5 rounded-lg font-mono text-xs border border-border/80 bg-[#141417] text-foreground/90 flex items-center gap-1.5 hover:border-accent/40 hover:text-foreground transition-all duration-200"
                         >
-                          {skill.highlight && (
-                            <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-                          )}
+                          <span className="w-1.5 h-1.5 rounded-full bg-accent/80 shrink-0" />
                           <span>{skill.name}</span>
                         </span>
                       ))}
@@ -87,5 +80,3 @@ export const Skills: React.FC = () => {
     </section>
   );
 };
-
-

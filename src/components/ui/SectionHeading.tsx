@@ -2,7 +2,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 
 interface SectionHeadingProps {
-  badge: string;
+  badge?: string;
   title: string;
   subtitle?: string;
   align?: "left" | "center";
@@ -10,7 +10,6 @@ interface SectionHeadingProps {
 }
 
 export const SectionHeading: React.FC<SectionHeadingProps> = ({
-  badge,
   title,
   subtitle,
   align = "left",
@@ -24,15 +23,6 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
         className
       )}
     >
-      <div
-        className={cn(
-          "inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono tracking-wider uppercase border border-accent/30 bg-accent/10 text-accent-light",
-          align === "center" && "mx-auto"
-        )}
-      >
-        <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-        {badge}
-      </div>
       <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-foreground font-sans">
         {title}
       </h2>

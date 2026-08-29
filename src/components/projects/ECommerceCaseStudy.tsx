@@ -70,28 +70,28 @@ export const ECommerceCaseStudy: React.FC<ECommerceCaseStudyProps> = ({
 
   const highlights = [
     {
-      title: "Specification Pattern",
-      desc: "Cleanly decouples query construction from repository code, building composable LINQ expressions for filtering, sorting, and pagination.",
+      title: "Specification Pattern Queries",
+      desc: "Cleanly decouples query construction from repositories, building composable LINQ expressions for multi-criteria brand, category, search, and price sorting.",
     },
     {
-      title: "Redis Distributed Caching",
-      desc: "Stores shopping basket sessions in Redis to eliminate unnecessary relational database I/O on abandoned or transient carts.",
+      title: "Redis Ephemeral Cart Storage",
+      desc: "Stores transient shopping basket sessions in Redis to eliminate relational database load for active and abandoned shopping carts.",
     },
     {
-      title: "Stripe Payment Integration",
-      desc: "Handles end-to-end payment intent lifecycle, validating client payment tokens securely against Stripe API webhooks.",
+      title: "Stripe Payment Intent Workflow",
+      desc: "Integrates Stripe Payment Intents and webhook listeners, tokenizing credit card processing before finalizing order creation.",
     },
     {
-      title: "JWT Authentication & Identity",
-      desc: "Manages customer accounts and protects checkout, order history, and saved address endpoints with Bearer token validation.",
+      title: "ASP.NET Identity & JWT Security",
+      desc: "Manages user registration, login credentials, PBKDF2 password hashing, and JWT Bearer token authorization across user accounts.",
     },
     {
-      title: "Filtering, Sorting & Pagination",
-      desc: "Evaluates multi-criteria queries (by BrandId, TypeId, search keywords, PriceAsc/PriceDesc) with zero SQL injection risk.",
+      title: "Order Processing & Delivery Methods",
+      desc: "Converts cached basket items into immutable order records with delivery method selection, address validation, and state tracking.",
     },
     {
-      title: "Clean Architecture & Unit of Work",
-      desc: "Enforces strict domain boundaries, managing atomic order creation and inventory state consistency across tables.",
+      title: "Clean Layered Architecture",
+      desc: "Repository Pattern and Unit of Work orchestrating atomic SQL Server transactions with EF Core and AutoMapper DTO transformations.",
     },
   ];
 
