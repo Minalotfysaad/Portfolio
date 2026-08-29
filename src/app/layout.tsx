@@ -55,6 +55,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { getBasePath } from "@/lib/utils";
+
 export const viewport: Viewport = {
   themeColor: "#09090B",
   width: "device-width",
@@ -72,7 +74,7 @@ export default function RootLayout({
       className={`dark scroll-smooth ${inter.variable} ${jetbrainsMono.variable}`}
     >
       <head>
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href={`${getBasePath()}/favicon.svg`} type="image/svg+xml" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ProjectScreenshot } from "@/types";
 import { X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Image as ImageIcon, ExternalLink, Code } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { getAssetPath } from "@/lib/utils";
 
 interface ProjectGalleryModalProps {
   isOpen: boolean;
@@ -136,7 +137,7 @@ export const ProjectGalleryModal: React.FC<ProjectGalleryModalProps> = ({
             {!isError ? (
               <div className="relative w-full max-w-4xl aspect-[16/10] rounded-lg overflow-hidden border border-border/80 bg-surface">
                 <Image
-                  src={currentScreenshot.src}
+                  src={getAssetPath(currentScreenshot.src)}
                   alt={currentScreenshot.alt}
                   fill
                   className="object-contain"

@@ -19,7 +19,7 @@ import {
   ChevronDown,
   ChevronUp,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, getAssetPath } from "@/lib/utils";
 
 interface CompetitionsHubCaseStudyProps {
   project: ProjectItem;
@@ -185,7 +185,7 @@ export const CompetitionsHubCaseStudy: React.FC<CompetitionsHubCaseStudyProps> =
                     )}
                   >
                     <Image
-                      src={s.src}
+                      src={getAssetPath(s.src)}
                       alt={s.alt}
                       fill
                       className="object-cover"
@@ -219,7 +219,7 @@ export const CompetitionsHubCaseStudy: React.FC<CompetitionsHubCaseStudyProps> =
                     )}
                   >
                     <Image
-                      src={s.src}
+                      src={getAssetPath(s.src)}
                       alt={s.alt}
                       fill
                       className="object-cover"

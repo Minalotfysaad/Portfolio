@@ -17,7 +17,7 @@ import {
   ChevronUp,
   Database,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, getAssetPath } from "@/lib/utils";
 
 interface EmployeeLeaveCaseStudyProps {
   project: ProjectItem;
@@ -216,7 +216,7 @@ export const EmployeeLeaveCaseStudy: React.FC<EmployeeLeaveCaseStudyProps> = ({
                     >
                       {!isErr ? (
                         <Image
-                          src={s.src}
+                          src={getAssetPath(s.src)}
                           alt={s.alt}
                           fill
                           className="object-cover"

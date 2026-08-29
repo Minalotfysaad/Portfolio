@@ -16,7 +16,7 @@ import {
   ChevronDown,
   ChevronUp,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, getAssetPath } from "@/lib/utils";
 
 interface ECommerceCaseStudyProps {
   project: ProjectItem;
@@ -210,7 +210,7 @@ export const ECommerceCaseStudy: React.FC<ECommerceCaseStudyProps> = ({
                     )}
                   >
                     <Image
-                      src={s.src}
+                      src={getAssetPath(s.src)}
                       alt={s.alt}
                       fill
                       className="object-cover"
@@ -244,7 +244,7 @@ export const ECommerceCaseStudy: React.FC<ECommerceCaseStudyProps> = ({
                     )}
                   >
                     <Image
-                      src={s.src}
+                      src={getAssetPath(s.src)}
                       alt={s.alt}
                       fill
                       className="object-cover"

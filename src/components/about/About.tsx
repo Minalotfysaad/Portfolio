@@ -7,6 +7,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { EngineeringPhilosophy } from "./EngineeringPhilosophy";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { MapPin, CheckCircle2, Server } from "lucide-react";
+import { getAssetPath } from "@/lib/utils";
 
 export const About: React.FC = () => {
   const [imageError, setImageError] = useState(false);
@@ -41,7 +42,7 @@ export const About: React.FC = () => {
                   <div className="relative aspect-[4/5] w-full rounded-xl overflow-hidden bg-surface border border-border/80 flex items-center justify-center group">
                     {!imageError ? (
                       <Image
-                        src="/images/profile.jpg"
+                        src={getAssetPath("/images/profile.jpg")}
                         alt="Mina Lotfy Saad — .NET Backend Developer"
                         fill
                         className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
