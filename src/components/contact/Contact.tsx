@@ -5,6 +5,7 @@ import { CareerStatusBadge } from "./CareerStatusBadge";
 import { ContactForm } from "./ContactForm";
 import { Button } from "@/components/ui/Button";
 import { Mail, Linkedin, Github, Download, ArrowUpRight, MapPin } from "lucide-react";
+import { getBasePath } from "@/lib/utils";
 
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
@@ -102,7 +103,7 @@ export const Contact: React.FC = () => {
 
                 {/* CV Download CTA */}
                 <a
-                  href={personalInfo.cvUrl}
+                  href={`${getBasePath()}${personalInfo.cvUrl}`}
                   download="Mina-Lotfy-Saad-CV.pdf"
                   className="block pt-2"
                 >

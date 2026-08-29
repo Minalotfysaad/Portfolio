@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { personalInfo } from "@/data/personal";
 import { projectsData } from "@/data/projects";
 import { X, Terminal as TerminalIcon, CornerDownLeft } from "lucide-react";
+import { getBasePath } from "@/lib/utils";
 
 interface TerminalModalProps {
   isOpen: boolean;
@@ -153,7 +154,7 @@ export const TerminalModal: React.FC<TerminalModalProps> = ({
         break;
 
       case "cv":
-        window.open(personalInfo.cvUrl, "_blank");
+        window.open(`${getBasePath()}${personalInfo.cvUrl}`, "_blank");
         output = (
           <p className="text-xs font-mono text-emerald-400">
             ✓ Triggering download for {personalInfo.cvUrl}...

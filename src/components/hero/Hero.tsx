@@ -5,6 +5,7 @@ import { heroData, personalInfo } from "@/data/personal";
 import { Button } from "@/components/ui/Button";
 import { HeroArchitectureVisual } from "./HeroArchitectureVisual";
 import { ArrowRight, Download, Github, Linkedin, Mail, Code2, Server } from "lucide-react";
+import { getBasePath } from "@/lib/utils";
 
 export const Hero: React.FC = () => {
   const handleScrollToProjects = (e: React.MouseEvent) => {
@@ -80,7 +81,7 @@ export const Hero: React.FC = () => {
               </a>
 
               <a
-                href={personalInfo.cvUrl}
+                href={`${getBasePath()}${personalInfo.cvUrl}`}
                 download="Mina-Lotfy-Saad-CV.pdf"
               >
                 <Button

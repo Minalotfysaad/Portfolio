@@ -13,7 +13,6 @@ import {
   Zap,
   Images,
   Code2,
-  Calendar,
   ChevronDown,
   ChevronUp,
   Database,
@@ -39,62 +38,62 @@ export const EmployeeLeaveCaseStudy: React.FC<EmployeeLeaveCaseStudyProps> = ({
       title: "AUTH & ROLE SECURITY",
       icon: Lock,
       description: "JWT access tokens, Refresh Tokens, and ASP.NET Identity securing Employee, Manager, and HR endpoints.",
-      badge: "JWT & Identity (Day 2)",
+      badge: "JWT & Identity",
     },
     {
       step: "02",
-      title: "VALIDATION & DTO MAPPING",
+      title: "VALIDATION & MAPPING",
       icon: FileCheck,
-      description: "FluentValidation pipeline enforcing leave invariants & AutoMapper DTO-to-entity mappings.",
-      badge: "FluentValidation (Day 3)",
+      description: "FluentValidation enforcing leave invariants and AutoMapper simplifying DTO-to-entity transformations.",
+      badge: "FluentValidation",
     },
     {
       step: "03",
-      title: "DATA ACCESS & QUERIES",
+      title: "DATA ACCESS LAYER",
       icon: Database,
-      description: "Repository & Unit of Work patterns with Entity Framework Core and Specification Pattern.",
-      badge: "Repo & Unit of Work (Day 3)",
+      description: "Generic Repository and Unit of Work patterns with EF Core for atomic, testable data operations.",
+      badge: "Repository & UoW",
     },
     {
       step: "04",
-      title: "APPROVAL & DEDUCTION",
+      title: "APPROVAL ENGINE",
       icon: Workflow,
-      description: "Manager & HR multi-step approval workflow with atomic leave balance quota deductions.",
-      badge: "Approval Engine (Day 4-5)",
+      description: "Manager and HR multi-step approval workflow with atomic leave balance quota deductions.",
+      badge: "Multi-Tier Approval",
     },
     {
       step: "05",
-      title: "REDIS & LOGGING",
+      title: "CACHING & OBSERVABILITY",
       icon: Zap,
-      description: "Response caching with Redis, automated cache invalidation, Serilog structured logging & Swagger UI.",
-      badge: "Redis & Serilog (Day 7)",
+      description: "Redis response caching with automated invalidation and Serilog structured request logging.",
+      badge: "Redis & Serilog",
     },
   ];
 
   const highlights = [
     {
-      title: "Production HR Management Backend",
-      desc: "Designed and developed a production-style HR management backend supporting leave requests, department management, and role-based workflows.",
+      title: "Clean Architecture",
+      desc: "Isolated Domain, Application, Infrastructure, and Presentation layers with strict inward-pointing dependencies and Dependency Injection.",
     },
     {
-      title: "JWT, Refresh Tokens & ASP.NET Identity",
-      desc: "Implemented JWT authentication, Refresh Tokens, and ASP.NET Identity to secure Employee, Manager, and HR endpoints.",
+      title: "Enterprise Security Pipeline",
+      desc: "JWT authentication with rotating Refresh Tokens and ASP.NET Identity securing three role-based access tiers: Employee, Manager, and HR.",
     },
     {
-      title: "Repository & Unit of Work Patterns",
-      desc: "Built Repository and Unit of Work patterns with Entity Framework Core to create a maintainable and testable data access layer.",
+      title: "Testable Data Access",
+      desc: "Repository and Unit of Work patterns with Entity Framework Core ensuring atomic transactions and mockable persistence contracts.",
     },
     {
-      title: "FluentValidation & AutoMapper",
-      desc: "Enforced request validation using FluentValidation and integrated AutoMapper to simplify DTO-to-entity mapping.",
+      title: "Input Validation & DTO Mapping",
+      desc: "Strongly-typed FluentValidation rules enforcing business invariants, paired with AutoMapper for clean DTO-to-entity transformations.",
     },
     {
-      title: "RESTful APIs & Serilog Observability",
-      desc: "Developed RESTful APIs supporting pagination, filtering, search, centralized exception handling, structured logging with Serilog, and Swagger documentation.",
+      title: "RESTful API Design",
+      desc: "Pagination, filtering, search, centralized exception handling, and interactive Swagger documentation across all endpoints.",
     },
     {
-      title: "Clean Architecture & Layer Isolation",
-      desc: "Architected solution into isolated Domain, Application, Infrastructure, and Presentation layers with strict Dependency Injection.",
+      title: "Performance & Observability",
+      desc: "Redis distributed caching with automated invalidation and Serilog structured logging for production-grade monitoring.",
     },
   ];
 
@@ -348,155 +347,6 @@ export const EmployeeLeaveCaseStudy: React.FC<EmployeeLeaveCaseStudyProps> = ({
             </div>
           </div>
 
-          {/* 10-Day Implementation Roadmap Grid */}
-          <div className="pt-8 border-t border-border/80">
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-2 font-mono text-xs text-accent-light uppercase tracking-wider">
-                <Workflow className="w-4 h-4" />
-                <span>10-DAY ENGINEERING IMPLEMENTATION ROADMAP:</span>
-              </div>
-              <span className="font-mono text-[10px] text-muted uppercase">
-                7 ARCHITECTURAL PHASES COMPLETED
-              </span>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              {[
-                {
-                  day: "DAY 1",
-                  title: "Clean Architecture & Domain",
-                  isDone: true,
-                  items: [
-                    "Clean Architecture Solution Structure",
-                    "Domain Entities & Relationships",
-                    "DbContext, SQL Server & EF Core",
-                    "ASP.NET Identity & Initial Migration",
-                  ],
-                },
-                {
-                  day: "DAY 2",
-                  title: "Authentication & JWT Security",
-                  isDone: true,
-                  items: [
-                    "JWT Config & Token Generation Service",
-                    "Register & Login REST Endpoints",
-                    "Seed Roles & Users (Employee, Manager, HR)",
-                    "JWT Middleware & Swagger Authorization",
-                  ],
-                },
-                {
-                  day: "DAY 3",
-                  title: "Employee Module & Patterns",
-                  isDone: true,
-                  items: [
-                    "DTOs, AutoMapper & FluentValidation",
-                    "Generic Repository & Unit of Work",
-                    "Specification Pattern for Queries",
-                    "Global Exception Handling Middleware",
-                  ],
-                },
-                {
-                  day: "DAY 4",
-                  title: "Leave Requests & Validation",
-                  isDone: true,
-                  items: [
-                    "Leave Request Lifecycle & Endpoints",
-                    "Employee Leave Balance Validation",
-                    "Overlapping Leave Date Check",
-                    "Role-Based Access Control Policies",
-                  ],
-                },
-                {
-                  day: "DAY 5",
-                  title: "Multi-Step Approval Engine",
-                  isDone: true,
-                  items: [
-                    "Multi-tier Approval (Manager & HR)",
-                    "Atomic Leave Quota Balance Deduction",
-                    "Business Invariants & Transaction Commit",
-                    "Exception Handling & Security Review",
-                  ],
-                },
-                {
-                  day: "DAY 6",
-                  title: "Holidays, Leave Types & Depts",
-                  isDone: true,
-                  items: [
-                    "Holiday & Leave Type Management",
-                    "Department Allocations & Rules",
-                    "Input Validation & Authorization",
-                    "API Refinements & Caching Prep",
-                  ],
-                },
-                {
-                  day: "DAY 7",
-                  title: "Redis, Serilog & Performance",
-                  isDone: true,
-                  items: [
-                    "Redis Integration & Response Caching",
-                    "Automated Cache Invalidation",
-                    "Serilog Structured Request Logging",
-                    "Performance Review & Clean Code",
-                  ],
-                },
-                {
-                  day: "DAYS 8–10",
-                  title: "Testing & DevOps Pipeline",
-                  isDone: false,
-                  items: [
-                    "xUnit & Moq Unit Test Strategy",
-                    "Docker & Docker Compose Containerization",
-                    "GitHub Actions CI/CD Build & Test Pipeline",
-                    "OpenAPI Polish & Production Configuration",
-                  ],
-                },
-              ].map((stage) => (
-                <div
-                  key={stage.day}
-                  className={cn(
-                    "p-4 rounded-xl border flex flex-col justify-between transition-all",
-                    stage.isDone
-                      ? "bg-[#111116] border-border hover:border-accent/40"
-                      : "bg-[#0E0E12]/60 border-border/50 opacity-80"
-                  )}
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-2 font-mono text-xs">
-                      <span
-                        className={cn(
-                          "font-bold",
-                          stage.isDone ? "text-accent-light" : "text-secondary"
-                        )}
-                      >
-                        {stage.day}
-                      </span>
-                      {stage.isDone ? (
-                        <span className="px-2 py-0.5 rounded text-[9px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                          COMPLETED
-                        </span>
-                      ) : (
-                        <span className="px-2 py-0.5 rounded text-[9px] font-bold bg-surface text-muted border border-border">
-                          PLANNED
-                        </span>
-                      )}
-                    </div>
-                    <h4 className="font-mono text-xs font-bold text-foreground mb-3">
-                      {stage.title}
-                    </h4>
-
-                    <ul className="space-y-1.5 font-sans text-[11px] text-secondary">
-                      {stage.items.map((item, iIdx) => (
-                        <li key={iIdx} className="flex items-start gap-1.5">
-                          <span className="text-muted shrink-0">•</span>
-                          <span className="leading-tight">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
     </article>

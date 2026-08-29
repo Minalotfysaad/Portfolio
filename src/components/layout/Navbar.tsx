@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { personalInfo } from "@/data/personal";
 import { Button } from "@/components/ui/Button";
 import { Github, Linkedin, Download, Menu, X, Terminal, Code2 } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, getBasePath } from "@/lib/utils";
 
 interface NavbarProps {
   onOpenTerminal?: () => void;
@@ -155,7 +155,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
           </a>
 
           <a
-            href={personalInfo.cvUrl}
+            href={`${getBasePath()}${personalInfo.cvUrl}`}
             download="Mina-Lotfy-Saad-CV.pdf"
             className="ml-1"
           >
@@ -239,7 +239,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
             </div>
 
             <a
-              href={personalInfo.cvUrl}
+              href={`${getBasePath()}${personalInfo.cvUrl}`}
               download="Mina-Lotfy-Saad-CV.pdf"
             >
               <Button
