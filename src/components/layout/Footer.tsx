@@ -2,13 +2,9 @@
 
 import React from "react";
 import { personalInfo } from "@/data/personal";
-import { Github, Linkedin, Mail, Terminal, ArrowUp } from "lucide-react";
+import { Github, Linkedin, Mail, ArrowUp } from "lucide-react";
 
-interface FooterProps {
-  onOpenTerminal?: () => void;
-}
-
-export const Footer: React.FC<FooterProps> = ({ onOpenTerminal }) => {
+export const Footer: React.FC = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -33,18 +29,8 @@ export const Footer: React.FC<FooterProps> = ({ onOpenTerminal }) => {
             </p>
           </div>
 
-          {/* Social Links & Terminal Trigger */}
+          {/* Social Links */}
           <div className="flex items-center gap-4 text-xs font-mono">
-            {onOpenTerminal && (
-              <button
-                onClick={onOpenTerminal}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface border border-border hover:border-accent text-secondary hover:text-accent-light transition-all"
-                title="Open Interactive CLI Terminal"
-              >
-                <Terminal className="w-3.5 h-3.5" />
-                <span>CLI Easter Egg</span>
-              </button>
-            )}
 
             <a
               href={personalInfo.github}

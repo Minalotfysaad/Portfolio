@@ -47,7 +47,7 @@ export default function Home() {
       <Contact />
 
       {/* Footer */}
-      <Footer onOpenTerminal={() => setTerminalOpen(true)} />
+      <Footer />
 
       {/* Interactive Developer Terminal Easter Egg */}
       <TerminalModal
