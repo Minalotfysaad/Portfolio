@@ -4,7 +4,7 @@ export const personalInfo: ContactInfo = {
   name: "Mina Lotfy Saad",
   role: ".NET Backend Developer",
   location: "Alexandria, Egypt",
-  email: "minalotfy.dev@gmail.com",
+  email: "minalotfysaad@gmail.com",
   github: "https://github.com/Minalotfysaad",
   linkedin: "https://www.linkedin.com/in/minalotfysaad",
   availability: "Available for Full-Time Opportunities",

@@ -7,14 +7,11 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { EmployeeLeaveCaseStudy } from "./EmployeeLeaveCaseStudy";
 import { ECommerceCaseStudy } from "./ECommerceCaseStudy";
 import { CompetitionsHubCaseStudy } from "./CompetitionsHubCaseStudy";
-import { ProjectComparisonMatrix } from "./ProjectComparisonMatrix";
 import { ProjectSectionCTA } from "./ProjectSectionCTA";
-import { ProjectCaseStudyModal } from "./ProjectCaseStudyModal";
 import { ProjectGalleryModal } from "./ProjectGalleryModal";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export const Projects: React.FC = () => {
-  const [selectedCaseStudy, setSelectedCaseStudy] = useState<ProjectItem | null>(null);
   const [selectedGalleryProject, setSelectedGalleryProject] = useState<ProjectItem | null>(null);
 
   const leaveProject = projectsData.find((p) => p.id === "employee-leave-management") || projectsData[0];
@@ -34,7 +31,6 @@ export const Projects: React.FC = () => {
         <ScrollReveal direction="up" distance={35} duration={700}>
           <EmployeeLeaveCaseStudy
             project={leaveProject}
-            onOpenCaseStudyModal={() => setSelectedCaseStudy(leaveProject)}
             onOpenGalleryModal={() => setSelectedGalleryProject(leaveProject)}
           />
         </ScrollReveal>
@@ -43,7 +39,6 @@ export const Projects: React.FC = () => {
         <ScrollReveal direction="up" distance={35} duration={700}>
           <ECommerceCaseStudy
             project={ecommerceProject}
-            onOpenCaseStudyModal={() => setSelectedCaseStudy(ecommerceProject)}
             onOpenGalleryModal={() => setSelectedGalleryProject(ecommerceProject)}
           />
         </ScrollReveal>
@@ -52,28 +47,15 @@ export const Projects: React.FC = () => {
         <ScrollReveal direction="up" distance={35} duration={700}>
           <CompetitionsHubCaseStudy
             project={competitionsProject}
-            onOpenCaseStudyModal={() => setSelectedCaseStudy(competitionsProject)}
             onOpenGalleryModal={() => setSelectedGalleryProject(competitionsProject)}
           />
         </ScrollReveal>
 
-        {/* 4. TECHNICAL CAPABILITIES MATRIX */}
-        <ScrollReveal direction="up" distance={30} duration={650}>
-          <ProjectComparisonMatrix />
-        </ScrollReveal>
-
-        {/* 5. FINAL PROJECT SECTION CTA */}
+        {/* 4. FINAL PROJECT SECTION CTA */}
         <ScrollReveal direction="up" distance={25} duration={600}>
           <ProjectSectionCTA />
         </ScrollReveal>
       </div>
-
-      {/* Deep-Dive Case Study Modal */}
-      <ProjectCaseStudyModal
-        project={selectedCaseStudy}
-        isOpen={Boolean(selectedCaseStudy)}
-        onClose={() => setSelectedCaseStudy(null)}
-      />
 
       {/* Media & Screenshot Lightbox Modal */}
       {selectedGalleryProject && (
@@ -87,3 +69,4 @@ export const Projects: React.FC = () => {
     </section>
   );
 };
+

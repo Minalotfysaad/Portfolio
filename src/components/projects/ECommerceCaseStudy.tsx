@@ -23,13 +23,11 @@ import { cn } from "@/lib/utils";
 
 interface ECommerceCaseStudyProps {
   project: ProjectItem;
-  onOpenCaseStudyModal: () => void;
   onOpenGalleryModal: () => void;
 }
 
 export const ECommerceCaseStudy: React.FC<ECommerceCaseStudyProps> = ({
   project,
-  onOpenCaseStudyModal,
   onOpenGalleryModal,
 }) => {
   const [selectedScreenshotIndex, setSelectedScreenshotIndex] = useState(0);
@@ -116,24 +114,13 @@ export const ECommerceCaseStudy: React.FC<ECommerceCaseStudyProps> = ({
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-3">
-          <Button
-            variant="primary"
-            size="sm"
-            onClick={onOpenCaseStudyModal}
-            icon={<ArrowUpRight className="w-4 h-4" />}
-            iconPosition="right"
-            className="font-mono text-xs font-bold"
-          >
-            VIEW CASE STUDY
-          </Button>
-
+        <div className="flex items-center gap-3">
           <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
             <Button
-              variant="outline"
+              variant="primary"
               size="sm"
               icon={<Github className="w-4 h-4" />}
-              className="font-mono text-xs border-border/90 text-secondary hover:text-foreground"
+              className="font-mono text-xs font-bold"
             >
               GITHUB REPO →
             </Button>

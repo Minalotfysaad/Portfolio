@@ -141,11 +141,11 @@ const pipelineSteps: PipelineStep[] = [
 ];
 
 export const HeroArchitectureVisual: React.FC = () => {
-  const [selectedStepId, setSelectedStepId] = useState<string>("webapi");
+  const [selectedStepId, setSelectedStepId] = useState<string | null>(null);
   const [isSimulating, setIsSimulating] = useState(false);
   const [activeStepIndex, setActiveStepIndex] = useState<number | null>(null);
 
-  const selectedStep = pipelineSteps.find((s) => s.id === selectedStepId) || pipelineSteps[1];
+  const selectedStep = selectedStepId ? pipelineSteps.find((s) => s.id === selectedStepId) : null;
 
   const handleSimulate = () => {
     if (isSimulating) return;
@@ -294,47 +294,56 @@ export const HeroArchitectureVisual: React.FC = () => {
 
         {/* Selected Layer Inspector Details Drawer */}
         <div className="mt-4 pt-3.5 border-t border-border/60 bg-[#0F0F14] rounded-xl p-3.5 border border-border/50 animate-fadeIn">
-          <div className="flex items-center justify-between mb-2">
-            <div className="flex items-center gap-2">
-              <span
-                className="w-2 h-2 rounded-full"
-                style={{ backgroundColor: selectedStep.color }}
-              />
-              <span className="font-mono text-xs font-bold text-foreground">
-                {selectedStep.layer} Inspector
-              </span>
-            </div>
-            <span className="font-mono text-[10px] text-muted">
-              Execution: {selectedStep.latency}
-            </span>
-          </div>
-
-          <p className="text-xs text-secondary font-sans mb-2.5 leading-relaxed">
-            {selectedStep.details.role}
-          </p>
-
-          <div className="space-y-1 mb-3">
-            {selectedStep.details.operations.map((op, oIdx) => (
-              <div
-                key={oIdx}
-                className="flex items-start gap-1.5 text-[11px] text-secondary font-sans"
-              >
-                <CheckCircle2 className="w-3 h-3 text-accent-light shrink-0 mt-0.5" />
-                <span className="leading-tight">{op}</span>
+          {selectedStep ? (
+            <>
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-2">
+                  <span
+                    className="w-2 h-2 rounded-full"
+                    style={{ backgroundColor: selectedStep.color }}
+                  />
+                  <span className="font-mono text-xs font-bold text-foreground">
+                    {selectedStep.layer} Inspector
+                  </span>
+                </div>
+                <span className="font-mono text-[10px] text-muted">
+                  Execution: {selectedStep.latency}
+                </span>
               </div>
-            ))}
-          </div>
 
-          <div className="flex flex-wrap items-center gap-1.5 pt-2 border-t border-border/40">
-            {selectedStep.details.tech.map((t) => (
-              <span
-                key={t}
-                className="font-mono text-[10px] px-2 py-0.5 rounded bg-surface border border-border text-foreground"
-              >
-                {t}
-              </span>
-            ))}
-          </div>
+              <p className="text-xs text-secondary font-sans mb-2.5 leading-relaxed">
+                {selectedStep.details.role}
+              </p>
+
+              <div className="space-y-1 mb-3">
+                {selectedStep.details.operations.map((op, oIdx) => (
+                  <div
+                    key={oIdx}
+                    className="flex items-start gap-1.5 text-[11px] text-secondary font-sans"
+                  >
+                    <CheckCircle2 className="w-3 h-3 text-accent-light shrink-0 mt-0.5" />
+                    <span className="leading-tight">{op}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex flex-wrap items-center gap-1.5 pt-2 border-t border-border/40">
+                {selectedStep.details.tech.map((t) => (
+                  <span
+                    key={t}
+                    className="font-mono text-[10px] px-2 py-0.5 rounded bg-surface border border-border text-foreground"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </>
+          ) : (
+            <div className="py-2 text-center font-mono text-xs text-muted flex items-center justify-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+              <span>Select any layer or click RUN TRACE to inspect pipeline operations</span>
+            </div>
+          )}
         </div>
 
         {/* Pipeline Telemetry Footer */}

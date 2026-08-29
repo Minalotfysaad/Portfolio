@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { professionalExperience } from "@/data/experience";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Briefcase, Calendar, MapPin, ChevronRight, CheckCircle2, Code2, Database, Shield, Layers, Users, FileText } from "lucide-react";
+import { Briefcase, Calendar, MapPin, Code2, Database, Shield, Layers, Users, FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const categoryIconMap: Record<string, any> = {
@@ -16,23 +16,7 @@ const categoryIconMap: Record<string, any> = {
 };
 
 export const Experience: React.FC = () => {
-  const [activeFilter, setActiveFilter] = useState<string>("ALL");
-
   const exp = professionalExperience[0]; // Vetanoia Solutions
-
-  const filterOptions = [
-    "ALL",
-    "API DEVELOPMENT",
-    "DATABASES & DATA ACCESS",
-    "SECURITY & ACCESS CONTROL",
-    "ARCHITECTURE & DESIGN",
-    "COLLABORATION & CI/CD",
-    "DOCUMENTATION & TESTING",
-  ];
-
-  const filteredCategories = activeFilter === "ALL"
-    ? exp.categories
-    : exp.categories.filter((c) => c.title === activeFilter);
 
   return (
     <section id="experience" className="py-20 lg:py-28 relative bg-[#0C0C0E]">
@@ -72,38 +56,11 @@ export const Experience: React.FC = () => {
                   </div>
                 </div>
               </div>
-
-              <div className="text-xs font-mono text-muted max-w-xs md:text-right">
-                Focus: Clean Architecture, REST APIs, EF Core, JWT Security & SQL Server
-              </div>
-            </div>
-
-            {/* Category Filter Tabs */}
-            <div className="mb-8">
-              <span className="font-mono text-xs text-muted block mb-3 uppercase tracking-wider">
-                Filter by Domain Area:
-              </span>
-              <div className="flex flex-wrap gap-1.5">
-                {filterOptions.map((opt) => (
-                  <button
-                    key={opt}
-                    onClick={() => setActiveFilter(opt)}
-                    className={cn(
-                      "px-3 py-1.5 rounded-lg text-xs font-mono transition-all duration-200",
-                      activeFilter === opt
-                        ? "bg-accent text-white font-semibold shadow-glow-accent/40"
-                        : "bg-surface text-secondary hover:text-foreground hover:bg-surface-light border border-border"
-                    )}
-                  >
-                    {opt}
-                  </button>
-                ))}
-              </div>
             </div>
 
             {/* Responsibilities Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {filteredCategories.map((category) => {
+              {exp.categories.map((category) => {
                 const Icon = categoryIconMap[category.title] || Code2;
 
                 return (
