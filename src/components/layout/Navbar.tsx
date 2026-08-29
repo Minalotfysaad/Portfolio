@@ -53,11 +53,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
     setMobileMenuOpen(false);
     const target = document.querySelector(href);
     if (target) {
+      const style = window.getComputedStyle(target);
+      const paddingTop = parseFloat(style.paddingTop) || 0;
       const topOffset = 80;
       const elementPosition = target.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - topOffset;
+      const offsetPosition = elementPosition + window.pageYOffset + paddingTop - topOffset;
       window.scrollTo({
-        top: offsetPosition,
+        top: Math.max(0, offsetPosition),
         behavior: "smooth",
       });
     }

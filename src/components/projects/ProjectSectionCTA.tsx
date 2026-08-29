@@ -8,9 +8,17 @@ import { Github, Mail, ArrowRight, Server, Terminal } from "lucide-react";
 export const ProjectSectionCTA: React.FC = () => {
   const handleScrollToContact = (e: React.MouseEvent) => {
     e.preventDefault();
-    const contactSection = document.getElementById("contact");
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: "smooth" });
+    const target = document.querySelector("#contact");
+    if (target) {
+      const style = window.getComputedStyle(target);
+      const paddingTop = parseFloat(style.paddingTop) || 0;
+      const topOffset = 80;
+      const elementPosition = target.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset + paddingTop - topOffset;
+      window.scrollTo({
+        top: Math.max(0, offsetPosition),
+        behavior: "smooth",
+      });
     }
   };
 

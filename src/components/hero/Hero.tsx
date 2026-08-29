@@ -11,11 +11,13 @@ export const Hero: React.FC = () => {
     e.preventDefault();
     const target = document.querySelector("#projects");
     if (target) {
+      const style = window.getComputedStyle(target);
+      const paddingTop = parseFloat(style.paddingTop) || 0;
       const topOffset = 80;
       const elementPosition = target.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - topOffset;
+      const offsetPosition = elementPosition + window.pageYOffset + paddingTop - topOffset;
       window.scrollTo({
-        top: offsetPosition,
+        top: Math.max(0, offsetPosition),
         behavior: "smooth",
       });
     }
