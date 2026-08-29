@@ -32,8 +32,8 @@ export const ArchitectureDiagram: React.FC<ArchitectureDiagramProps> = ({
         </span>
       </div>
 
-      {/* Horizontal Flow on Large screens / Vertical Flow on Mobile */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3 mb-6">
+      {/* Horizontal Flow on Large screens / Responsive grid on Mobile */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3 mb-5">
         {nodes.map((node, index) => {
           const isSelected = activeNode?.id === node.id;
 
@@ -42,16 +42,16 @@ export const ArchitectureDiagram: React.FC<ArchitectureDiagramProps> = ({
               key={node.id}
               onClick={() => setActiveNode(node)}
               className={cn(
-                "cursor-pointer rounded-lg p-3 border transition-all duration-200 text-left flex flex-col justify-between",
+                "cursor-pointer rounded-lg p-2.5 sm:p-3 border transition-all duration-200 text-left flex flex-col justify-between",
                 isSelected
-                  ? "bg-surface border-accent shadow-glow-accent/30 scale-[1.02]"
+                  ? "bg-surface border-accent shadow-sm scale-[1.02]"
                   : "bg-[#141418] border-border/60 hover:border-border-light hover:bg-[#18181F]"
               )}
             >
               <div>
-                <div className="flex items-center justify-between mb-1.5">
+                <div className="flex items-center justify-between mb-1">
                   <span
-                    className="font-mono text-[10px] font-bold px-1.5 py-0.2 rounded"
+                    className="font-mono text-[9px] sm:text-[10px] font-bold px-1.5 py-0.2 rounded"
                     style={{
                       backgroundColor: `${node.color || "#3B82F6"}20`,
                       color: node.color || "#3B82F6",
@@ -60,19 +60,19 @@ export const ArchitectureDiagram: React.FC<ArchitectureDiagramProps> = ({
                     0{index + 1}
                   </span>
                   {isSelected && (
-                    <span className="w-1.5 h-1.5 rounded-full bg-accent animate-ping" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
                   )}
                 </div>
 
-                <h5 className="font-mono text-xs font-bold text-foreground leading-tight mb-0.5">
+                <h5 className="font-mono text-[11px] sm:text-xs font-bold text-foreground leading-tight mb-0.5 truncate">
                   {node.name}
                 </h5>
-                <span className="font-mono text-[10px] text-muted block truncate">
+                <span className="font-mono text-[9px] sm:text-[10px] text-muted block truncate">
                   {node.role}
                 </span>
               </div>
 
-              <div className="mt-2 pt-2 border-t border-border/40 flex flex-wrap gap-1">
+              <div className="mt-2 pt-1.5 border-t border-border/40 flex flex-wrap gap-1">
                 {node.tech.slice(0, 1).map((t) => (
                   <span
                     key={t}

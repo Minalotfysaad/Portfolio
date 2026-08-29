@@ -4,7 +4,7 @@ import React from "react";
 import { heroData, personalInfo } from "@/data/personal";
 import { Button } from "@/components/ui/Button";
 import { HeroArchitectureVisual } from "./HeroArchitectureVisual";
-import { ArrowRight, Download, Github, Linkedin, Mail, ShieldCheck, Database, Layers } from "lucide-react";
+import { ArrowRight, Download, Github, Linkedin, Mail, Code2, Server } from "lucide-react";
 
 export const Hero: React.FC = () => {
   const handleScrollToProjects = (e: React.MouseEvent) => {
@@ -22,27 +22,27 @@ export const Hero: React.FC = () => {
   };
 
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center pt-28 pb-16 lg:py-32 overflow-hidden bg-grid">
-      {/* Radial lighting blur */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-gradient-to-br from-accent/15 via-indigo-500/10 to-transparent blur-[120px] rounded-full pointer-events-none" />
+    <section className="relative min-h-[92vh] flex items-center justify-center pt-28 pb-16 lg:py-32 overflow-hidden bg-grid">
+      {/* Subtle architectural ambient gradient */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-gradient-to-br from-accent/15 via-indigo-600/10 to-transparent blur-[140px] rounded-full pointer-events-none" />
 
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Column: Hero Content */}
           <div className="lg:col-span-7 flex flex-col items-start text-left">
             {/* Professional Role Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-accent/30 bg-accent/10 text-accent-light text-xs font-mono tracking-wider uppercase mb-6 shadow-sm">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-accent/30 bg-accent/10 text-accent-light text-xs font-mono tracking-wider uppercase mb-5 shadow-sm">
               <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
               <span>{heroData.role}</span>
             </div>
 
             {/* Engineer Name */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-foreground font-sans uppercase mb-4">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-foreground font-sans uppercase mb-4 leading-none">
               MINA LOTFY SAAD
             </h1>
 
             {/* Core Value Proposition Headline */}
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-medium text-foreground/90 font-sans tracking-tight mb-5 leading-snug">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-foreground/90 font-sans tracking-tight mb-5 leading-snug">
               {heroData.tagline}
             </h2>
 
@@ -56,14 +56,14 @@ export const Hero: React.FC = () => {
               {heroData.metadataChips.map((chip) => (
                 <span
                   key={chip}
-                  className="px-2.5 py-1 rounded-md text-xs font-mono bg-surface border border-border text-secondary hover:text-foreground hover:border-border-light transition-colors"
+                  className="px-2.5 py-1 rounded-md text-xs font-mono bg-surface/80 border border-border text-secondary hover:text-foreground hover:border-border-light transition-colors shadow-sm"
                 >
                   {chip}
                 </span>
               ))}
             </div>
 
-            {/* CTAs */}
+            {/* Primary CTAs */}
             <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-8">
               <a href="#projects" onClick={handleScrollToProjects}>
                 <Button
@@ -71,8 +71,9 @@ export const Hero: React.FC = () => {
                   size="lg"
                   icon={<ArrowRight className="w-4 h-4" />}
                   iconPosition="right"
+                  className="font-mono text-xs tracking-wider uppercase font-bold"
                 >
-                  VIEW MY WORK
+                  EXPLORE ARCHITECTURE
                 </Button>
               </a>
 
@@ -84,20 +85,22 @@ export const Hero: React.FC = () => {
                   variant="secondary"
                   size="lg"
                   icon={<Download className="w-4 h-4" />}
+                  className="font-mono text-xs tracking-wider uppercase font-semibold"
                 >
                   DOWNLOAD CV
                 </Button>
               </a>
             </div>
 
-            {/* Social & Contact Direct Links */}
-            <div className="flex items-center gap-4 pt-4 border-t border-border/60 text-xs font-mono text-secondary">
-              <span className="text-muted">CONNECT:</span>
+            {/* Recruiter Direct Contact Links */}
+            <div className="flex items-center gap-4 pt-5 border-t border-border/70 text-xs font-mono text-secondary">
+              <span className="text-muted tracking-wider">DIRECT:</span>
               <a
                 href={personalInfo.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-1.5 hover:text-foreground transition-colors"
+                aria-label="GitHub Profile"
               >
                 <Github className="w-3.5 h-3.5" />
                 <span>GitHub</span>
@@ -108,6 +111,7 @@ export const Hero: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-1.5 hover:text-[#0A66C2] transition-colors"
+                aria-label="LinkedIn Profile"
               >
                 <Linkedin className="w-3.5 h-3.5" />
                 <span>LinkedIn</span>
@@ -116,6 +120,7 @@ export const Hero: React.FC = () => {
               <a
                 href={`mailto:${personalInfo.email}`}
                 className="flex items-center gap-1.5 hover:text-accent-light transition-colors"
+                aria-label="Direct Email"
               >
                 <Mail className="w-3.5 h-3.5" />
                 <span>Email</span>

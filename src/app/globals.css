@@ -1,13 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-:root {
-  --font-inter: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-jetbrains-mono: 'JetBrains Mono', monospace;
-}
 
 @layer base {
   * {
@@ -20,15 +13,19 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased font-sans selection:bg-accent/30 selection:text-foreground;
+    @apply bg-background text-foreground antialiased selection:bg-accent/30 selection:text-foreground;
     overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight font-sans;
   }
 }
 
-/* Custom Scrollbar */
+/* Custom Sleek Dark Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -37,48 +34,52 @@
 
 ::-webkit-scrollbar-thumb {
   background: #27272A;
-  border-radius: 4px;
+  border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #3F3F46;
 }
 
-/* Subtle dot and grid patterns */
+/* Subtle architectural grid pattern */
 .bg-grid {
   background-size: 32px 32px;
-  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+}
+
+.bg-grid-dense {
+  background-size: 16px 16px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
 }
 
 .bg-dots {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
-/* Card Glow Effect */
-.card-gradient-border {
-  position: relative;
-  background: #111113;
-  border-radius: 0.75rem;
-}
-
-.card-gradient-border::before {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  border-radius: 0.8rem;
-  padding: 1px;
-  background: linear-gradient(to bottom right, rgba(59, 130, 246, 0.25), rgba(255, 255, 255, 0.03), rgba(99, 102, 241, 0.15));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 20px 20px;
 }
 
 /* Monospace & Code styles */
-code, pre {
-  font-family: var(--font-jetbrains-mono);
+code, pre, kbd {
+  font-family: var(--font-jetbrains-mono), monospace;
+}
+
+/* Smooth keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Reduced motion support */

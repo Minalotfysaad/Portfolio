@@ -1,6 +1,19 @@
 import type { Metadata, Viewport } from "next";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ScrollProgress } from "@/components/layout/ScrollProgress";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Mina Lotfy Saad | .NET Backend Developer",
@@ -54,7 +67,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark scroll-smooth">
+    <html
+      lang="en"
+      className={`dark scroll-smooth ${inter.variable} ${jetbrainsMono.variable}`}
+    >
       <head>
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <script
@@ -90,7 +106,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-background text-foreground antialiased selection:bg-accent/30 selection:text-foreground">
+      <body className="bg-background text-foreground font-sans antialiased selection:bg-accent/30 selection:text-foreground min-h-screen">
         <ScrollProgress />
         {children}
       </body>
