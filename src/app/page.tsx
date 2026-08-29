@@ -26,39 +26,25 @@ export default function Home() {
       <Hero />
 
       {/* Factual Metrics Strip */}
-      <ScrollReveal direction="up" distance={20} duration={500}>
-        <MetricsStrip />
-      </ScrollReveal>
+      <MetricsStrip />
 
       {/* About & "How I Build" Engineering Philosophy */}
-      <ScrollReveal direction="up" distance={30} duration={600}>
-        <About />
-      </ScrollReveal>
+      <About />
 
       {/* Professional Experience (Vetanoia Solutions) */}
-      <ScrollReveal direction="up" distance={30} duration={600}>
-        <Experience />
-      </ScrollReveal>
+      <Experience />
 
       {/* Skills Matrix & Backend Stack Flow */}
-      <ScrollReveal direction="up" distance={30} duration={600}>
-        <Skills />
-      </ScrollReveal>
+      <Skills />
 
       {/* Selected Work Case Studies */}
-      <ScrollReveal direction="up" distance={30} duration={650}>
-        <Projects />
-      </ScrollReveal>
+      <Projects />
 
       {/* Education & Languages */}
-      <ScrollReveal direction="up" distance={30} duration={600}>
-        <Education />
-      </ScrollReveal>
+      <Education />
 
       {/* Contact & Availability */}
-      <ScrollReveal direction="up" distance={30} duration={600}>
-        <Contact />
-      </ScrollReveal>
+      <Contact />
 
       {/* Footer */}
       <Footer onOpenTerminal={() => setTerminalOpen(true)} />

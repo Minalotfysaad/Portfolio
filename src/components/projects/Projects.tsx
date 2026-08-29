@@ -20,11 +20,13 @@ export const Projects: React.FC = () => {
   return (
     <section id="projects" className="py-20 lg:py-28 relative bg-[#09090C]">
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
-        <SectionHeading
-          badge="PRODUCTION CASE STUDIES"
-          title="BACKEND SYSTEMS & ARCHITECTURAL CASE STUDIES"
-          subtitle="Real-world backend architectures engineered around complex business lifecycles, Clean Architecture, transactional data access, and enterprise security."
-        />
+        <ScrollReveal direction="up" distance={24} duration={500}>
+          <SectionHeading
+            badge="PRODUCTION CASE STUDIES"
+            title="BACKEND SYSTEMS & ARCHITECTURAL CASE STUDIES"
+            subtitle="Real-world backend architectures engineered around complex business lifecycles, Clean Architecture, transactional data access, and enterprise security."
+          />
+        </ScrollReveal>
 
         {/* 1. FLAGSHIP CASE STUDY: EMPLOYEE LEAVE MANAGEMENT SYSTEM */}
         <ScrollReveal direction="up" distance={35} duration={700}>
