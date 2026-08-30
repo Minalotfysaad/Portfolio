@@ -13,19 +13,11 @@ export const personalInfo: ContactInfo = {
 };
 
 export const heroData = {
-  name: "MINA LOTFY SAAD",
-  role: ".NET BACKEND DEVELOPER",
-  tagline: "Building secure, scalable, and maintainable backend systems with C# and ASP.NET Core.",
-  supportingText:
-    "I design and engineer production-grade RESTful APIs with a strong focus on Clean Architecture, enterprise security, database query optimization, Redis caching, and resilient code patterns.",
-  metadataChips: [
-    "C# / .NET 9",
-    "ASP.NET Core Web API",
-    "Clean Architecture",
-    "Entity Framework Core",
-    "SQL Server & Redis",
-    "JWT & ASP.NET Identity",
-  ],
+  name: "Mina Lotfy Saad",
+  role: ".NET Backend Developer",
+  tagline:
+    "I build secure, scalable, and maintainable REST APIs using C#, ASP.NET Core, Entity Framework Core, and SQL Server.",
+  availabilityStatus: "Open to Junior .NET Backend Developer opportunities",
 };
 
 export const quickMetrics: MetricItem[] = [

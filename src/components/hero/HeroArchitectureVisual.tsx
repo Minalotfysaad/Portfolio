@@ -24,7 +24,6 @@ interface PipelineStep {
   color: string;
   bgColor: string;
   borderColor: string;
-  latency: string;
   details: {
     role: string;
     tech: string[];
@@ -36,41 +35,39 @@ const pipelineSteps: PipelineStep[] = [
   {
     id: "client",
     number: "01",
-    name: "CLIENT GATEWAY",
-    sub: "HTTPS • JSON • Bearer Token",
-    layer: "Ingestion Layer",
+    name: "CLIENT REQUEST",
+    sub: "HTTPS • JSON • Request Context",
+    layer: "Ingestion Stage",
     icon: Radio,
     color: "#06B6D4",
     bgColor: "rgba(6, 182, 212, 0.08)",
     borderColor: "border-cyan-500/40",
-    latency: "2ms",
     details: {
       role: "Client Ingestion & Protocol Negotiation",
-      tech: ["HTTP/2", "TLS 1.3", "JWT Bearer Header"],
+      tech: ["HTTP/2", "TLS", "REST Protocol"],
       operations: [
-        "Transmits JSON payload with Authorization header",
-        "Enforces strict CORS origins & headers",
-        "Rate limiting & request header parsing",
+        "Transmits structured JSON requests securely",
+        "Enforces strict CORS policy & request headers",
+        "Parses routing context for pipeline dispatching",
       ],
     },
   },
   {
     id: "webapi",
     number: "02",
-    name: "ASP.NET CORE 9 WEB API",
-    sub: "Controllers • Auth Filter • Exception Handler",
-    layer: "Presentation Layer",
+    name: "ASP.NET CORE WEB API",
+    sub: "Controllers • Middlewares • Routing",
+    layer: "Presentation Stage",
     icon: Server,
     color: "#3B82F6",
     bgColor: "rgba(59, 130, 246, 0.12)",
     borderColor: "border-blue-500/40",
-    latency: "4ms",
     details: {
       role: "Route Dispatching & Pipeline Middlewares",
-      tech: ["ASP.NET Core 9", "JWT Middleware", "RFC 7807 Problem Details"],
+      tech: ["ASP.NET Core", "Middleware Pipeline", "Model Binding"],
       operations: [
-        "Validates cryptographic HMAC-SHA256 signature",
-        "Binds model & claims (UserId, Role, DepartmentId)",
+        "Dispatches requests to strongly-typed endpoints",
+        "Binds model attributes and request context",
         "Catches unhandled errors via centralized middleware",
       ],
     },
@@ -78,21 +75,20 @@ const pipelineSteps: PipelineStep[] = [
   {
     id: "application",
     number: "03",
-    name: "APPLICATION USE CASE",
-    sub: "Commands • FluentValidation • AutoMapper",
-    layer: "Application Layer",
+    name: "APPLICATION SERVICES",
+    sub: "Workflows • Validation • DTOs",
+    layer: "Application Stage",
     icon: Cpu,
     color: "#6366F1",
     bgColor: "rgba(99, 102, 241, 0.08)",
     borderColor: "border-indigo-500/40",
-    latency: "5ms",
     details: {
       role: "Business Workflow Orchestration",
-      tech: ["FluentValidation", "AutoMapper", "DTO Pipeline"],
+      tech: ["Application Logic", "DTO Mapping", "Validation Pipeline"],
       operations: [
-        "Executes FluentValidation rules before execution",
-        "Transforms incoming DTO to Domain Entity",
-        "Coordinates repository unit-of-work transactions",
+        "Executes input validation and business rules",
+        "Transforms request DTOs into domain structures",
+        "Coordinates data operations and business results",
       ],
     },
   },
@@ -100,41 +96,39 @@ const pipelineSteps: PipelineStep[] = [
     id: "domain",
     number: "04",
     name: "DOMAIN CORE",
-    sub: "Entities • Invariants • Contracts",
-    layer: "Domain Core",
+    sub: "Entities • Business Rules • Invariants",
+    layer: "Domain Stage",
     icon: Layers,
     color: "#A855F7",
     bgColor: "rgba(168, 85, 247, 0.08)",
     borderColor: "border-purple-500/40",
-    latency: "1ms",
     details: {
       role: "Enterprise Business Invariants",
-      tech: ["Pure C#", "Domain Entities", "Business Exceptions"],
+      tech: ["Pure C#", "Domain Entities", "Business Rules"],
       operations: [
-        "Enforces leave quota checks & date range validity",
-        "Calculates business days excluding holidays",
-        "100% decoupled from database & web frameworks",
+        "Enforces core domain rules and data integrity",
+        "Calculates business computations and state changes",
+        "Remains fully decoupled from database & web frameworks",
       ],
     },
   },
   {
     id: "infrastructure",
     number: "05",
-    name: "INFRASTRUCTURE & PERSISTENCE",
-    sub: "EF Core 9 • SQL Server • Redis Cache",
-    layer: "Infrastructure Layer",
+    name: "DATA ACCESS & PERSISTENCE",
+    sub: "EF Core • SQL Server Database",
+    layer: "Persistence Stage",
     icon: Database,
     color: "#10B981",
     bgColor: "rgba(16, 185, 129, 0.12)",
     borderColor: "border-emerald-500/40",
-    latency: "6ms",
     details: {
       role: "Data Persistence & Transaction Integrity",
-      tech: ["EF Core 9", "SQL Server", "Redis", "Unit of Work"],
+      tech: ["EF Core", "SQL Server", "Relational Database"],
       operations: [
-        "Executes Unit of Work atomic SaveChangesAsync()",
-        "Utilizes AsNoTracking on read-only queries",
-        "Invalidates distributed Redis session cache",
+        "Executes atomic asynchronous database operations",
+        "Executes optimized queries against SQL Server",
+        "Maintains transactional data consistency and integrity",
       ],
     },
   },
@@ -161,6 +155,7 @@ export const HeroArchitectureVisual: React.FC = () => {
         clearInterval(interval);
         setTimeout(() => {
           setActiveStepIndex(null);
+          setSelectedStepId(null);
           setIsSimulating(false);
         }, 400);
       }
@@ -173,9 +168,9 @@ export const HeroArchitectureVisual: React.FC = () => {
       <div className="absolute -inset-2 bg-gradient-to-tr from-accent/15 via-indigo-600/10 to-transparent rounded-3xl blur-2xl pointer-events-none" />
 
       {/* Main Console Box */}
-      <div className="relative bg-[#0D0D11] border border-border rounded-2xl p-4 sm:p-6 shadow-2xl overflow-hidden backdrop-blur-xl">
+      <div className="relative bg-[#0D0D11] border border-border rounded-2xl p-4 sm:p-5 shadow-2xl overflow-hidden backdrop-blur-xl">
         {/* Console Header Bar */}
-        <div className="flex items-center justify-between pb-4 mb-4 border-b border-border/70 font-mono text-xs">
+        <div className="flex items-center justify-between pb-3 mb-3 border-b border-border/70 font-mono text-xs">
           <div className="flex items-center gap-2.5">
             <div className="flex items-center gap-1.5">
               <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
@@ -183,7 +178,7 @@ export const HeroArchitectureVisual: React.FC = () => {
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
             </div>
             <span className="text-secondary text-[11px] font-semibold">
-              arch_pipeline.telemetry
+              backend_pipeline.flow
             </span>
           </div>
 
@@ -211,16 +206,11 @@ export const HeroArchitectureVisual: React.FC = () => {
                 </>
               )}
             </button>
-
-            <span className="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hidden sm:inline-flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              CLEAN ARCH
-            </span>
           </div>
         </div>
 
         {/* Vertical Pipeline Steps */}
-        <div className="space-y-2 relative">
+        <div className="space-y-1.5 relative">
           {pipelineSteps.map((step, idx) => {
             const Icon = step.icon;
             const isSelected = selectedStepId === step.id;
@@ -229,9 +219,11 @@ export const HeroArchitectureVisual: React.FC = () => {
             return (
               <React.Fragment key={step.id}>
                 <div
-                  onClick={() => setSelectedStepId(step.id)}
+                  onClick={() =>
+                    setSelectedStepId((prev) => (prev === step.id ? null : step.id))
+                  }
                   className={cn(
-                    "group relative cursor-pointer rounded-xl p-3 sm:p-3.5 border transition-all duration-200",
+                    "group relative cursor-pointer rounded-xl p-2.5 sm:p-3 border transition-all duration-200",
                     isTraced
                       ? "border-accent bg-accent/20 shadow-glow-accent scale-[1.015]"
                       : isSelected
@@ -270,14 +262,11 @@ export const HeroArchitectureVisual: React.FC = () => {
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-2 shrink-0">
-                      <span className="font-mono text-[10px] text-muted px-1.5 py-0.5 rounded bg-background/60 border border-border/50">
-                        {step.latency}
-                      </span>
-                      {isSelected && (
+                    {isSelected && (
+                      <div className="flex items-center shrink-0">
                         <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                      )}
-                    </div>
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -293,66 +282,88 @@ export const HeroArchitectureVisual: React.FC = () => {
         </div>
 
         {/* Selected Layer Inspector Details Drawer */}
-        <div className="mt-4 pt-3.5 border-t border-border/60 bg-[#0F0F14] rounded-xl p-3.5 border border-border/50 animate-fadeIn">
-          {selectedStep ? (
-            <>
-              <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center gap-2">
-                  <span
-                    className="w-2 h-2 rounded-full"
-                    style={{ backgroundColor: selectedStep.color }}
-                  />
-                  <span className="font-mono text-xs font-bold text-foreground">
-                    {selectedStep.layer} Inspector
-                  </span>
-                </div>
-                <span className="font-mono text-[10px] text-muted">
-                  Execution: {selectedStep.latency}
-                </span>
-              </div>
-
-              <p className="text-xs text-secondary font-sans mb-2.5 leading-relaxed">
-                {selectedStep.details.role}
-              </p>
-
-              <div className="space-y-1 mb-3">
-                {selectedStep.details.operations.map((op, oIdx) => (
-                  <div
-                    key={oIdx}
-                    className="flex items-start gap-1.5 text-[11px] text-secondary font-sans"
-                  >
-                    <CheckCircle2 className="w-3 h-3 text-accent-light shrink-0 mt-0.5" />
-                    <span className="leading-tight">{op}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex flex-wrap items-center gap-1.5 pt-2 border-t border-border/40">
-                {selectedStep.details.tech.map((t) => (
-                  <span
-                    key={t}
-                    className="font-mono text-[10px] px-2 py-0.5 rounded bg-surface border border-border text-foreground"
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-            </>
-          ) : (
-            <div className="py-2 text-center font-mono text-xs text-muted flex items-center justify-center gap-2">
+        <div className="mt-3 border-t border-border/60 bg-[#0F0F14] rounded-xl border border-border/50 overflow-hidden transition-all duration-300 ease-out">
+          {/* Default Unselected State: Explore prompt */}
+          <div
+            className={cn(
+              "transition-all duration-200 overflow-hidden",
+              selectedStep
+                ? "max-h-0 opacity-0 py-0 pointer-events-none"
+                : "max-h-12 opacity-100 py-2 px-3"
+            )}
+          >
+            <div className="text-center font-mono text-xs text-muted flex items-center justify-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-              <span>Select any layer or click RUN TRACE to inspect pipeline operations</span>
+              <span>Explore the request pipeline</span>
             </div>
-          )}
+          </div>
+
+          {/* Expanded Selected State: Stage Details with smooth expand animation */}
+          <div
+            className={cn(
+              "grid transition-all duration-300 ease-out",
+              selectedStep
+                ? "grid-rows-[1fr] opacity-100 p-3"
+                : "grid-rows-[0fr] opacity-0 p-0"
+            )}
+          >
+            <div className="overflow-hidden min-h-0">
+              {selectedStep && (
+                <div className="animate-fadeIn">
+                  <div className="flex items-center justify-between mb-1.5">
+                    <div className="flex items-center gap-2">
+                      <span
+                        className="w-2 h-2 rounded-full"
+                        style={{ backgroundColor: selectedStep.color }}
+                      />
+                      <span className="font-mono text-xs font-bold text-foreground">
+                        {selectedStep.layer} Inspector
+                      </span>
+                    </div>
+                    <span className="font-mono text-[10px] text-muted">
+                      Stage {selectedStep.number} of 05
+                    </span>
+                  </div>
+
+                  <p className="text-xs text-secondary font-sans mb-2 leading-relaxed">
+                    {selectedStep.details.role}
+                  </p>
+
+                  <div className="space-y-1 mb-2.5">
+                    {selectedStep.details.operations.map((op, oIdx) => (
+                      <div
+                        key={oIdx}
+                        className="flex items-start gap-1.5 text-[11px] text-secondary font-sans"
+                      >
+                        <CheckCircle2 className="w-3 h-3 text-accent-light shrink-0 mt-0.5" />
+                        <span className="leading-tight">{op}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-1.5 pt-2 border-t border-border/40">
+                    {selectedStep.details.tech.map((t) => (
+                      <span
+                        key={t}
+                        className="font-mono text-[10px] px-2 py-0.5 rounded bg-surface border border-border text-foreground"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
 
         {/* Pipeline Telemetry Footer */}
-        <div className="mt-3 flex items-center justify-between text-[10px] font-mono text-muted pt-2 border-t border-border/40">
+        <div className="mt-2.5 flex items-center justify-between text-[10px] font-mono text-muted pt-2 border-t border-border/40">
           <div className="flex items-center gap-1.5 text-emerald-400">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span>TOTAL LATENCY: ~18ms</span>
+            <span>REQUEST PIPELINE</span>
           </div>
-          <span className="text-secondary">SOLID • REPO • UNIT OF WORK</span>
+          <span className="text-secondary">C# · ASP.NET Core · EF Core · SQL Server</span>
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ import React from "react";
 import { heroData, personalInfo } from "@/data/personal";
 import { Button } from "@/components/ui/Button";
 import { HeroArchitectureVisual } from "./HeroArchitectureVisual";
-import { ArrowRight, Download, Github, Linkedin, Mail, Code2, Server } from "lucide-react";
+import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react";
 import { getBasePath } from "@/lib/utils";
 
 export const Hero: React.FC = () => {
@@ -25,48 +25,43 @@ export const Hero: React.FC = () => {
   };
 
   return (
-    <section className="relative min-h-[92vh] flex items-center justify-center pt-28 pb-16 lg:py-32 overflow-hidden bg-grid">
+    <section className="relative min-h-[85vh] flex flex-col justify-center pt-28 pb-20 sm:pt-32 sm:pb-24 lg:pt-36 lg:pb-36 overflow-hidden bg-grid">
       {/* Subtle architectural ambient gradient */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-gradient-to-br from-accent/15 via-indigo-600/10 to-transparent blur-[140px] rounded-full pointer-events-none" />
 
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
           {/* Left Column: Hero Content */}
-          <div className="lg:col-span-7 flex flex-col items-start text-left">
-            {/* Professional Role Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-accent/30 bg-accent/10 text-accent-light text-xs font-mono tracking-wider uppercase mb-5 shadow-sm">
-              <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-              <span>{heroData.role}</span>
-            </div>
-
-            {/* Engineer Name */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-foreground font-sans uppercase mb-4 leading-none">
-              MINA LOTFY SAAD
+          <div className="lg:col-span-7 flex flex-col items-start text-left lg:pt-10">
+            {/* 1. Name */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-foreground font-sans uppercase mb-2 sm:mb-3 leading-none">
+              {heroData.name}
             </h1>
 
-            {/* Core Value Proposition Headline */}
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-foreground/90 font-sans tracking-tight mb-5 leading-snug">
-              {heroData.tagline}
+            {/* 2. Professional Title - strongest visual text after name */}
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-mono tracking-tight text-accent-light mb-4 sm:mb-5">
+              {heroData.role}
             </h2>
 
-            {/* Supporting Paragraph */}
-            <p className="text-sm sm:text-base text-secondary leading-relaxed max-w-2xl mb-8 font-sans">
-              {heroData.supportingText}
+            {/* 3. Main Description / Value Proposition */}
+            <p className="text-base sm:text-lg text-secondary leading-relaxed max-w-2xl mb-4 font-sans">
+              I build secure, scalable, and maintainable REST APIs using{" "}
+              <span className="text-foreground font-semibold">C#</span>,{" "}
+              <span className="text-foreground font-semibold">ASP.NET Core</span>,{" "}
+              <span className="text-foreground font-semibold">Entity Framework Core</span>, and{" "}
+              <span className="text-foreground font-semibold">SQL Server</span>.
             </p>
 
-            {/* Technical Chips / Badges */}
-            <div className="flex flex-wrap gap-2 mb-8">
-              {heroData.metadataChips.map((chip) => (
-                <span
-                  key={chip}
-                  className="px-2.5 py-1 rounded-md text-xs font-mono bg-surface/80 border border-border text-secondary hover:text-foreground hover:border-border-light transition-colors shadow-sm"
-                >
-                  {chip}
-                </span>
-              ))}
+            {/* 4. Supporting Positioning */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-xs sm:text-sm font-medium font-sans mb-8 shadow-sm">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <span>{heroData.availabilityStatus}</span>
             </div>
 
-            {/* Primary CTAs */}
+            {/* 5. Primary CTAs */}
             <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-8">
               <a href="#projects" onClick={handleScrollToProjects}>
                 <Button
@@ -76,13 +71,15 @@ export const Hero: React.FC = () => {
                   iconPosition="right"
                   className="font-mono text-xs tracking-wider uppercase font-bold"
                 >
-                  EXPLORE ARCHITECTURE
+                  View My Projects
                 </Button>
               </a>
 
               <a
                 href={`${getBasePath()}${personalInfo.cvUrl}`}
                 download="Mina-Lotfy-Saad-CV.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <Button
                   variant="secondary"
@@ -90,14 +87,14 @@ export const Hero: React.FC = () => {
                   icon={<Download className="w-4 h-4" />}
                   className="font-mono text-xs tracking-wider uppercase font-semibold"
                 >
-                  DOWNLOAD CV
+                  Download CV
                 </Button>
               </a>
             </div>
 
-            {/* Recruiter Direct Contact Links */}
+            {/* 6. Recruiter Direct Contact Links */}
             <div className="flex items-center gap-4 pt-5 border-t border-border/70 text-xs font-mono text-secondary">
-              <span className="text-muted tracking-wider">DIRECT:</span>
+              <span className="text-muted tracking-wider">CONNECT:</span>
               <a
                 href={personalInfo.github}
                 target="_blank"
@@ -132,7 +129,7 @@ export const Hero: React.FC = () => {
           </div>
 
           {/* Right Column: Interactive Backend Visualizer */}
-          <div className="lg:col-span-5 w-full">
+          <div className="hidden lg:block lg:col-span-5 w-full">
             <HeroArchitectureVisual />
           </div>
         </div>
