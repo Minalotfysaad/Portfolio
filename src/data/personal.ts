@@ -87,28 +87,24 @@ export const engineeringPillars: PillarItem[] = [
 
 export const educationData: EducationItem[] = [
   {
-    degree: "Web Development Diploma",
-    field: ".NET Full Stack",
-    institution: "Route IT Training Center",
+    degree: "Full-Stack Web Development Diploma",
+    institution: "Route Academy",
+    location: "Alexandria, Egypt",
     period: "2024 – 2025",
-    highlights: [
-      "Intensive backend engineering curriculum centered on C#, ASP.NET Core Web API, and Entity Framework Core.",
-      "Comprehensive mastery of Clean Architecture, Repository & Unit of Work patterns, and Dependency Injection.",
-      "Hands-on implementation of enterprise security with ASP.NET Identity, JWT Authentication, and Role-Based Authorization.",
-      "Database design, normalization, query optimization in SQL Server, and caching with Redis.",
-    ],
+    badge: "DIPLOMA",
+    description:
+      "Intensive training in full-stack web development, covering frontend and backend development, databases, APIs, and software engineering fundamentals.",
     isHighlighted: true,
   },
   {
-    degree: "Bachelor of Engineering",
-    field: "Faculty of Engineering",
+    degree: "Faculty of Engineering",
+    field: "Civil Engineering",
     institution: "Alexandria University",
     location: "Alexandria, Egypt",
     period: "2018 – 2025",
-    highlights: [
-      "Rigorous engineering education emphasizing analytical problem solving, systems analysis, and mathematical logic.",
-      "Strong foundation in structured algorithms, computational modeling, and engineering discipline.",
-    ],
+    badge: "BACHELOR",
+    description:
+      "Academic foundation in engineering principles, problem solving, analytical thinking, and technical design.",
   },
 ];
 

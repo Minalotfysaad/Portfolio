@@ -1,10 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <rect width="64" height="64" rx="14" fill="#09090B"/>
-  <rect x="1" y="1" width="62" height="62" rx="13" stroke="#27272A" stroke-width="2"/>
-  <path d="M18 44V20L32 32L46 20V44" stroke="#3B82F6" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="32" cy="32" r="3.5" fill="#60A5FA"/>
-  <circle cx="18" cy="20" r="2.5" fill="#3B82F6"/>
-  <circle cx="46" cy="20" r="2.5" fill="#3B82F6"/>
-  <circle cx="18" cy="44" r="2.5" fill="#3B82F6"/>
-  <circle cx="46" cy="44" r="2.5" fill="#3B82F6"/>
+  <defs>
+    <linearGradient id="bracketGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#818CF8" />
+    </linearGradient>
+  </defs>
+  <!-- Background rounded card -->
+  <rect width="64" height="64" rx="16" fill="#0C1017" />
+  <rect x="0.5" y="0.5" width="63" height="63" rx="15.5" stroke="#1E293B" stroke-width="1" />
+  
+  <!-- Left Bracket < -->
+  <path d="M19 21L10.5 32L19 43" stroke="url(#bracketGrad)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+  
+  <!-- Center Dot . -->
+  <circle cx="23" cy="35" r="2.8" fill="#FFFFFF" />
+  
+  <!-- Letter M -->
+  <path d="M28.5 40V24H32.8L36 31.8L39.2 24H43.5V40H39.8V29.2L37.1 35.8H34.9L32.2 29.2V40H28.5Z" fill="#FFFFFF" />
+  
+  <!-- Right Bracket > -->
+  <path d="M45 21L53.5 32L45 43" stroke="url(#bracketGrad)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
 </svg>

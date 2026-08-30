@@ -81,8 +81,12 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
           className="group flex items-center gap-2.5 text-foreground hover:text-white transition-colors"
           aria-label="Mina Lotfy Saad Home"
         >
-          <div className="w-8 h-8 rounded-lg bg-surface border border-border flex items-center justify-center group-hover:border-accent group-hover:shadow-glow-accent/40 transition-all">
-            <span className="font-mono font-bold text-accent-light text-sm">M</span>
+          <div className="w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center border border-border/80 group-hover:border-accent/60 group-hover:shadow-glow-accent/40 transition-all">
+            <img
+              src={`${getBasePath()}/favicon.svg`}
+              alt="Mina Lotfy Saad Logo"
+              className="w-full h-full object-cover"
+            />
           </div>
           <div className="flex flex-col">
             <span className="font-sans font-bold text-sm tracking-tight text-foreground group-hover:text-accent-light transition-colors">

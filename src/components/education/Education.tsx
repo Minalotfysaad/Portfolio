@@ -45,40 +45,46 @@ export const Education: React.FC = () => {
                       </div>
                     </div>
 
-                    {edu.isHighlighted && (
-                      <span className="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-accent/15 text-accent-light border border-accent/30 uppercase shrink-0">
-                        .NET DIPLOMA
+                    {edu.badge && (
+                      <span className="px-2.5 py-0.5 rounded text-[10px] font-mono font-semibold uppercase shrink-0 bg-accent/15 text-accent-light border border-accent/30">
+                        {edu.badge}
                       </span>
                     )}
                   </div>
 
-                  <div className="mb-6">
-                    <p className="font-mono text-sm text-accent-light font-medium">
-                      {edu.field}
-                    </p>
+                  <div className="mb-4">
+                    {edu.field && (
+                      <p className="font-mono text-sm text-accent-light font-medium">
+                        {edu.field}
+                      </p>
+                    )}
                     <p className="text-xs sm:text-sm text-secondary font-sans mt-0.5">
                       {edu.institution}
                       {edu.location && ` • ${edu.location}`}
                     </p>
                   </div>
 
-                  {/* Highlights list */}
-                  <div className="space-y-2.5 mb-4">
-                    {edu.highlights.map((highlight, hIdx) => (
-                      <div
-                        key={hIdx}
-                        className="flex items-start gap-2.5 text-xs sm:text-sm text-secondary leading-relaxed font-sans"
-                      >
-                        <CheckCircle2 className="w-3.5 h-3.5 text-accent-light shrink-0 mt-1" />
-                        <span>{highlight}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                  {/* Concise Description */}
+                  {edu.description && (
+                    <p className="text-xs sm:text-sm text-secondary leading-relaxed font-sans mb-4">
+                      {edu.description}
+                    </p>
+                  )}
 
-                <div className="pt-4 border-t border-border/50 font-mono text-[11px] text-muted flex items-center justify-between">
-                  <span>VERIFIED CREDENTIAL</span>
-                  <span>2018 – 2025</span>
+                  {/* Highlights list if present */}
+                  {edu.highlights && edu.highlights.length > 0 && (
+                    <div className="space-y-2.5 mb-4">
+                      {edu.highlights.map((highlight, hIdx) => (
+                        <div
+                          key={hIdx}
+                          className="flex items-start gap-2.5 text-xs sm:text-sm text-secondary leading-relaxed font-sans"
+                        >
+                          <CheckCircle2 className="w-3.5 h-3.5 text-accent-light shrink-0 mt-1" />
+                          <span>{highlight}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             </ScrollReveal>

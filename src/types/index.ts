@@ -124,11 +124,13 @@ export interface ProjectItem {
 
 export interface EducationItem {
   degree: string;
-  field: string;
+  field?: string;
   institution: string;
   location?: string;
   period: string;
-  highlights: string[];
+  badge?: string;
+  description?: string;
+  highlights?: string[];
   isHighlighted?: boolean;
 }
 
