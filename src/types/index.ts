@@ -13,10 +13,10 @@ export interface MetricItem {
 export interface PillarItem {
   number: string;
   title: string;
-  quote: string;
+  quote?: string;
   description: string;
   iconName: string;
-  keywords: string[];
+  keywords?: string[];
 }
 
 export interface ExperienceCategory {

@@ -14,14 +14,14 @@ export const EngineeringPhilosophy: React.FC = () => {
   return (
     <div className="mt-20 pt-16 border-t border-border/70">
       <ScrollReveal direction="up" distance={20} duration={500}>
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-3">
           <div>
             <h3 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">
               HOW I BUILD
             </h3>
           </div>
-          <p className="text-xs sm:text-sm text-secondary font-mono max-w-md">
-            Core engineering standards applied across every API, database model, and backend service.
+          <p className="text-xs sm:text-sm text-secondary font-mono max-w-lg">
+            Practical engineering principles I apply when designing and building backend systems.
           </p>
         </div>
       </ScrollReveal>
@@ -35,7 +35,7 @@ export const EngineeringPhilosophy: React.FC = () => {
               <div className="group relative bg-[#111114] hover:bg-[#15151A] border border-border hover:border-accent/40 rounded-xl p-6 sm:p-7 transition-all duration-300 shadow-sm hover:shadow-glow-card flex flex-col justify-between h-full">
                 <div>
                   {/* Header with Pillar number and Icon */}
-                  <div className="flex items-center justify-between mb-5">
+                  <div className="flex items-center justify-between mb-4">
                     <span className="font-mono text-2xl font-black text-accent/60 group-hover:text-accent-light transition-colors">
                       {pillar.number}
                     </span>
@@ -45,31 +45,14 @@ export const EngineeringPhilosophy: React.FC = () => {
                   </div>
 
                   {/* Title */}
-                  <h4 className="text-lg font-bold text-foreground font-mono tracking-tight mb-2 group-hover:text-accent-light transition-colors">
+                  <h4 className="text-lg font-bold text-foreground font-mono tracking-tight mb-2.5 group-hover:text-accent-light transition-colors">
                     {pillar.title}
                   </h4>
 
-                  {/* Quote */}
-                  <p className="text-xs sm:text-sm font-mono italic text-secondary/90 mb-3 border-l-2 border-accent/40 pl-3">
-                    &ldquo;{pillar.quote}&rdquo;
-                  </p>
-
-                  {/* Description */}
-                  <p className="text-xs sm:text-sm text-secondary leading-relaxed font-sans mb-6">
+                  {/* Concise Explanation */}
+                  <p className="text-xs sm:text-sm text-secondary leading-relaxed font-sans">
                     {pillar.description}
                   </p>
-                </div>
-
-                {/* Keywords Tag Strip */}
-                <div className="flex flex-wrap gap-1.5 pt-4 border-t border-border/50">
-                  {pillar.keywords.map((kw) => (
-                    <span
-                      key={kw}
-                      className="font-mono text-[10px] px-2 py-0.5 rounded bg-surface/70 border border-border/70 text-muted group-hover:text-secondary group-hover:border-border transition-colors"
-                    >
-                      {kw}
-                    </span>
-                  ))}
                 </div>
               </div>
             </ScrollReveal>

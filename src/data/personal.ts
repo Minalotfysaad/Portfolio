@@ -58,38 +58,30 @@ export const engineeringPillars: PillarItem[] = [
   {
     number: "01",
     title: "CLEAN ARCHITECTURE",
-    quote: "Keeping responsibilities separated so systems remain easier to maintain, test, and evolve.",
     description:
-      "Strict layer separation isolating Domain entities, Application logic, Infrastructure persistence, and Presentation APIs. This prevents tight coupling and ensures business logic remains independent of external frameworks.",
+      "Separate responsibilities so backend systems remain easier to understand, test, and maintain as they grow.",
     iconName: "Layers",
-    keywords: ["Domain-Driven", "Repository Pattern", "Unit of Work", "Dependency Injection"],
   },
   {
     number: "02",
-    title: "SECURITY FIRST",
-    quote: "Designing APIs with authentication, authorization, and secure access control in mind.",
+    title: "SECURITY BY DESIGN",
     description:
-      "Implementing industry-standard JWT token authentication with rotating refresh tokens, ASP.NET Identity user stores, password hashing, and granular Role-Based Access Control (RBAC) across all sensitive API routes.",
+      "Build authentication, authorization, validation, and secure data handling into the application from the start rather than treating security as an afterthought.",
     iconName: "ShieldCheck",
-    keywords: ["JWT Auth", "Refresh Tokens", "ASP.NET Identity", "RBAC"],
   },
   {
     number: "03",
-    title: "PERFORMANCE",
-    quote: "Thinking about efficient database access, caching, filtering, pagination, and scalable API behavior.",
+    title: "PERFORMANCE & EFFICIENCY",
     description:
-      "Optimizing database roundtrips with EF Core compiled queries, indexed SQL Server tables, asynchronous I/O execution, server-side pagination/filtering, and high-speed Redis distributed caching.",
+      "Design APIs and data access with efficient queries, appropriate caching, pagination, and resource-conscious implementation in mind.",
     iconName: "Zap",
-    keywords: ["Redis Caching", "EF Core Optimization", "Asynchronous I/O", "Pagination"],
   },
   {
     number: "04",
-    title: "MAINTAINABILITY",
-    quote: "Using clean code, SOLID principles, validation, reusable abstractions, and structured architecture.",
+    title: "TESTABILITY & QUALITY",
     description:
-      "Writing readable, self-documenting code supported by FluentValidation rules, AutoMapper DTO mappings, centralized global exception handling, structured Serilog logging, and unit tests with xUnit & Moq.",
+      "Write clear, maintainable code that can be validated through automated testing, consistent validation, logging, and reliable development practices.",
     iconName: "GitBranch",
-    keywords: ["SOLID Principles", "FluentValidation", "AutoMapper", "xUnit & Moq"],
   },
 ];
 
