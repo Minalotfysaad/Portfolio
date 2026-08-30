@@ -101,13 +101,21 @@ export const EmployeeLeaveCaseStudy: React.FC<EmployeeLeaveCaseStudyProps> = ({
   const currentScreenshot = project.screenshots[selectedScreenshotIndex] || project.screenshots[0];
 
   return (
-    <article className="relative bg-[#111115] border border-border rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-xl hover:border-accent/40 hover:shadow-glow-card transition-all duration-300 mb-8 group">
-      {/* Header Bar (Always Visible) */}
+    <article
+      className={cn(
+        "relative rounded-xl sm:rounded-2xl border transition-all duration-300 mb-6 group/tile overflow-hidden",
+        "bg-gradient-to-b from-[#131317] to-[#0D0D11]",
+        isExpanded
+          ? "border-accent/50 shadow-glow-card"
+          : "border-border/80 hover:border-accent/40 hover:shadow-lg hover:shadow-black/40 hover:-translate-y-0.5"
+      )}
+    >
+      {/* Header Bar (Always Visible / Clickable) */}
       <div
-        className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 cursor-pointer"
+        className="p-5 sm:p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-5 cursor-pointer select-none"
         onClick={() => setIsExpanded(!isExpanded)}
       >
-        <div className="flex-1 space-y-3">
+        <div className="flex-1 space-y-2.5 min-w-0">
           {/* Top Identifier & Status Pill */}
           <div className="flex items-center gap-2.5">
             <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-accent/10 border border-accent/30 text-accent-light font-mono text-[10px] font-bold uppercase tracking-wider">
@@ -117,20 +125,20 @@ export const EmployeeLeaveCaseStudy: React.FC<EmployeeLeaveCaseStudyProps> = ({
           </div>
 
           <div>
-            <h3 className="text-2xl sm:text-3xl font-black text-foreground font-sans tracking-tight group-hover:text-accent-light transition-colors">
+            <h3 className="text-xl sm:text-2xl font-bold text-foreground font-sans tracking-tight group-hover/tile:text-accent-light transition-colors">
               Employee Leave Management System
             </h3>
-            <p className="font-mono text-xs sm:text-sm text-secondary mt-1 max-w-4xl leading-relaxed">
+            <p className="font-sans text-xs sm:text-sm text-secondary/90 mt-1 max-w-3xl leading-relaxed">
               A production-style employee leave management API with authentication, role-based approval workflows, validation, and clean backend architecture.
             </p>
           </div>
 
           {/* Quick Key Technology Badges */}
-          <div className="flex flex-wrap items-center gap-1.5 pt-1">
+          <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
             {["C#", ".NET 9", "ASP.NET Core Web API", "EF Core", "SQL Server", "Redis"].map((tech) => (
               <span
                 key={tech}
-                className="font-mono text-[10px] px-2.5 py-0.5 rounded-md bg-surface/90 border border-border/80 text-secondary font-medium"
+                className="font-mono text-[11px] px-2.5 py-0.5 rounded-md bg-white/[0.03] border border-white/10 text-muted hover:border-accent/40 hover:text-foreground transition-colors"
               >
                 {tech}
               </span>
@@ -138,28 +146,36 @@ export const EmployeeLeaveCaseStudy: React.FC<EmployeeLeaveCaseStudyProps> = ({
           </div>
         </div>
 
-        <div className="flex items-center gap-3 shrink-0" onClick={(e) => e.stopPropagation()}>
-          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-            <Button
-              variant="outline"
-              size="sm"
-              icon={<Github className="w-4 h-4" />}
-              className="font-mono text-xs border-border/90 text-secondary hover:text-foreground"
-            >
-              View on GitHub →
-            </Button>
+        {/* Action Controls */}
+        <div className="flex items-center gap-3 shrink-0 pt-2 lg:pt-0" onClick={(e) => e.stopPropagation()}>
+          <a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg font-mono text-xs font-medium border border-border/80 bg-surface/60 text-secondary hover:text-foreground hover:border-accent/50 hover:bg-surface transition-all duration-200"
+          >
+            <Github className="w-3.5 h-3.5" />
+            <span>View on GitHub →</span>
           </a>
 
-          <Button
-            variant="primary"
-            size="sm"
+          <button
+            type="button"
             onClick={() => setIsExpanded(!isExpanded)}
-            icon={isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-            iconPosition="right"
-            className="font-mono text-xs font-bold"
+            aria-label={isExpanded ? "Collapse project details" : "Expand project details"}
+            className={cn(
+              "w-9 h-9 rounded-lg border flex items-center justify-center transition-all duration-300",
+              isExpanded
+                ? "bg-accent/15 border-accent text-accent-light"
+                : "bg-surface/60 border-border/80 text-secondary hover:text-foreground hover:border-accent/40"
+            )}
           >
-            {isExpanded ? "COLLAPSE DETAILS" : "EXPAND DETAILS"}
-          </Button>
+            <ChevronDown
+              className={cn(
+                "w-4 h-4 transition-transform duration-300",
+                isExpanded && "rotate-180 text-accent-light"
+              )}
+            />
+          </button>
         </div>
       </div>
 
@@ -167,7 +183,7 @@ export const EmployeeLeaveCaseStudy: React.FC<EmployeeLeaveCaseStudyProps> = ({
       <div
         className={cn(
           "grid transition-all duration-300 ease-in-out",
-          isExpanded ? "grid-rows-[1fr] opacity-100 mt-6 pt-6 border-t border-border/80" : "grid-rows-[0fr] opacity-0"
+          isExpanded ? "grid-rows-[1fr] opacity-100 px-5 sm:px-6 pb-6 pt-6 border-t border-border/80" : "grid-rows-[0fr] opacity-0"
         )}
       >
         <div className="overflow-hidden space-y-12">

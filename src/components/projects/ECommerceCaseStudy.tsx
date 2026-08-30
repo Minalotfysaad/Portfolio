@@ -111,13 +111,21 @@ export const ECommerceCaseStudy: React.FC<ECommerceCaseStudyProps> = ({
   const currentScreenshot = project.screenshots[selectedScreenshotIndex] || project.screenshots[0];
 
   return (
-    <article className="relative bg-[#111115] border border-border rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-xl hover:border-cyan-500/40 hover:shadow-glow-cyan/20 transition-all duration-300 mb-8 group">
-      {/* Header Bar (Always Visible) */}
+    <article
+      className={cn(
+        "relative rounded-xl sm:rounded-2xl border transition-all duration-300 mb-6 group/tile overflow-hidden",
+        "bg-gradient-to-b from-[#131317] to-[#0D0D11]",
+        isExpanded
+          ? "border-cyan-500/50 shadow-glow-cyan/20"
+          : "border-border/80 hover:border-cyan-500/40 hover:shadow-lg hover:shadow-black/40 hover:-translate-y-0.5"
+      )}
+    >
+      {/* Header Bar (Always Visible / Clickable) */}
       <div
-        className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 cursor-pointer"
+        className="p-5 sm:p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-5 cursor-pointer select-none"
         onClick={() => setIsExpanded(!isExpanded)}
       >
-        <div className="flex-1 space-y-3">
+        <div className="flex-1 space-y-2.5 min-w-0">
           {/* Top Identifier & Status Pill */}
           <div className="flex items-center gap-2.5">
             <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-mono text-[10px] font-bold uppercase tracking-wider">
@@ -127,20 +135,20 @@ export const ECommerceCaseStudy: React.FC<ECommerceCaseStudyProps> = ({
           </div>
 
           <div>
-            <h3 className="text-2xl sm:text-3xl font-black text-foreground font-sans tracking-tight group-hover:text-cyan-400 transition-colors">
+            <h3 className="text-xl sm:text-2xl font-bold text-foreground font-sans tracking-tight group-hover/tile:text-cyan-400 transition-colors">
               E-Commerce API
             </h3>
-            <p className="font-mono text-xs sm:text-sm text-secondary mt-1 max-w-4xl leading-relaxed">
+            <p className="font-sans text-xs sm:text-sm text-secondary/90 mt-1 max-w-3xl leading-relaxed">
               A RESTful e-commerce backend built with ASP.NET Core, supporting product catalog management, shopping baskets, orders, payments, authentication, and efficient data access.
             </p>
           </div>
 
           {/* Quick Key Technology Badges */}
-          <div className="flex flex-wrap items-center gap-1.5 pt-1">
+          <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
             {["C#", "ASP.NET Core", "EF Core", "SQL Server", "Redis", "Stripe"].map((tech) => (
               <span
                 key={tech}
-                className="font-mono text-[10px] px-2.5 py-0.5 rounded-md bg-surface/90 border border-border/80 text-secondary font-medium"
+                className="font-mono text-[11px] px-2.5 py-0.5 rounded-md bg-white/[0.03] border border-white/10 text-muted hover:border-cyan-400/40 hover:text-foreground transition-colors"
               >
                 {tech}
               </span>
@@ -148,28 +156,36 @@ export const ECommerceCaseStudy: React.FC<ECommerceCaseStudyProps> = ({
           </div>
         </div>
 
-        <div className="flex items-center gap-3 shrink-0" onClick={(e) => e.stopPropagation()}>
-          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-            <Button
-              variant="outline"
-              size="sm"
-              icon={<Github className="w-4 h-4" />}
-              className="font-mono text-xs border-border/90 text-secondary hover:text-foreground"
-            >
-              View on GitHub →
-            </Button>
+        {/* Action Controls */}
+        <div className="flex items-center gap-3 shrink-0 pt-2 lg:pt-0" onClick={(e) => e.stopPropagation()}>
+          <a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg font-mono text-xs font-medium border border-border/80 bg-surface/60 text-secondary hover:text-foreground hover:border-cyan-400/50 hover:bg-surface transition-all duration-200"
+          >
+            <Github className="w-3.5 h-3.5" />
+            <span>View on GitHub →</span>
           </a>
 
-          <Button
-            variant="primary"
-            size="sm"
+          <button
+            type="button"
             onClick={() => setIsExpanded(!isExpanded)}
-            icon={isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-            iconPosition="right"
-            className="font-mono text-xs font-bold"
+            aria-label={isExpanded ? "Collapse project details" : "Expand project details"}
+            className={cn(
+              "w-9 h-9 rounded-lg border flex items-center justify-center transition-all duration-300",
+              isExpanded
+                ? "bg-cyan-500/15 border-cyan-500 text-cyan-400"
+                : "bg-surface/60 border-border/80 text-secondary hover:text-foreground hover:border-cyan-400/40"
+            )}
           >
-            {isExpanded ? "COLLAPSE DETAILS" : "EXPAND DETAILS"}
-          </Button>
+            <ChevronDown
+              className={cn(
+                "w-4 h-4 transition-transform duration-300",
+                isExpanded && "rotate-180 text-cyan-400"
+              )}
+            />
+          </button>
         </div>
       </div>
 
@@ -177,7 +193,7 @@ export const ECommerceCaseStudy: React.FC<ECommerceCaseStudyProps> = ({
       <div
         className={cn(
           "grid transition-all duration-300 ease-in-out",
-          isExpanded ? "grid-rows-[1fr] opacity-100 mt-6 pt-6 border-t border-border/80" : "grid-rows-[0fr] opacity-0"
+          isExpanded ? "grid-rows-[1fr] opacity-100 px-5 sm:px-6 pb-6 pt-6 border-t border-border/80" : "grid-rows-[0fr] opacity-0"
         )}
       >
         <div className="overflow-hidden space-y-12">
