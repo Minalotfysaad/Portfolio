@@ -46,7 +46,14 @@ export const Education: React.FC = () => {
                     </div>
 
                     {edu.badge && (
-                      <span className="px-2.5 py-0.5 rounded text-[10px] font-mono font-semibold uppercase shrink-0 bg-accent/15 text-accent-light border border-accent/30">
+                      <span
+                        className={cn(
+                          "px-2.5 py-0.5 rounded text-[10px] font-mono font-semibold uppercase shrink-0 border",
+                          edu.isHighlighted
+                            ? "bg-accent/15 text-accent-light border-accent/30"
+                            : "bg-surface/80 text-secondary border-border/80"
+                        )}
+                      >
                         {edu.badge}
                       </span>
                     )}
