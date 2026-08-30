@@ -46,8 +46,8 @@ export interface ExperienceItem {
 
 export interface SkillItem {
   name: string;
-  category: string;
-  description: string;
+  category?: string;
+  description?: string;
   highlight?: boolean;
   icon?: string;
 }
@@ -55,7 +55,7 @@ export interface SkillItem {
 export interface SkillCategory {
   id: string;
   title: string;
-  description: string;
+  description?: string;
   skills: SkillItem[];
 }
 
