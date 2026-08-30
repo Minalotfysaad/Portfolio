@@ -19,6 +19,12 @@ export interface PillarItem {
   keywords?: string[];
 }
 
+export interface ExperienceContribution {
+  category: string;
+  text: string;
+  iconName?: string;
+}
+
 export interface ExperienceCategory {
   title: string;
   description: string;
@@ -31,8 +37,11 @@ export interface ExperienceItem {
   company: string;
   location: string;
   period: string;
-  description: string;
-  categories: ExperienceCategory[];
+  summary: string;
+  contributions: ExperienceContribution[];
+  tech: string[];
+  description?: string;
+  categories?: ExperienceCategory[];
 }
 
 export interface SkillItem {
