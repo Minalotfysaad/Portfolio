@@ -18,12 +18,12 @@ export const About: React.FC = () => {
         <ScrollReveal direction="up" distance={24} duration={500}>
           <SectionHeading
             badge="ABOUT ME"
-            title="BACKEND ARCHITECTURE & RESILIENT SYSTEMS"
-            subtitle="Engineering robust, maintainable, and high-performance server-side architectures."
+            title="ABOUT ME"
+            subtitle=".NET BACKEND DEVELOPER"
           />
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Column: Portrait & Technical HUD Card */}
           <div className="lg:col-span-5 flex flex-col items-center lg:items-start">
             <ScrollReveal direction="up" distance={30} duration={600} className="w-full">
@@ -63,11 +63,6 @@ export const About: React.FC = () => {
                         </p>
                       </div>
                     )}
-
-                    {/* Corner Accent HUD Overlays */}
-                    <div className="absolute top-2 left-2 px-2 py-0.5 rounded bg-background/80 backdrop-blur-md border border-border text-[9px] font-mono text-secondary">
-                      ROLE: BACKEND DEV
-                    </div>
                   </div>
 
                   {/* Location Footnote */}
@@ -85,12 +80,14 @@ export const About: React.FC = () => {
           </div>
 
           {/* Right Column: Bio Narrative */}
-          <div className="lg:col-span-7 flex flex-col justify-between">
+          <div className="lg:col-span-7 flex flex-col justify-center my-auto">
             <ScrollReveal direction="up" distance={30} delay={100} duration={600}>
               <div className="space-y-5 text-secondary font-sans text-sm sm:text-base leading-relaxed">
-                <h3 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight font-sans">
-                  {aboutNarrative.heading}
-                </h3>
+                {aboutNarrative.heading ? (
+                  <h3 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight font-sans">
+                    {aboutNarrative.heading}
+                  </h3>
+                ) : null}
 
                 {aboutNarrative.paragraphs.map((paragraph, idx) => (
                   <p key={idx}>{paragraph}</p>

@@ -45,11 +45,11 @@ export const quickMetrics: MetricItem[] = [
 ];
 
 export const aboutNarrative = {
-  heading: "Architecting Reliable & Maintainable Systems",
+  heading: "",
   paragraphs: [
-    "I am a .NET Backend Developer based in Alexandria, Egypt, dedicated to building secure, scalable, and maintainable backend systems. My core engineering toolkit centers around C#, ASP.NET Core Web API, Entity Framework Core, and Microsoft SQL Server.",
-    "I approach backend development with an architectural mindset. Rather than simply connecting endpoints to databases, I structure codebases using Clean Architecture and SOLID principles, ensuring loose coupling, high testability, and long-term maintainability. I have practical experience implementing robust authentication pipelines (JWT, Refresh Tokens, ASP.NET Identity), role-based access control, distributed caching with Redis, and automated input validation.",
-    "Whether designing complex database schemas, optimizing LINQ queries, or documenting APIs through Swagger, I prioritize clarity, performance, and real-world business resilience.",
+    "I'm Mina Lotfy Saad, a .NET Backend Developer focused on building reliable and maintainable web APIs and backend systems.",
+    "I transitioned into software development after starting my academic path in Civil Engineering, then pursued a Full-Stack Web Development diploma and focused my career on backend engineering with .NET.",
+    "During my internship at Vetanoia Solutions, I gained hands-on experience developing backend applications and working within professional development workflows. I enjoy solving business problems through clean, practical code and continuously improving how I design and build software.",
   ],
   careerStatement: "I am actively seeking full-time opportunities as a .NET Backend Developer and am fully prepared to relocate or work in high-performing engineering teams.",
 };
