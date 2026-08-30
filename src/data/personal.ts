@@ -49,7 +49,7 @@ export const aboutNarrative = {
   paragraphs: [
     "I'm Mina Lotfy Saad, a .NET Backend Developer focused on building reliable and maintainable web APIs and backend systems.",
     "I transitioned into software development after starting my academic path in Civil Engineering, then pursued a Full-Stack Web Development diploma and focused my career on backend engineering with .NET.",
-    "During my internship at Vetanoia Solutions, I gained hands-on experience developing backend applications and working within professional development workflows. I enjoy solving business problems through clean, practical code and continuously improving how I design and build software.",
+    "During my work at Vetanoia Solutions, I gained hands-on experience developing backend applications and working within professional development workflows. I enjoy solving business problems through clean, practical code and continuously improving how I design and build software.",
   ],
   careerStatement: "I am actively seeking full-time opportunities as a .NET Backend Developer and am fully prepared to relocate or work in high-performing engineering teams.",
 };
