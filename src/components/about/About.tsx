@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { aboutNarrative } from "@/data/personal";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { EngineeringPhilosophy } from "./EngineeringPhilosophy";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { MapPin, CheckCircle2, Server } from "lucide-react";
@@ -15,14 +14,6 @@ export const About: React.FC = () => {
   return (
     <section id="about" className="py-20 lg:py-28 relative bg-[#09090B]">
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
-        <ScrollReveal direction="up" distance={24} duration={500}>
-          <SectionHeading
-            badge="ABOUT ME"
-            title="ABOUT ME"
-            subtitle=".NET BACKEND DEVELOPER"
-          />
-        </ScrollReveal>
-
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Column: Portrait & Technical HUD Card */}
           <div className="lg:col-span-5 flex flex-col items-center lg:items-start">
@@ -83,11 +74,9 @@ export const About: React.FC = () => {
           <div className="lg:col-span-7 flex flex-col justify-center my-auto">
             <ScrollReveal direction="up" distance={30} delay={100} duration={600}>
               <div className="space-y-5 text-secondary font-sans text-sm sm:text-base leading-relaxed">
-                {aboutNarrative.heading ? (
-                  <h3 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight font-sans">
-                    {aboutNarrative.heading}
-                  </h3>
-                ) : null}
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-foreground font-sans">
+                  ABOUT ME
+                </h2>
 
                 {aboutNarrative.paragraphs.map((paragraph, idx) => (
                   <p key={idx}>{paragraph}</p>

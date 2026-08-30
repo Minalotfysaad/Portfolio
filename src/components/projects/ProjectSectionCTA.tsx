@@ -14,7 +14,7 @@ export const ProjectSectionCTA: React.FC = () => {
       const paddingTop = parseFloat(style.paddingTop) || 0;
       const topOffset = 80;
       const elementPosition = target.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset + paddingTop - topOffset;
+      const offsetPosition = elementPosition + window.pageYOffset + (paddingTop * 0.5) - topOffset;
       window.scrollTo({
         top: Math.max(0, offsetPosition),
         behavior: "smooth",
