@@ -150,11 +150,9 @@ export const CompetitionsHubCaseStudy: React.FC<CompetitionsHubCaseStudyProps> =
             <p className="font-sans text-xs sm:text-sm text-secondary/90 mt-1 max-w-3xl leading-relaxed">
               A competition management backend for organizing multi-stage events, participant registration, question-based assessments, judging, scoring, leaderboards, and results publishing.
             </p>
-          </div>
-
-          {/* Quick Key Technology Badges */}
+          </div>          {/* Technology Stack Badges */}
           <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
-            {["C#", "ASP.NET Core", "EF Core", "SQL Server", "ASP.NET Identity", "JWT"].map((tech) => (
+            {project.technologies.map((tech) => (
               <span
                 key={tech}
                 className="font-mono text-[11px] px-2.5 py-0.5 rounded-md bg-white/[0.03] border border-white/10 text-muted hover:border-purple-400/40 hover:text-foreground transition-colors"
@@ -205,22 +203,25 @@ export const CompetitionsHubCaseStudy: React.FC<CompetitionsHubCaseStudyProps> =
           isExpanded ? "grid-rows-[1fr] opacity-100 px-5 sm:px-6 pb-6 pt-6 border-t border-border/80" : "grid-rows-[0fr] opacity-0"
         )}
       >
-        <div className="overflow-hidden space-y-12">
+        <div className="overflow-hidden space-y-10">
           {/* Primary Screenshot Showcase & Gallery */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-2">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start pt-2">
             {/* Large Screenshot Box */}
-            <div className="lg:col-span-8 rounded-2xl border border-border/90 bg-[#09090C] overflow-hidden shadow-2xl">
-              <div className="px-4 py-2.5 bg-[#131317] border-b border-border/80 flex items-center justify-between">
-                <div className="flex items-center gap-3">
+            <div className="lg:col-span-8 rounded-xl border border-border/80 bg-[#09090C] overflow-hidden shadow-xl">
+              <div className="px-4 py-2.5 bg-[#121216] border-b border-border/70 flex items-center justify-between">
+                <div className="flex items-center gap-2.5">
                   <div className="flex items-center gap-1.5">
                     <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
                     <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
                     <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
                   </div>
-                  <span className="font-mono text-xs text-muted">
-                    {currentScreenshot?.category || "Competition Platform"}
+                  <span className="font-mono text-xs text-muted ml-1">
+                    {currentScreenshot?.category || "Competition System"}
                   </span>
                 </div>
+                <span className="font-mono text-[11px] text-purple-400/80">
+                  {selectedScreenshotIndex + 1} / {project.screenshots.length}
+                </span>
               </div>
 
               {/* Crossfading Screenshot Container (Clickable to open gallery) */}
@@ -265,10 +266,10 @@ export const CompetitionsHubCaseStudy: React.FC<CompetitionsHubCaseStudyProps> =
             </div>
 
             {/* Captions & Selector */}
-            <div className="lg:col-span-4 space-y-4">
-              <div className="p-4 rounded-xl bg-surface/40 border border-border">
-                <span className="font-mono text-[10px] text-purple-400 font-bold uppercase tracking-wider block mb-1">
-                  ACTIVE WORKFLOW SPECIFICATION:
+            <div className="lg:col-span-4 space-y-3.5">
+              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+                <span className="font-mono text-[10px] text-purple-400 font-bold uppercase tracking-wider block mb-1.5">
+                  SPECIFICATION:
                 </span>
                 <p className="text-xs text-secondary font-sans leading-relaxed">
                   {currentScreenshot?.caption}
@@ -301,19 +302,16 @@ export const CompetitionsHubCaseStudy: React.FC<CompetitionsHubCaseStudyProps> =
             </div>
           </div>
 
-          {/* Key Features */}
-          <div className="pt-8 border-t border-border/80">
-            <span className="font-mono text-xs text-purple-400 block mb-4 uppercase tracking-wider font-semibold">
-              KEY FEATURES:
-            </span>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          {/* Key Features - Clean 4-Column Minimal Grid */}
+          <div className="pt-6 border-t border-border/60">
+            <h4 className="font-mono text-xs text-muted uppercase tracking-wider mb-4 font-semibold">
+              KEY FEATURES
+            </h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-2.5">
               {keyFeatures.map((feat) => (
-                <div
-                  key={feat}
-                  className="p-3.5 rounded-xl bg-surface/30 border border-border/70 flex items-start gap-2.5"
-                >
-                  <CheckCircle2 className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
-                  <span className="font-sans text-xs text-foreground/90 leading-relaxed font-medium">
+                <div key={feat} className="flex items-start gap-2.5 py-0.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-purple-400 shrink-0 mt-2" />
+                  <span className="text-xs text-secondary/95 hover:text-foreground font-sans leading-relaxed transition-colors">
                     {feat}
                   </span>
                 </div>
@@ -322,100 +320,55 @@ export const CompetitionsHubCaseStudy: React.FC<CompetitionsHubCaseStudyProps> =
           </div>
 
           {/* 7-Step Competition Lifecycle Workflow Visual */}
-          <div className="pt-8 border-t border-border/80">
-            <div className="flex items-center gap-2 font-mono text-xs text-purple-400 uppercase tracking-wider mb-6">
-              <Workflow className="w-4 h-4" />
-              <span>COMPETITION & EVALUATION LIFECYCLE:</span>
+          <div className="pt-6 border-t border-border/60">
+            <div className="flex items-center gap-2 font-mono text-xs text-muted uppercase tracking-wider mb-4 font-semibold">
+              <Workflow className="w-3.5 h-3.5 text-purple-400" />
+              <span>COMPETITION & EVALUATION LIFECYCLE</span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-2.5">
-              {workflowSteps.map((step) => {
-                const Icon = step.icon;
-
-                return (
-                  <div
-                    key={step.num}
-                    className="p-3.5 rounded-xl bg-[#0E0E12] border border-border/80 flex flex-col justify-between"
-                  >
-                    <div>
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="font-mono text-[10px] font-bold text-purple-400 px-1.5 py-0.5 rounded bg-purple-500/10 border border-purple-500/20">
-                          {step.num}
-                        </span>
-                        <Icon className="w-3.5 h-3.5 text-secondary" />
-                      </div>
-                      <h4 className="font-mono text-xs font-bold text-foreground mb-1">
-                        {step.name}
-                      </h4>
-                      <p className="text-[10px] text-secondary font-sans leading-relaxed">
-                        {step.role}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Technical Highlights Grid */}
-          <div className="pt-8 border-t border-border/80">
-            <span className="font-mono text-xs text-muted block mb-4 uppercase tracking-wider">
-              TECHNICAL HIGHLIGHTS:
-            </span>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {workflowHighlights.map((item) => (
+              {workflowSteps.map((step) => (
                 <div
-                  key={item.title}
-                  className="p-4 rounded-xl bg-surface/30 border border-border/70"
+                  key={step.num}
+                  className="p-3 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-purple-500/30 transition-colors flex flex-col justify-between"
                 >
-                  <div className="flex items-center gap-2 font-mono text-xs font-bold text-foreground mb-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-purple-400 shrink-0" />
-                    <span>{item.title}</span>
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="font-mono text-xs font-bold text-purple-400">
+                        {step.num}
+                      </span>
+                    </div>
+                    <h5 className="font-mono text-xs font-bold text-foreground mb-1">
+                      {step.name}
+                    </h5>
+                    <p className="text-[10px] text-secondary font-sans leading-relaxed">
+                      {step.role}
+                    </p>
                   </div>
-                  <p className="text-xs text-secondary font-sans leading-relaxed">
-                    {item.desc}
-                  </p>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Architecture & Complete Stack */}
-          <div className="pt-8 border-t border-border/80 space-y-4">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-xl bg-[#0E0E12] border border-border/80">
-              <div className="flex items-center gap-2 font-mono text-xs text-foreground">
-                <span className="font-bold text-purple-400">ARCHITECTURE:</span>
-                <span className="text-secondary font-semibold">
-                  Clean Architecture · Domain-Driven Business Rules · Role-Based Authorization
-                </span>
-              </div>
-            </div>
-
-            {/* Complete Technology Stack */}
-            <div className="p-4 rounded-xl bg-surface/20 border border-border/60">
-              <span className="font-mono text-[11px] text-muted uppercase tracking-wider block mb-2.5">
-                TECHNOLOGY STACK:
-              </span>
-              <div className="flex flex-wrap gap-2">
-                {[
-                  "C#",
-                  "ASP.NET Core",
-                  "Entity Framework Core",
-                  "SQL Server",
-                  "ASP.NET Identity",
-                  "JWT",
-                  "FluentValidation",
-                  "AutoMapper",
-                  "Swagger",
-                ].map((tech) => (
-                  <span
-                    key={tech}
-                    className="font-mono text-xs px-2.5 py-1 rounded-md bg-[#141418] border border-border/80 text-foreground/90 font-medium"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
+          {/* Technical Highlights - Editorial Left-Accent Typography */}
+          <div className="pt-6 border-t border-border/60">
+            <h4 className="font-mono text-xs text-muted uppercase tracking-wider mb-4 font-semibold">
+              TECHNICAL HIGHLIGHTS
+            </h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {workflowHighlights.map((item) => (
+                <div
+                  key={item.title}
+                  className="border-l-2 border-purple-500/30 pl-3.5 hover:border-purple-400 transition-colors"
+                >
+                  <h5 className="font-sans text-xs font-bold text-foreground mb-1">
+                    {item.title}
+                  </h5>
+                  <p className="text-xs text-secondary font-sans leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </div>

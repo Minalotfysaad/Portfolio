@@ -166,10 +166,8 @@ export const EmployeeLeaveCaseStudy: React.FC<EmployeeLeaveCaseStudyProps> = ({
               A production-style employee leave management backend for managing employees, leave balances, requests, approvals, holidays, and role-based workflows.
             </p>
           </div>
-
-          {/* Quick Key Technology Badges */}
           <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
-            {["C#", ".NET 9", "ASP.NET Core", "EF Core", "SQL Server", "Redis"].map((tech) => (
+            {project.technologies.map((tech) => (
               <span
                 key={tech}
                 className="font-mono text-[11px] px-2.5 py-0.5 rounded-md bg-white/[0.03] border border-white/10 text-muted hover:border-accent/40 hover:text-foreground transition-colors"
@@ -180,7 +178,6 @@ export const EmployeeLeaveCaseStudy: React.FC<EmployeeLeaveCaseStudyProps> = ({
           </div>
         </div>
 
-        {/* Action Controls */}
         <div className="flex items-center gap-3 shrink-0 pt-2 lg:pt-0" onClick={(e) => e.stopPropagation()}>
           <a
             href={project.githubUrl}
@@ -213,32 +210,31 @@ export const EmployeeLeaveCaseStudy: React.FC<EmployeeLeaveCaseStudyProps> = ({
         </div>
       </div>
 
-      {/* Expandable Content Body with Smooth Height Animation */}
       <div
         className={cn(
           "grid transition-all duration-300 ease-in-out",
           isExpanded ? "grid-rows-[1fr] opacity-100 px-5 sm:px-6 pb-6 pt-6 border-t border-border/80" : "grid-rows-[0fr] opacity-0"
         )}
       >
-        <div className="overflow-hidden space-y-12">
-          {/* Primary Screenshot Showcase & Media Selector */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-2">
-            {/* Large Screenshot Box / High-Tech Placeholder Frame */}
-            <div className="lg:col-span-8 rounded-2xl border border-border/90 bg-[#09090C] overflow-hidden shadow-2xl">
-              <div className="px-4 py-2.5 bg-[#131317] border-b border-border/80 flex items-center justify-between">
-                <div className="flex items-center gap-3">
+        <div className="overflow-hidden space-y-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start pt-2">
+            <div className="lg:col-span-8 rounded-xl border border-border/80 bg-[#09090C] overflow-hidden shadow-xl">
+              <div className="px-4 py-2.5 bg-[#121216] border-b border-border/70 flex items-center justify-between">
+                <div className="flex items-center gap-2.5">
                   <div className="flex items-center gap-1.5">
                     <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
                     <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
                     <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
                   </div>
-                  <span className="font-mono text-xs text-muted">
+                  <span className="font-mono text-xs text-muted ml-1">
                     {currentScreenshot?.category || "HR System Architecture"}
                   </span>
                 </div>
+                <span className="font-mono text-[11px] text-accent-light/80">
+                  {selectedScreenshotIndex + 1} / {project.screenshots.length}
+                </span>
               </div>
 
-              {/* Crossfading Screenshot Container (Clickable to open full gallery) */}
               <div
                 onClick={onOpenGalleryModal}
                 className="relative aspect-[16/10] w-full bg-surface overflow-hidden cursor-pointer group/screen"
@@ -252,7 +248,6 @@ export const EmployeeLeaveCaseStudy: React.FC<EmployeeLeaveCaseStudyProps> = ({
                   }
                 }}
               >
-                {/* Hover overlay hint */}
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/screen:opacity-100 transition-opacity duration-200 z-20 flex items-center justify-center pointer-events-none">
                   <span className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-black/80 border border-white/20 text-white font-mono text-xs shadow-xl backdrop-blur-sm transform translate-y-1 group-hover/screen:translate-y-0 transition-transform duration-200">
                     <Maximize2 className="w-3.5 h-3.5 text-accent-light" />
@@ -260,63 +255,47 @@ export const EmployeeLeaveCaseStudy: React.FC<EmployeeLeaveCaseStudyProps> = ({
                   </span>
                 </div>
 
-                {project.screenshots.map((s, idx) => {
-                  const isErr = imageErrorMap[s.src];
-
-                  return (
-                    <div
-                      key={s.src}
-                      className={cn(
-                        "absolute inset-0 transition-opacity duration-300 ease-in-out flex items-center justify-center",
-                        selectedScreenshotIndex === idx ? "opacity-100 z-10 pointer-events-auto" : "opacity-0 z-0 pointer-events-none"
-                      )}
-                    >
-                      {!isErr ? (
-                        <Image
-                          src={getAssetPath(s.src)}
-                          alt={s.alt}
-                          fill
-                          className="object-cover"
-                          onError={() =>
-                            setImageErrorMap((prev) => ({
-                              ...prev,
-                              [s.src]: true,
-                            }))
-                          }
-                        />
-                      ) : (
-                        <div className="w-full h-full p-6 sm:p-8 bg-gradient-to-br from-[#121217] via-[#0E0E12] to-[#0A0A0D] flex flex-col items-center justify-center text-center font-mono">
-                          <div className="w-14 h-14 rounded-2xl bg-surface border border-accent/30 flex items-center justify-center text-accent-light mb-3 shadow-glow-accent">
-                            <Code2 className="w-7 h-7" />
-                          </div>
-                          <span className="px-2.5 py-0.5 rounded text-[10px] uppercase tracking-wider bg-accent/15 border border-accent/30 text-accent-light mb-2">
-                            SCREENSHOT ASSET SPECIFICATION
-                          </span>
-                          <h4 className="text-sm sm:text-base font-bold text-foreground mb-1 font-sans">
-                            {s.alt}
-                          </h4>
-                          <p className="text-xs text-muted max-w-md font-sans mb-3">
-                            {s.caption}
-                          </p>
-                          <div className="text-[10px] text-secondary bg-surface/80 border border-border px-3 py-1 rounded-md">
-                            Asset path: {s.src}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
+                {project.screenshots.map((s, idx) => (
+                  <div
+                    key={s.src}
+                    className={cn(
+                      "absolute inset-0 transition-opacity duration-300 ease-in-out",
+                      selectedScreenshotIndex === idx ? "opacity-100 z-10 pointer-events-auto" : "opacity-0 z-0 pointer-events-none"
+                    )}
+                  >
+                    {!imageErrorMap[s.src] ? (
+                      <Image
+                        src={getAssetPath(s.src)}
+                        alt={s.alt}
+                        fill
+                        className="object-cover"
+                        onError={() =>
+                          setImageErrorMap((prev) => ({ ...prev, [s.src]: true }))
+                        }
+                      />
+                    ) : (
+                      <div className="w-full h-full flex flex-col items-center justify-center bg-[#111115] text-muted p-6 text-center">
+                        <Images className="w-12 h-12 mb-3 text-border" />
+                        <span className="font-mono text-xs font-semibold text-foreground/80">
+                          {s.alt}
+                        </span>
+                        <span className="text-[11px] text-muted mt-1 max-w-xs leading-relaxed">
+                          Visualizing production architecture, security endpoints, and workflows.
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
 
-            {/* Thumbnail Selector & Caption */}
-            <div className="lg:col-span-4 space-y-4">
-              <div className="p-4 rounded-xl bg-surface/40 border border-border">
-                <span className="font-mono text-[10px] text-accent-light font-bold uppercase tracking-wider block mb-1">
-                  ACTIVE SPECIFICATION:
+            <div className="lg:col-span-4 space-y-3.5">
+              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+                <span className="font-mono text-[10px] text-accent-light font-bold uppercase tracking-wider block mb-1.5">
+                  SPECIFICATION:
                 </span>
                 <p className="text-xs text-secondary font-sans leading-relaxed">
-                  {currentScreenshot.caption}
+                  {currentScreenshot?.caption}
                 </p>
               </div>
 
@@ -343,19 +322,15 @@ export const EmployeeLeaveCaseStudy: React.FC<EmployeeLeaveCaseStudyProps> = ({
             </div>
           </div>
 
-          {/* Key Features */}
-          <div className="pt-8 border-t border-border/80">
-            <span className="font-mono text-xs text-accent-light block mb-4 uppercase tracking-wider font-semibold">
-              KEY FEATURES:
-            </span>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="pt-6 border-t border-border/60">
+            <h4 className="font-mono text-xs text-muted uppercase tracking-wider mb-4 font-semibold">
+              KEY FEATURES
+            </h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-2.5">
               {keyFeatures.map((feat) => (
-                <div
-                  key={feat}
-                  className="p-3.5 rounded-xl bg-surface/30 border border-border/70 flex items-start gap-2.5"
-                >
-                  <CheckCircle2 className="w-4 h-4 text-accent-light shrink-0 mt-0.5" />
-                  <span className="font-sans text-xs text-foreground/90 leading-relaxed font-medium">
+                <div key={feat} className="flex items-start gap-2.5 py-0.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent-light shrink-0 mt-2" />
+                  <span className="text-xs text-secondary/95 hover:text-foreground font-sans leading-relaxed transition-colors">
                     {feat}
                   </span>
                 </div>
@@ -363,61 +338,52 @@ export const EmployeeLeaveCaseStudy: React.FC<EmployeeLeaveCaseStudyProps> = ({
             </div>
           </div>
 
-          {/* Linear Pipeline Flow */}
-          <div className="pt-8 border-t border-border/80">
-            <div className="flex items-center gap-2 font-mono text-xs text-accent-light uppercase tracking-wider mb-6">
-              <Zap className="w-4 h-4" />
-              <span>LEAVE REQUEST & APPROVAL LIFECYCLE:</span>
+          <div className="pt-6 border-t border-border/60">
+            <div className="flex items-center gap-2 font-mono text-xs text-muted uppercase tracking-wider mb-4 font-semibold">
+              <Zap className="w-3.5 h-3.5 text-accent-light" />
+              <span>LEAVE REQUEST & APPROVAL LIFECYCLE</span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
-              {pipelineSteps.map((step) => {
-                const Icon = step.icon;
-
-                return (
-                  <div
-                    key={step.step}
-                    className="p-4 rounded-xl bg-[#0E0E12] border border-border/80 flex flex-col justify-between"
-                  >
-                    <div>
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="font-mono text-xs font-bold text-accent-light">
-                          {step.step}
-                        </span>
-                        <Icon className="w-4 h-4 text-secondary" />
-                      </div>
-                      <h4 className="font-mono text-xs font-bold text-foreground mb-1">
-                        {step.title}
-                      </h4>
-                      <p className="text-[11px] text-secondary font-sans leading-relaxed">
-                        {step.description}
-                      </p>
+              {pipelineSteps.map((step) => (
+                <div
+                  key={step.step}
+                  className="p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-accent/30 transition-colors flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="font-mono text-xs font-bold text-accent-light">
+                        {step.step}
+                      </span>
+                      <span className="font-mono text-[9px] text-muted tracking-wider uppercase">
+                        {step.badge}
+                      </span>
                     </div>
-
-                    <div className="mt-3 pt-2 border-t border-border/50 font-mono text-[9px] text-muted uppercase">
-                      {step.badge}
-                    </div>
+                    <h5 className="font-mono text-xs font-bold text-foreground mb-1">
+                      {step.title}
+                    </h5>
+                    <p className="text-[11px] text-secondary font-sans leading-relaxed">
+                      {step.description}
+                    </p>
                   </div>
-                );
-              })}
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Core Engineering Highlights Grid */}
-          <div className="pt-8 border-t border-border/80">
-            <span className="font-mono text-xs text-muted block mb-4 uppercase tracking-wider">
-              TECHNICAL HIGHLIGHTS:
-            </span>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="pt-6 border-t border-border/60">
+            <h4 className="font-mono text-xs text-muted uppercase tracking-wider mb-4 font-semibold">
+              TECHNICAL HIGHLIGHTS
+            </h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {highlights.map((item) => (
                 <div
                   key={item.title}
-                  className="p-4 rounded-xl bg-surface/30 border border-border/70"
+                  className="border-l-2 border-accent/30 pl-3.5 hover:border-accent transition-colors"
                 >
-                  <div className="flex items-center gap-2 font-mono text-xs font-bold text-foreground mb-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-accent-light shrink-0" />
-                    <span>{item.title}</span>
-                  </div>
+                  <h5 className="font-sans text-xs font-bold text-foreground mb-1">
+                    {item.title}
+                  </h5>
                   <p className="text-xs text-secondary font-sans leading-relaxed">
                     {item.desc}
                   </p>
@@ -425,52 +391,6 @@ export const EmployeeLeaveCaseStudy: React.FC<EmployeeLeaveCaseStudyProps> = ({
               ))}
             </div>
           </div>
-
-          {/* Architecture & Complete Stack */}
-          <div className="pt-8 border-t border-border/80 space-y-4">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-xl bg-[#0E0E12] border border-border/80">
-              <div className="flex items-center gap-2 font-mono text-xs text-foreground">
-                <span className="font-bold text-accent-light">ARCHITECTURE:</span>
-                <span className="text-secondary font-semibold">
-                  Clean Architecture · SOLID · Repository Pattern · Unit of Work · CQRS · MediatR
-                </span>
-              </div>
-            </div>
-
-            {/* Complete Technology Stack */}
-            <div className="p-4 rounded-xl bg-surface/20 border border-border/60">
-              <span className="font-mono text-[11px] text-muted uppercase tracking-wider block mb-2.5">
-                TECHNOLOGY STACK:
-              </span>
-              <div className="flex flex-wrap gap-2">
-                {[
-                  "C#",
-                  ".NET 9",
-                  "ASP.NET Core Web API",
-                  "Entity Framework Core",
-                  "SQL Server",
-                  "Redis",
-                  "ASP.NET Identity",
-                  "JWT",
-                  "MediatR",
-                  "FluentValidation",
-                  "AutoMapper",
-                  "Serilog",
-                  "xUnit",
-                  "Moq",
-                  "Swagger",
-                ].map((tech) => (
-                  <span
-                    key={tech}
-                    className="font-mono text-xs px-2.5 py-1 rounded-md bg-[#141418] border border-border/80 text-foreground/90 font-medium"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
     </article>

@@ -168,23 +168,6 @@ export const Experience: React.FC = () => {
                       })}
                     </div>
                   </div>
-
-                  {/* Compact Technology Tags */}
-                  <div className="pt-6 mt-6 border-t border-border/70 flex flex-col sm:flex-row sm:items-center gap-3">
-                    <span className="font-mono text-xs text-muted font-bold uppercase tracking-wider shrink-0">
-                      Technologies Used:
-                    </span>
-                    <div className="flex flex-wrap gap-1.5">
-                      {exp.tech.map((t) => (
-                        <span
-                          key={t}
-                          className="font-mono text-[11px] px-2.5 py-0.5 rounded-md bg-surface border border-border text-foreground hover:border-accent/40 transition-colors"
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
