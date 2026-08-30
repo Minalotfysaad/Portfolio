@@ -23,24 +23,24 @@ export const heroData = {
 export const quickMetrics: MetricItem[] = [
   {
     value: "3+",
-    label: "FEATURED BACKEND PROJECTS",
-    sublabel: "HR Leave, E-Commerce, Competitions",
+    label: "BACKEND PROJECTS",
+    sublabel: "Leave Management · E-Commerce · Competitions",
     highlight: true,
   },
   {
-    value: "100%",
-    label: "BACKEND .NET FOCUS",
-    sublabel: "C#, ASP.NET Core 9, Web API, EF Core",
+    value: ".NET 9",
+    label: "MODERN .NET STACK",
+    sublabel: "C# · ASP.NET Core · EF Core",
   },
   {
-    value: "4",
-    label: "ENGINEERING PILLARS",
-    sublabel: "Clean Arch, Security, Speed, Quality",
+    value: "SQL + REDIS",
+    label: "DATA & CACHING",
+    sublabel: "SQL Server · Redis · LINQ",
   },
   {
-    value: "REST",
-    label: "API ARCHITECTURE",
-    sublabel: "JWT Auth, Redis Caching, Validation",
+    value: "CLEAN ARCHITECTURE",
+    label: "ENGINEERING PRACTICES",
+    sublabel: "SOLID · JWT · Validation · Testing",
   },
 ];
 

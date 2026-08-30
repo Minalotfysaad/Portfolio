@@ -19,7 +19,12 @@ export const MetricsStrip: React.FC = () => {
                 <div className="flex items-baseline gap-1.5 mb-1">
                   <span
                     className={cn(
-                      "text-2xl sm:text-3xl font-extrabold font-mono tracking-tight",
+                      "font-extrabold font-mono tracking-tight",
+                      metric.value.length > 12
+                        ? "text-base sm:text-lg md:text-base lg:text-xl xl:text-2xl"
+                        : metric.value.length > 6
+                        ? "text-xl sm:text-2xl lg:text-3xl"
+                        : "text-2xl sm:text-3xl",
                       metric.highlight ? "text-accent-light" : "text-foreground"
                     )}
                   >
