@@ -22,9 +22,9 @@ export const Projects: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
         <ScrollReveal direction="up" distance={24} duration={500}>
           <SectionHeading
-            badge="PRODUCTION CASE STUDIES"
-            title="BACKEND SYSTEMS & ARCHITECTURAL CASE STUDIES"
-            subtitle="Real-world backend architectures engineered around complex business lifecycles, Clean Architecture, transactional data access, and enterprise security."
+            badge="PROJECTS"
+            title="FEATURED PROJECTS"
+            subtitle="Backend systems built to apply real-world software engineering practices."
           />
         </ScrollReveal>
 

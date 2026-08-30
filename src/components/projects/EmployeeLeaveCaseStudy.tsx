@@ -16,6 +16,7 @@ import {
   ChevronDown,
   ChevronUp,
   Database,
+  Maximize2,
 } from "lucide-react";
 import { cn, getAssetPath } from "@/lib/utils";
 
@@ -111,10 +112,7 @@ export const EmployeeLeaveCaseStudy: React.FC<EmployeeLeaveCaseStudyProps> = ({
           <div className="flex items-center gap-2.5">
             <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-accent/10 border border-accent/30 text-accent-light font-mono text-[10px] font-bold uppercase tracking-wider">
               <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-              CASE STUDY 01 • HR SYSTEM
-            </span>
-            <span className="font-mono text-[10px] text-muted uppercase tracking-wider hidden sm:inline-block">
-              ENTERPRISE BACKEND ARCHITECTURE
+              01 — FEATURED PROJECT
             </span>
           </div>
 
@@ -122,17 +120,17 @@ export const EmployeeLeaveCaseStudy: React.FC<EmployeeLeaveCaseStudyProps> = ({
             <h3 className="text-2xl sm:text-3xl font-black text-foreground font-sans tracking-tight group-hover:text-accent-light transition-colors">
               Employee Leave Management System
             </h3>
-            <p className="font-mono text-xs sm:text-sm text-secondary mt-1">
-              Production-Style HR Management Backend
+            <p className="font-mono text-xs sm:text-sm text-secondary mt-1 max-w-4xl leading-relaxed">
+              A production-style employee leave management API with authentication, role-based approval workflows, validation, and clean backend architecture.
             </p>
           </div>
 
           {/* Quick Key Technology Badges */}
           <div className="flex flex-wrap items-center gap-1.5 pt-1">
-            {["C# / .NET 9", "EF Core 9", "SQL Server", "JWT & Identity", "Redis"].map((tech) => (
+            {["C#", ".NET 9", "ASP.NET Core Web API", "EF Core", "SQL Server", "Redis"].map((tech) => (
               <span
                 key={tech}
-                className="font-mono text-[10px] px-2 py-0.5 rounded bg-surface/80 border border-border/80 text-secondary"
+                className="font-mono text-[10px] px-2.5 py-0.5 rounded-md bg-surface/90 border border-border/80 text-secondary font-medium"
               >
                 {tech}
               </span>
@@ -148,7 +146,7 @@ export const EmployeeLeaveCaseStudy: React.FC<EmployeeLeaveCaseStudyProps> = ({
               icon={<Github className="w-4 h-4" />}
               className="font-mono text-xs border-border/90 text-secondary hover:text-foreground"
             >
-              GITHUB REPO →
+              View on GitHub →
             </Button>
           </a>
 
@@ -184,25 +182,34 @@ export const EmployeeLeaveCaseStudy: React.FC<EmployeeLeaveCaseStudyProps> = ({
                     <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
                     <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
                   </div>
-                  <div className="hidden sm:flex items-center gap-1.5 px-2 py-0.5 rounded bg-background/80 border border-border/60 text-[10px] font-mono text-muted">
-                    <span className="text-emerald-400 font-bold">GET</span>
-                    <span>/api/v1/leave-requests</span>
-                  </div>
                   <span className="font-mono text-xs text-muted">
                     {currentScreenshot?.category || "HR System Architecture"}
                   </span>
                 </div>
-                <button
-                  onClick={onOpenGalleryModal}
-                  className="flex items-center gap-1 font-mono text-[11px] text-muted hover:text-foreground px-2.5 py-1 rounded bg-surface border border-border transition-colors"
-                >
-                  <Images className="w-3 h-3 text-accent-light" />
-                  <span>{project.screenshots.length} Screens</span>
-                </button>
               </div>
 
-              {/* Crossfading Screenshot Container */}
-              <div className="relative aspect-[16/10] w-full bg-surface overflow-hidden">
+              {/* Crossfading Screenshot Container (Clickable to open full gallery) */}
+              <div
+                onClick={onOpenGalleryModal}
+                className="relative aspect-[16/10] w-full bg-surface overflow-hidden cursor-pointer group/screen"
+                role="button"
+                tabIndex={0}
+                aria-label="Click to view full screenshot gallery"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    onOpenGalleryModal();
+                  }
+                }}
+              >
+                {/* Hover overlay hint */}
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/screen:opacity-100 transition-opacity duration-200 z-20 flex items-center justify-center pointer-events-none">
+                  <span className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-black/80 border border-white/20 text-white font-mono text-xs shadow-xl backdrop-blur-sm transform translate-y-1 group-hover/screen:translate-y-0 transition-transform duration-200">
+                    <Maximize2 className="w-3.5 h-3.5 text-accent-light" />
+                    <span>Click to enlarge</span>
+                  </span>
+                </div>
+
                 {project.screenshots.map((s, idx) => {
                   const isErr = imageErrorMap[s.src];
 
@@ -267,15 +274,17 @@ export const EmployeeLeaveCaseStudy: React.FC<EmployeeLeaveCaseStudyProps> = ({
                 {project.screenshots.map((s, idx) => (
                   <button
                     key={s.src}
+                    type="button"
                     onClick={() => setSelectedScreenshotIndex(idx)}
                     className={cn(
-                      "relative aspect-[16/10] rounded-lg overflow-hidden border transition-all flex items-center justify-center bg-[#15151A]",
+                      "relative aspect-[16/10] rounded-lg overflow-hidden border transition-all duration-200 ease-out flex items-center justify-center bg-[#15151A] select-none",
+                      "hover:scale-[1.03] active:scale-90 active:duration-75",
                       selectedScreenshotIndex === idx
-                        ? "border-accent ring-2 ring-accent/30 scale-105"
-                        : "border-border/70 opacity-60 hover:opacity-100"
+                        ? "border-accent ring-2 ring-accent/40 scale-105 shadow-md shadow-accent/20"
+                        : "border-border/70 opacity-60 hover:opacity-100 hover:border-accent/40"
                     )}
                   >
-                    <span className="font-mono text-[10px] font-bold text-secondary">
+                    <span className="font-mono text-[10px] font-bold text-secondary transition-transform duration-150">
                       0{idx + 1}
                     </span>
                   </button>
@@ -327,7 +336,7 @@ export const EmployeeLeaveCaseStudy: React.FC<EmployeeLeaveCaseStudyProps> = ({
           {/* Core Engineering Highlights Grid */}
           <div className="pt-8 border-t border-border/80">
             <span className="font-mono text-xs text-muted block mb-4 uppercase tracking-wider">
-              CORE ENGINEERING HIGHLIGHTS:
+              KEY CAPABILITIES & IMPLEMENTATION:
             </span>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {highlights.map((item) => (
@@ -344,6 +353,56 @@ export const EmployeeLeaveCaseStudy: React.FC<EmployeeLeaveCaseStudyProps> = ({
                   </p>
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* Architecture & Complete Stack */}
+          <div className="pt-8 border-t border-border/80 space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-xl bg-[#0E0E12] border border-border/80">
+              <div className="flex items-center gap-2 font-mono text-xs text-foreground">
+                <span className="font-bold text-accent-light">ARCHITECTURE:</span>
+                <span className="text-secondary font-semibold">Clean Architecture</span>
+              </div>
+              <div className="flex items-center gap-2 font-mono text-xs text-muted flex-wrap">
+                <span className="px-2.5 py-1 rounded bg-surface border border-border/80 text-foreground font-medium">API</span>
+                <span>→</span>
+                <span className="px-2.5 py-1 rounded bg-surface border border-border/80 text-foreground font-medium">Application</span>
+                <span>→</span>
+                <span className="px-2.5 py-1 rounded bg-surface border border-border/80 text-foreground font-medium">Domain</span>
+                <span>→</span>
+                <span className="px-2.5 py-1 rounded bg-surface border border-border/80 text-foreground font-medium">Infrastructure</span>
+              </div>
+            </div>
+
+            {/* Complete Technology Stack */}
+            <div className="p-4 rounded-xl bg-surface/20 border border-border/60">
+              <span className="font-mono text-[11px] text-muted uppercase tracking-wider block mb-2.5">
+                TECHNOLOGY STACK:
+              </span>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  "C#",
+                  ".NET 9",
+                  "ASP.NET Core Web API",
+                  "EF Core",
+                  "SQL Server",
+                  "Redis",
+                  "ASP.NET Identity",
+                  "JWT",
+                  "FluentValidation",
+                  "Serilog",
+                  "xUnit",
+                  "Moq",
+                  "Swagger",
+                ].map((tech) => (
+                  <span
+                    key={tech}
+                    className="font-mono text-xs px-2.5 py-1 rounded-md bg-[#141418] border border-border/80 text-foreground/90 font-medium"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
 

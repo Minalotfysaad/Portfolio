@@ -18,6 +18,7 @@ import {
   Award,
   ChevronDown,
   ChevronUp,
+  Maximize2,
 } from "lucide-react";
 import { cn, getAssetPath } from "@/lib/utils";
 
@@ -83,29 +84,26 @@ export const CompetitionsHubCaseStudy: React.FC<CompetitionsHubCaseStudyProps> =
           {/* Top Identifier & Status Pill */}
           <div className="flex items-center gap-2.5">
             <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-400 font-mono text-[10px] font-bold uppercase tracking-wider">
-              <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
-              CASE STUDY 03 • WORKFLOW PLATFORM
-            </span>
-            <span className="font-mono text-[10px] text-muted uppercase tracking-wider hidden sm:inline-block">
-              COMPETITION ENGINE & LEADERBOARDS
+              <span className="w-1.5 h-1.5 rounded-full bg-purple-400" />
+              03 — PROJECT
             </span>
           </div>
 
           <div>
             <h3 className="text-2xl sm:text-3xl font-black text-foreground font-sans tracking-tight group-hover:text-purple-400 transition-colors">
-              CompetitionsHub API
+              CompetitionsHub
             </h3>
-            <p className="font-mono text-xs sm:text-sm text-secondary mt-1">
-              Multi-Tier Competition Management, Manual/Automated Grading Engine & Dynamic Leaderboards
+            <p className="font-mono text-xs sm:text-sm text-secondary mt-1 max-w-4xl leading-relaxed">
+              A backend platform for managing competitions, participants, submissions, judging, scoring, and leaderboards.
             </p>
           </div>
 
           {/* Quick Key Technology Badges */}
           <div className="flex flex-wrap items-center gap-1.5 pt-1">
-            {["ASP.NET Core", "Clean Architecture", "Grading Engine", "RBAC Policies", "SQL Server"].map((tech) => (
+            {["C#", "ASP.NET Core", "EF Core", "SQL Server", "ASP.NET Identity", "JWT"].map((tech) => (
               <span
                 key={tech}
-                className="font-mono text-[10px] px-2 py-0.5 rounded bg-surface/80 border border-border/80 text-secondary"
+                className="font-mono text-[10px] px-2.5 py-0.5 rounded-md bg-surface/90 border border-border/80 text-secondary font-medium"
               >
                 {tech}
               </span>
@@ -121,7 +119,7 @@ export const CompetitionsHubCaseStudy: React.FC<CompetitionsHubCaseStudyProps> =
               icon={<Github className="w-4 h-4" />}
               className="font-mono text-xs border-border/90 text-secondary hover:text-foreground"
             >
-              GITHUB REPO →
+              View on GitHub →
             </Button>
           </a>
 
@@ -157,25 +155,34 @@ export const CompetitionsHubCaseStudy: React.FC<CompetitionsHubCaseStudyProps> =
                     <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
                     <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
                   </div>
-                  <div className="hidden sm:flex items-center gap-1.5 px-2 py-0.5 rounded bg-background/80 border border-border/60 text-[10px] font-mono text-muted">
-                    <span className="text-purple-400 font-bold">GET</span>
-                    <span>/api/v1/competitions</span>
-                  </div>
                   <span className="font-mono text-xs text-muted">
                     {currentScreenshot?.category || "Competition Platform"}
                   </span>
                 </div>
-                <button
-                  onClick={onOpenGalleryModal}
-                  className="flex items-center gap-1 font-mono text-[11px] text-muted hover:text-foreground px-2.5 py-1 rounded bg-surface border border-border transition-colors"
-                >
-                  <Images className="w-3 h-3 text-purple-400" />
-                  <span>{project.screenshots.length} Screens</span>
-                </button>
               </div>
 
-              {/* Crossfading Screenshot Container */}
-              <div className="relative aspect-[16/10] w-full bg-surface overflow-hidden">
+              {/* Crossfading Screenshot Container (Clickable to open gallery) */}
+              <div
+                onClick={onOpenGalleryModal}
+                className="relative aspect-[16/10] w-full bg-surface overflow-hidden cursor-pointer group/screen"
+                role="button"
+                tabIndex={0}
+                aria-label="Click to view full screenshot gallery"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    onOpenGalleryModal();
+                  }
+                }}
+              >
+                {/* Hover overlay hint */}
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/screen:opacity-100 transition-opacity duration-200 z-20 flex items-center justify-center pointer-events-none">
+                  <span className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-black/80 border border-white/20 text-white font-mono text-xs shadow-xl backdrop-blur-sm transform translate-y-1 group-hover/screen:translate-y-0 transition-transform duration-200">
+                    <Maximize2 className="w-3.5 h-3.5 text-purple-400" />
+                    <span>Click to enlarge</span>
+                  </span>
+                </div>
+
                 {project.screenshots.map((s, idx) => (
                   <div
                     key={s.src}
@@ -210,12 +217,14 @@ export const CompetitionsHubCaseStudy: React.FC<CompetitionsHubCaseStudyProps> =
                 {project.screenshots.map((s, idx) => (
                   <button
                     key={s.src}
+                    type="button"
                     onClick={() => setSelectedScreenshotIndex(idx)}
                     className={cn(
-                      "relative aspect-[16/10] rounded-lg overflow-hidden border transition-all",
+                      "relative aspect-[16/10] rounded-lg overflow-hidden border transition-all duration-200 ease-out select-none",
+                      "hover:scale-[1.03] active:scale-90 active:duration-75",
                       selectedScreenshotIndex === idx
-                        ? "border-purple-400 ring-2 ring-purple-500/30 scale-105"
-                        : "border-border/70 opacity-60 hover:opacity-100"
+                        ? "border-purple-400 ring-2 ring-purple-500/30 scale-105 shadow-md shadow-purple-500/20"
+                        : "border-border/70 opacity-60 hover:opacity-100 hover:border-purple-400/40"
                     )}
                   >
                     <Image
@@ -269,7 +278,7 @@ export const CompetitionsHubCaseStudy: React.FC<CompetitionsHubCaseStudyProps> =
           {/* Workflow Engineering Highlights Grid */}
           <div className="pt-8 border-t border-border/80">
             <span className="font-mono text-xs text-muted block mb-4 uppercase tracking-wider">
-              BUSINESS WORKFLOW & EVALUATION HIGHLIGHTS:
+              KEY CAPABILITIES & IMPLEMENTATION:
             </span>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {workflowHighlights.map((item) => (
@@ -286,6 +295,43 @@ export const CompetitionsHubCaseStudy: React.FC<CompetitionsHubCaseStudyProps> =
                   </p>
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* Architecture & Complete Stack */}
+          <div className="pt-8 border-t border-border/80 space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-xl bg-[#0E0E12] border border-border/80">
+              <div className="flex items-center gap-2 font-mono text-xs text-foreground">
+                <span className="font-bold text-purple-400">ARCHITECTURE:</span>
+                <span className="text-secondary font-semibold">Clean Architecture separating scoring rules, evaluation workflows, and persistence</span>
+              </div>
+            </div>
+
+            {/* Complete Technology Stack */}
+            <div className="p-4 rounded-xl bg-surface/20 border border-border/60">
+              <span className="font-mono text-[11px] text-muted uppercase tracking-wider block mb-2.5">
+                TECHNOLOGY STACK:
+              </span>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  "C#",
+                  "ASP.NET Core",
+                  "EF Core",
+                  "SQL Server",
+                  "ASP.NET Identity",
+                  "JWT",
+                  "FluentValidation",
+                  "AutoMapper",
+                  "Swagger",
+                ].map((tech) => (
+                  <span
+                    key={tech}
+                    className="font-mono text-xs px-2.5 py-1 rounded-md bg-[#141418] border border-border/80 text-foreground/90 font-medium"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </div>
