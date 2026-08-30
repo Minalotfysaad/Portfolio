@@ -103,7 +103,7 @@ export const Experience: React.FC = () => {
                         : "bg-surface hover:bg-surface-light border-border text-foreground hover:border-accent/40"
                     )}
                   >
-                    <span>{isExpanded ? "HIDE DETAILS" : "VIEW CONTRIBUTIONS"}</span>
+                    <span>{isExpanded ? "HIDE CONTRIBUTIONS" : "VIEW CONTRIBUTIONS"}</span>
                     <ChevronDown
                       className={cn(
                         "w-4 h-4 transition-transform duration-300",
