@@ -14,13 +14,11 @@ export const EngineeringPhilosophy: React.FC = () => {
   return (
     <div className="mt-20 pt-16 border-t border-border/70">
       <ScrollReveal direction="up" distance={20} duration={500}>
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-3">
-          <div>
-            <h3 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">
-              HOW I BUILD
-            </h3>
-          </div>
-          <p className="text-xs sm:text-sm text-secondary font-mono max-w-lg">
+        <div className="mb-10 space-y-2 max-w-2xl">
+          <h3 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight font-sans">
+            HOW I BUILD
+          </h3>
+          <p className="text-sm sm:text-base text-secondary leading-relaxed font-sans">
             Practical engineering principles I apply when designing and building backend systems.
           </p>
         </div>
