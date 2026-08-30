@@ -4,13 +4,14 @@ export const projectsData: ProjectItem[] = [
   {
     id: "employee-leave-management",
     title: "Employee Leave Management System",
-    subtitle: "A production-style employee leave management API with authentication, role-based approval workflows, validation, and clean backend architecture.",
+    subtitle:
+      "A production-style employee leave management backend for managing employees, leave balances, requests, approvals, holidays, and role-based workflows.",
     badge: "01 — FEATURED PROJECT",
     isFeatured: true,
     shortDescription:
-      "A production-style employee leave management API with authentication, role-based approval workflows, validation, and clean backend architecture.",
+      "A production-style employee leave management backend for managing employees, leave balances, requests, approvals, holidays, and role-based workflows.",
     fullDescription:
-      "An ASP.NET Core 9 backend managing the full leave request lifecycle — from employee submission through multi-tier Manager and HR approval workflows to atomic balance deduction. Built with Clean Architecture, ASP.NET Identity with JWT and refresh tokens, EF Core Repository and Unit of Work patterns, FluentValidation, Redis caching, and Serilog logging.",
+      "A production-style employee leave management backend for managing employees, leave balances, requests, approvals, holidays, and role-based workflows. Built with Clean Architecture, ASP.NET Core 9, EF Core, Redis, MediatR, and automated testing.",
     problemStatement:
       "Organizations need an automated, reliable system to manage employee leave requests, enforce multi-tier approval hierarchies, track leave balance allocations, and prevent concurrent quota discrepancies.",
     approach:
@@ -20,29 +21,32 @@ export const projectsData: ProjectItem[] = [
       "C#",
       ".NET 9",
       "ASP.NET Core Web API",
-      "EF Core",
+      "Entity Framework Core",
       "SQL Server",
       "Redis",
       "ASP.NET Identity",
       "JWT",
+      "MediatR",
       "FluentValidation",
+      "AutoMapper",
       "Serilog",
       "xUnit",
       "Moq",
       "Swagger",
     ],
     features: [
-      "JWT authentication and secure token handling",
-      "Role-based authorization across Employee, Manager, and HR roles",
-      "Multi-tier leave request workflow with Manager and HR approval process",
-      "Leave balance management with automated quota calculations",
-      "Leave types and holiday schedule administration",
-      "Server-side pagination and multi-criteria filtering",
-      "Strongly-typed request validation with FluentValidation",
-      "Centralized global exception handling and standardized error responses",
-      "Structured application logging with Serilog",
-      "Redis distributed response caching with automated invalidation",
-      "Interactive API documentation and endpoint testing with Swagger",
+      "Employee and department management",
+      "Leave types, balances, and holiday management",
+      "Leave request creation and tracking",
+      "Multi-level approval workflow",
+      "Role-based access for Employees, Managers, and HR",
+      "JWT authentication and ASP.NET Identity",
+      "Request validation and business rule enforcement",
+      "Pagination, filtering, and sorting",
+      "Redis caching",
+      "Global exception handling and structured logging",
+      "Unit testing with xUnit and Moq",
+      "Swagger / OpenAPI documentation",
     ],
     architectureNodes: [
       {
@@ -434,12 +438,13 @@ export const projectsData: ProjectItem[] = [
   {
     id: "competitionshub-api",
     title: "CompetitionsHub",
-    subtitle: "A backend platform for managing competitions, participants, submissions, judging, scoring, and leaderboards.",
+    subtitle:
+      "A competition management backend for organizing multi-stage events, participant registration, question-based assessments, judging, scoring, leaderboards, and results publishing.",
     badge: "03 — PROJECT",
     shortDescription:
-      "A backend platform for managing competitions, participants, submissions, judging, scoring, and leaderboards.",
+      "A competition management backend for organizing multi-stage events, participant registration, question-based assessments, judging, scoring, leaderboards, and results publishing.",
     fullDescription:
-      "A multi-tier competition management platform orchestrating event scheduling, contestant registration, question bank administration, answer submission handling, automated and manual judging workflows, and dynamic leaderboard calculation.",
+      "A competition management backend for organizing multi-stage events, participant registration, question-based assessments, judging, scoring, leaderboards, and results publishing. Orchestrates event scheduling, contestant registration, question bank administration, answer submission handling, automated and manual judging workflows, and dynamic leaderboard calculation.",
     problemStatement:
       "Managing multi-stage competitions requires coordinating diverse participant roles, strictly scheduling competition rounds, managing question formats and scoring weights, and compiling real-time standings across large participant pools.",
     approach:
@@ -448,7 +453,7 @@ export const projectsData: ProjectItem[] = [
     technologies: [
       "C#",
       "ASP.NET Core",
-      "EF Core",
+      "Entity Framework Core",
       "SQL Server",
       "ASP.NET Identity",
       "JWT",
@@ -457,15 +462,14 @@ export const projectsData: ProjectItem[] = [
       "Swagger",
     ],
     features: [
-      "Competition management and event scheduling",
-      "Participant management and registration verification",
-      "Submission handling with date window constraints",
-      "Judging and grading workflow for competition reviews",
-      "Scoring calculation engine with automatic evaluation",
-      "Leaderboards and ranked standing generation",
-      "Role-based access for Admins, Judges, and Contestants",
-      "Validation using FluentValidation rules",
-      "RESTful API design with interactive Swagger documentation",
+      "Competition and multi-day event management",
+      "Configurable competition stages and schedules",
+      "Multiple question types with weighted scoring",
+      "Contestant registration and stage eligibility",
+      "Automated and manual grading workflows",
+      "Submission integrity and competition access rules",
+      "Role-based access for Administrators, Judges, and Contestants",
+      "Dynamic leaderboards and results publishing",
     ],
     architectureNodes: [
       {

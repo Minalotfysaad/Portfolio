@@ -34,40 +34,86 @@ export const CompetitionsHubCaseStudy: React.FC<CompetitionsHubCaseStudyProps> =
   const [isExpanded, setIsExpanded] = useState(false);
   const [selectedScreenshotIndex, setSelectedScreenshotIndex] = useState(0);
 
+  const keyFeatures = [
+    "Competition and multi-day event management",
+    "Configurable competition stages and schedules",
+    "Multiple question types with weighted scoring",
+    "Contestant registration and stage eligibility",
+    "Automated and manual grading workflows",
+    "Submission integrity and competition access rules",
+    "Role-based access for Administrators, Judges, and Contestants",
+    "Dynamic leaderboards and results publishing",
+  ];
+
   const workflowSteps = [
-    { num: "01", name: "COMPETITION", role: "Admin sets event dates, rules & tracks", icon: Calendar },
-    { num: "02", name: "QUESTIONS", role: "Question bank with weighted scores & time limits", icon: FileQuestion },
-    { num: "03", name: "CONTESTANTS", role: "Participant registration & stage eligibility", icon: Users },
-    { num: "04", name: "JUDGING", role: "Submissions routed to assigned judges for evaluation", icon: GraduationCap },
-    { num: "05", name: "SCORING", role: "Automated aggregation + manual grading rubric", icon: Sparkles },
-    { num: "06", name: "LEADERBOARD", role: "Rankings computed with tie-breaking logic", icon: Trophy },
-    { num: "07", name: "RESULTS", role: "Standing verification & final score publishing", icon: Award },
+    {
+      num: "01",
+      name: "COMPETITION",
+      role: "Administrators configure competition dates, rules, stages, and tracks.",
+      icon: Calendar,
+    },
+    {
+      num: "02",
+      name: "QUESTIONS",
+      role: "Questions are organized into configurable types with weighted marks, validation rules, and time constraints.",
+      icon: FileQuestion,
+    },
+    {
+      num: "03",
+      name: "CONTESTANTS",
+      role: "Participants register for competitions and are evaluated against stage eligibility and registration rules.",
+      icon: Users,
+    },
+    {
+      num: "04",
+      name: "JUDGING",
+      role: "Submissions are routed through the evaluation workflow, allowing assigned judges to review applicable responses.",
+      icon: GraduationCap,
+    },
+    {
+      num: "05",
+      name: "SCORING",
+      role: "Objective questions can be graded automatically while subjective responses can be evaluated manually using a grading workflow.",
+      icon: Sparkles,
+    },
+    {
+      num: "06",
+      name: "LEADERBOARD",
+      role: "Scores are aggregated and rankings are calculated using defined scoring and tie-breaking rules.",
+      icon: Trophy,
+    },
+    {
+      num: "07",
+      name: "RESULTS",
+      role: "Verified standings and final scores are prepared and published to contestants.",
+      icon: Award,
+    },
   ];
 
   const workflowHighlights = [
     {
-      title: "5 Question Builder Types",
-      desc: "Supports Multiple Choice, Short Answer, Paragraph, Linear Scale, and Multiple Choice Grid questions with weighted marks and validation.",
+      title: "Flexible Question & Scoring System",
+      desc: "Supports multiple question types, weighted marks, validation rules, and different evaluation approaches within a unified competition model.",
     },
     {
-      title: "Automated & Manual Grading Engine",
-      desc: "Instant score calculation for objective questions combined with an administrative review portal for grading paragraph essay submissions.",
+      title: "Automated & Manual Grading",
+      desc: "Combines automatic evaluation for objective questions with manual grading workflows for subjective responses.",
     },
     {
-      title: "Contestant Submission Integrity",
-      desc: "Enforces submission rules preventing duplicate entries, post-submission answer modification, and access outside competition date windows.",
+      title: "Submission Integrity",
+      desc: "Enforces competition rules such as preventing duplicate submissions, restricting post-submission modifications, and controlling access based on competition schedules.",
     },
     {
-      title: "Multi-Day Event Scheduling",
-      desc: "Organizes competitions across multiple competition days with automated active status evaluation based on real-time schedule dates.",
+      title: "Multi-Day Competition Scheduling",
+      desc: "Supports competitions spanning multiple days and determines stage availability based on configured schedules.",
     },
     {
-      title: "Role-Based Access Control",
-      desc: "JWT-based ASP.NET Identity authentication enforcing strict authorization boundaries for Administrators, Judges, and Contestants.",
+      title: "Role-Based Authorization",
+      desc: "Uses ASP.NET Identity and JWT authentication to enforce separate permissions for Administrators, Judges, and Contestants.",
     },
     {
       title: "Dynamic Leaderboards & Results",
-      desc: "Optimized LINQ aggregation queries generating real-time leaderboard standings, score percentages, and verified contestant result records.",
+      desc: "Aggregates scores and generates leaderboard standings and contestant results using LINQ-based data queries and defined ranking rules.",
     },
   ];
 
@@ -102,7 +148,7 @@ export const CompetitionsHubCaseStudy: React.FC<CompetitionsHubCaseStudyProps> =
               CompetitionsHub
             </h3>
             <p className="font-sans text-xs sm:text-sm text-secondary/90 mt-1 max-w-3xl leading-relaxed">
-              A backend platform for managing competitions, participants, submissions, judging, scoring, and leaderboards.
+              A competition management backend for organizing multi-stage events, participant registration, question-based assessments, judging, scoring, leaderboards, and results publishing.
             </p>
           </div>
 
@@ -255,14 +301,34 @@ export const CompetitionsHubCaseStudy: React.FC<CompetitionsHubCaseStudyProps> =
             </div>
           </div>
 
+          {/* Key Features */}
+          <div className="pt-8 border-t border-border/80">
+            <span className="font-mono text-xs text-purple-400 block mb-4 uppercase tracking-wider font-semibold">
+              KEY FEATURES:
+            </span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+              {keyFeatures.map((feat) => (
+                <div
+                  key={feat}
+                  className="p-3.5 rounded-xl bg-surface/30 border border-border/70 flex items-start gap-2.5"
+                >
+                  <CheckCircle2 className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
+                  <span className="font-sans text-xs text-foreground/90 leading-relaxed font-medium">
+                    {feat}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
           {/* 7-Step Competition Lifecycle Workflow Visual */}
           <div className="pt-8 border-t border-border/80">
             <div className="flex items-center gap-2 font-mono text-xs text-purple-400 uppercase tracking-wider mb-6">
               <Workflow className="w-4 h-4" />
-              <span>7-STAGE COMPETITION & EVALUATION LIFECYCLE:</span>
+              <span>COMPETITION & EVALUATION LIFECYCLE:</span>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-2.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-2.5">
               {workflowSteps.map((step) => {
                 const Icon = step.icon;
 
@@ -278,10 +344,10 @@ export const CompetitionsHubCaseStudy: React.FC<CompetitionsHubCaseStudyProps> =
                         </span>
                         <Icon className="w-3.5 h-3.5 text-secondary" />
                       </div>
-                      <h4 className="font-mono text-xs font-bold text-foreground mb-1 truncate">
+                      <h4 className="font-mono text-xs font-bold text-foreground mb-1">
                         {step.name}
                       </h4>
-                      <p className="text-[10px] text-secondary font-sans leading-snug">
+                      <p className="text-[10px] text-secondary font-sans leading-relaxed">
                         {step.role}
                       </p>
                     </div>
@@ -291,10 +357,10 @@ export const CompetitionsHubCaseStudy: React.FC<CompetitionsHubCaseStudyProps> =
             </div>
           </div>
 
-          {/* Workflow Engineering Highlights Grid */}
+          {/* Technical Highlights Grid */}
           <div className="pt-8 border-t border-border/80">
             <span className="font-mono text-xs text-muted block mb-4 uppercase tracking-wider">
-              KEY CAPABILITIES & IMPLEMENTATION:
+              TECHNICAL HIGHLIGHTS:
             </span>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {workflowHighlights.map((item) => (
@@ -319,7 +385,9 @@ export const CompetitionsHubCaseStudy: React.FC<CompetitionsHubCaseStudyProps> =
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-xl bg-[#0E0E12] border border-border/80">
               <div className="flex items-center gap-2 font-mono text-xs text-foreground">
                 <span className="font-bold text-purple-400">ARCHITECTURE:</span>
-                <span className="text-secondary font-semibold">Clean Architecture separating scoring rules, evaluation workflows, and persistence</span>
+                <span className="text-secondary font-semibold">
+                  Clean Architecture · Domain-Driven Business Rules · Role-Based Authorization
+                </span>
               </div>
             </div>
 
@@ -332,7 +400,7 @@ export const CompetitionsHubCaseStudy: React.FC<CompetitionsHubCaseStudyProps> =
                 {[
                   "C#",
                   "ASP.NET Core",
-                  "EF Core",
+                  "Entity Framework Core",
                   "SQL Server",
                   "ASP.NET Identity",
                   "JWT",

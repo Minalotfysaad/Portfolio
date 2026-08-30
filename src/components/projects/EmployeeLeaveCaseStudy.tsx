@@ -10,6 +10,7 @@ import {
   Lock,
   Workflow,
   FileCheck,
+  FileText,
   Zap,
   Images,
   Code2,
@@ -17,6 +18,9 @@ import {
   ChevronUp,
   Database,
   Maximize2,
+  Users,
+  RefreshCw,
+  Clock,
 } from "lucide-react";
 import { cn, getAssetPath } from "@/lib/utils";
 
@@ -33,68 +37,98 @@ export const EmployeeLeaveCaseStudy: React.FC<EmployeeLeaveCaseStudyProps> = ({
   const [selectedScreenshotIndex, setSelectedScreenshotIndex] = useState(0);
   const [imageErrorMap, setImageErrorMap] = useState<Record<string, boolean>>({});
 
+  const keyFeatures = [
+    "Employee and department management",
+    "Leave types, balances, and holiday management",
+    "Leave request creation and tracking",
+    "Multi-level approval workflow",
+    "Role-based access for Employees, Managers, and HR",
+    "JWT authentication and ASP.NET Identity",
+    "Request validation and business rule enforcement",
+    "Pagination, filtering, and sorting",
+    "Redis caching",
+    "Global exception handling and structured logging",
+    "Unit testing with xUnit and Moq",
+    "Swagger / OpenAPI documentation",
+  ];
+
   const pipelineSteps = [
     {
       step: "01",
-      title: "AUTH & ROLE SECURITY",
-      icon: Lock,
-      description: "JWT access tokens, Refresh Tokens, and ASP.NET Identity securing Employee, Manager, and HR endpoints.",
-      badge: "JWT & Identity",
+      title: "REQUEST",
+      icon: FileText,
+      description: "Employees submit leave requests based on their available leave balance, leave type, and requested dates.",
+      badge: "Submission",
     },
     {
       step: "02",
-      title: "VALIDATION & MAPPING",
+      title: "VALIDATION",
       icon: FileCheck,
-      description: "FluentValidation enforcing leave invariants and AutoMapper simplifying DTO-to-entity transformations.",
-      badge: "FluentValidation",
+      description: "The application validates request data, leave availability, date rules, and applicable business constraints before processing the request.",
+      badge: "Rule Check",
     },
     {
       step: "03",
-      title: "DATA ACCESS LAYER",
-      icon: Database,
-      description: "Generic Repository and Unit of Work patterns with EF Core for atomic, testable data operations.",
-      badge: "Repository & UoW",
+      title: "MANAGER REVIEW",
+      icon: Users,
+      description: "The employee's manager reviews the request and can approve or reject it according to the organization's workflow.",
+      badge: "Management Tier",
     },
     {
       step: "04",
-      title: "APPROVAL ENGINE",
-      icon: Workflow,
-      description: "Manager and HR multi-step approval workflow with atomic leave balance quota deductions.",
-      badge: "Multi-Tier Approval",
+      title: "HR REVIEW",
+      icon: Lock,
+      description: "Approved requests proceed to HR for final review and authorization where required.",
+      badge: "Executive Review",
     },
     {
       step: "05",
-      title: "CACHING & OBSERVABILITY",
-      icon: Zap,
-      description: "Redis response caching with automated invalidation and Serilog structured request logging.",
-      badge: "Redis & Serilog",
+      title: "BALANCE UPDATE",
+      icon: RefreshCw,
+      description: "Once a leave request is fully approved, the employee's corresponding leave balance is updated.",
+      badge: "Quota Deduction",
+    },
+    {
+      step: "06",
+      title: "STATUS TRACKING",
+      icon: Clock,
+      description: "The request maintains its approval status and history, allowing users to track the current state of the workflow.",
+      badge: "Audit & History",
     },
   ];
 
   const highlights = [
     {
-      title: "Clean Architecture",
-      desc: "Isolated Domain, Application, Infrastructure, and Presentation layers with strict inward-pointing dependencies and Dependency Injection.",
+      title: "Role-Based Approval Workflow",
+      desc: "Implements separate permissions and responsibilities for Employees, Managers, and HR, ensuring each role can perform only the actions permitted by the workflow.",
     },
     {
-      title: "Enterprise Security Pipeline",
-      desc: "JWT authentication with rotating Refresh Tokens and ASP.NET Identity securing three role-based access tiers: Employee, Manager, and HR.",
+      title: "Leave Balance Management",
+      desc: "Maintains employee leave balances by leave type and applies business rules when requests are submitted and approved.",
     },
     {
-      title: "Testable Data Access",
-      desc: "Repository and Unit of Work patterns with Entity Framework Core ensuring atomic transactions and mockable persistence contracts.",
+      title: "Business Rule Validation",
+      desc: "Validates leave requests against available balances, dates, leave types, holidays, and other application rules before processing.",
     },
     {
-      title: "Input Validation & DTO Mapping",
-      desc: "Strongly-typed FluentValidation rules enforcing business invariants, paired with AutoMapper for clean DTO-to-entity transformations.",
+      title: "JWT Authentication & Authorization",
+      desc: "Uses ASP.NET Identity and JWT Bearer authentication to secure API endpoints and enforce role-based access.",
     },
     {
-      title: "RESTful API Design",
-      desc: "Pagination, filtering, search, centralized exception handling, and interactive Swagger documentation across all endpoints.",
+      title: "Redis Caching",
+      desc: "Uses Redis to cache appropriate frequently accessed data and reduce unnecessary database operations.",
     },
     {
-      title: "Performance & Observability",
-      desc: "Redis distributed caching with automated invalidation and Serilog structured logging for production-grade monitoring.",
+      title: "Pagination & Filtering",
+      desc: "Provides structured querying capabilities for retrieving leave requests and employee-related data efficiently.",
+    },
+    {
+      title: "Global Error Handling & Logging",
+      desc: "Uses centralized exception handling and structured logging to provide consistent API responses and improve application observability.",
+    },
+    {
+      title: "Automated Testing",
+      desc: "Uses xUnit and Moq to test application behavior and business logic independently of external dependencies.",
     },
   ];
 
@@ -129,13 +163,13 @@ export const EmployeeLeaveCaseStudy: React.FC<EmployeeLeaveCaseStudyProps> = ({
               Employee Leave Management System
             </h3>
             <p className="font-sans text-xs sm:text-sm text-secondary/90 mt-1 max-w-3xl leading-relaxed">
-              A production-style employee leave management API with authentication, role-based approval workflows, validation, and clean backend architecture.
+              A production-style employee leave management backend for managing employees, leave balances, requests, approvals, holidays, and role-based workflows.
             </p>
           </div>
 
           {/* Quick Key Technology Badges */}
           <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
-            {["C#", ".NET 9", "ASP.NET Core Web API", "EF Core", "SQL Server", "Redis"].map((tech) => (
+            {["C#", ".NET 9", "ASP.NET Core", "EF Core", "SQL Server", "Redis"].map((tech) => (
               <span
                 key={tech}
                 className="font-mono text-[11px] px-2.5 py-0.5 rounded-md bg-white/[0.03] border border-white/10 text-muted hover:border-accent/40 hover:text-foreground transition-colors"
@@ -309,14 +343,34 @@ export const EmployeeLeaveCaseStudy: React.FC<EmployeeLeaveCaseStudyProps> = ({
             </div>
           </div>
 
+          {/* Key Features */}
+          <div className="pt-8 border-t border-border/80">
+            <span className="font-mono text-xs text-accent-light block mb-4 uppercase tracking-wider font-semibold">
+              KEY FEATURES:
+            </span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+              {keyFeatures.map((feat) => (
+                <div
+                  key={feat}
+                  className="p-3.5 rounded-xl bg-surface/30 border border-border/70 flex items-start gap-2.5"
+                >
+                  <CheckCircle2 className="w-4 h-4 text-accent-light shrink-0 mt-0.5" />
+                  <span className="font-sans text-xs text-foreground/90 leading-relaxed font-medium">
+                    {feat}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
           {/* Linear Pipeline Flow */}
           <div className="pt-8 border-t border-border/80">
             <div className="flex items-center gap-2 font-mono text-xs text-accent-light uppercase tracking-wider mb-6">
               <Zap className="w-4 h-4" />
-              <span>END-TO-END HR LEAVE TRANSACTION PIPELINE:</span>
+              <span>LEAVE REQUEST & APPROVAL LIFECYCLE:</span>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
               {pipelineSteps.map((step) => {
                 const Icon = step.icon;
 
@@ -352,9 +406,9 @@ export const EmployeeLeaveCaseStudy: React.FC<EmployeeLeaveCaseStudyProps> = ({
           {/* Core Engineering Highlights Grid */}
           <div className="pt-8 border-t border-border/80">
             <span className="font-mono text-xs text-muted block mb-4 uppercase tracking-wider">
-              KEY CAPABILITIES & IMPLEMENTATION:
+              TECHNICAL HIGHLIGHTS:
             </span>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {highlights.map((item) => (
                 <div
                   key={item.title}
@@ -377,16 +431,9 @@ export const EmployeeLeaveCaseStudy: React.FC<EmployeeLeaveCaseStudyProps> = ({
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-xl bg-[#0E0E12] border border-border/80">
               <div className="flex items-center gap-2 font-mono text-xs text-foreground">
                 <span className="font-bold text-accent-light">ARCHITECTURE:</span>
-                <span className="text-secondary font-semibold">Clean Architecture</span>
-              </div>
-              <div className="flex items-center gap-2 font-mono text-xs text-muted flex-wrap">
-                <span className="px-2.5 py-1 rounded bg-surface border border-border/80 text-foreground font-medium">API</span>
-                <span>→</span>
-                <span className="px-2.5 py-1 rounded bg-surface border border-border/80 text-foreground font-medium">Application</span>
-                <span>→</span>
-                <span className="px-2.5 py-1 rounded bg-surface border border-border/80 text-foreground font-medium">Domain</span>
-                <span>→</span>
-                <span className="px-2.5 py-1 rounded bg-surface border border-border/80 text-foreground font-medium">Infrastructure</span>
+                <span className="text-secondary font-semibold">
+                  Clean Architecture · SOLID · Repository Pattern · Unit of Work · CQRS · MediatR
+                </span>
               </div>
             </div>
 
@@ -400,12 +447,14 @@ export const EmployeeLeaveCaseStudy: React.FC<EmployeeLeaveCaseStudyProps> = ({
                   "C#",
                   ".NET 9",
                   "ASP.NET Core Web API",
-                  "EF Core",
+                  "Entity Framework Core",
                   "SQL Server",
                   "Redis",
                   "ASP.NET Identity",
                   "JWT",
+                  "MediatR",
                   "FluentValidation",
+                  "AutoMapper",
                   "Serilog",
                   "xUnit",
                   "Moq",
