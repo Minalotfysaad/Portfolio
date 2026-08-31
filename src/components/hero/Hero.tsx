@@ -25,7 +25,7 @@ export const Hero: React.FC = () => {
   };
 
   return (
-    <section className="relative min-h-[85vh] flex flex-col justify-center pt-28 pb-20 sm:pt-32 sm:pb-24 lg:pt-36 lg:pb-36 overflow-hidden bg-grid">
+    <section className="relative min-h-screen min-h-[100dvh] sm:min-h-[85vh] flex flex-col justify-center pt-24 pb-14 sm:pt-32 sm:pb-24 lg:pt-36 lg:pb-36 overflow-hidden bg-grid">
       {/* Subtle architectural ambient gradient */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-gradient-to-br from-accent/15 via-indigo-600/10 to-transparent blur-[140px] rounded-full pointer-events-none" />
 
@@ -94,7 +94,7 @@ export const Hero: React.FC = () => {
             </div>
 
             {/* 6. Recruiter Direct Contact Links */}
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 pt-5 border-t border-border/70 text-xs font-mono text-secondary max-w-full">
+            <div className="w-full flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-2 pt-5 border-t border-border/70 text-xs font-mono text-secondary max-w-full">
               <span className="text-muted tracking-wider">CONNECT:</span>
               <a
                 href={personalInfo.github}
