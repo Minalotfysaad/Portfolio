@@ -10,21 +10,21 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="border-t border-border/80 bg-[#09090B] py-12 text-secondary">
+    <footer className="border-t border-border/80 bg-[#09090B] py-12 text-secondary overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-border/60">
           {/* Brand & Stack */}
           <div className="text-center md:text-left space-y-1">
-            <div className="flex items-center justify-center md:justify-start gap-2">
+            <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-2 gap-y-1">
               <span className="font-sans font-bold text-foreground text-sm tracking-tight">
                 MINA LOTFY SAAD
               </span>
-              <span className="text-border">•</span>
+              <span className="text-border hidden sm:inline">•</span>
               <span className="font-mono text-xs text-accent-light">
                 .NET BACKEND DEVELOPER
               </span>
             </div>
-            <p className="font-mono text-[11px] text-muted">
+            <p className="font-mono text-[10px] sm:text-[11px] text-muted">
               C# • ASP.NET CORE 9 • SQL SERVER • REST APIS • CLEAN ARCHITECTURE
             </p>
           </div>

@@ -9,7 +9,7 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export const Education: React.FC = () => {
   return (
-    <section id="education" className="py-20 lg:py-28 relative bg-[#09090B]">
+    <section id="education" className="py-20 lg:py-28 relative bg-[#09090B] overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
         <ScrollReveal direction="up" distance={24} duration={500}>
           <SectionHeading
@@ -24,13 +24,13 @@ export const Education: React.FC = () => {
             <ScrollReveal key={edu.degree} delay={idx * 100} distance={24} duration={550}>
               <div
                 className={cn(
-                  "p-6 sm:p-8 rounded-2xl bg-[#111114] border border-border hover:border-accent/40 hover:shadow-glow-card transition-all duration-300 flex flex-col justify-between shadow-xl h-full",
+                  "p-5 sm:p-8 rounded-2xl bg-[#111114] border border-border hover:border-accent/40 hover:shadow-glow-card transition-all duration-300 flex flex-col justify-between shadow-xl h-full overflow-hidden",
                   edu.isHighlighted && "border-accent/30 bg-gradient-to-b from-[#131318] to-[#101014]"
                 )}
               >
                 <div>
                   {/* Header */}
-                  <div className="flex items-start justify-between gap-4 mb-4">
+                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 sm:gap-4 mb-4">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-xl bg-surface border border-border flex items-center justify-center text-accent-light shrink-0">
                         <GraduationCap className="w-5 h-5" />
@@ -39,7 +39,7 @@ export const Education: React.FC = () => {
                         <span className="font-mono text-xs text-muted block uppercase tracking-wider">
                           {edu.period}
                         </span>
-                        <h3 className="font-mono text-base sm:text-lg font-bold text-foreground">
+                        <h3 className="font-mono text-base sm:text-lg font-bold text-foreground break-words">
                           {edu.degree}
                         </h3>
                       </div>
@@ -48,7 +48,7 @@ export const Education: React.FC = () => {
                     {edu.badge && (
                       <span
                         className={cn(
-                          "px-2.5 py-0.5 rounded text-[10px] font-mono font-semibold uppercase shrink-0 border",
+                          "self-start px-2.5 py-0.5 rounded text-[10px] font-mono font-semibold uppercase shrink-0 border",
                           edu.isHighlighted
                             ? "bg-accent/15 text-accent-light border-accent/30"
                             : "bg-surface/80 text-secondary border-border/80"

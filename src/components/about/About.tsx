@@ -12,7 +12,7 @@ export const About: React.FC = () => {
   const [imageError, setImageError] = useState(false);
 
   return (
-    <section id="about" className="py-20 lg:py-28 relative bg-[#09090B]">
+    <section id="about" className="py-20 lg:py-28 relative bg-[#09090B] overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Column: Portrait & Technical HUD Card */}

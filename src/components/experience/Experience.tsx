@@ -46,7 +46,7 @@ export const Experience: React.FC = () => {
   const exp = professionalExperience[0];
 
   return (
-    <section id="experience" className="py-20 lg:py-28 relative bg-[#0C0C0E]">
+    <section id="experience" className="py-20 lg:py-28 relative bg-[#0C0C0E] overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
         <ScrollReveal direction="up" distance={24} duration={500}>
           <SectionHeading
@@ -59,7 +59,7 @@ export const Experience: React.FC = () => {
         {/* Main Experience Timeline / Card Container */}
         <div className="relative max-w-5xl mx-auto">
           <ScrollReveal direction="up" distance={30} duration={600}>
-            <div className="relative bg-[#111114] border border-border rounded-2xl p-6 sm:p-8 lg:p-10 shadow-xl hover:border-accent/40 hover:shadow-glow-card transition-all duration-300 group overflow-hidden">
+            <div className="relative bg-[#111114] border border-border rounded-2xl p-5 sm:p-8 lg:p-10 shadow-xl hover:border-accent/40 hover:shadow-glow-card transition-all duration-300 group overflow-hidden">
               {/* Ambient subtle glow */}
               <div className="absolute top-0 right-0 w-80 h-80 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
 
@@ -70,26 +70,26 @@ export const Experience: React.FC = () => {
               >
                 <div>
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-accent/10 border border-accent/30 text-accent-light font-mono text-xs mb-3">
-                    <Briefcase className="w-3.5 h-3.5" />
+                    <Briefcase className="w-3.5 h-3.5 shrink-0" />
                     <span>{exp.role}</span>
                   </div>
-                  <h3 className="text-2xl sm:text-3xl font-bold text-foreground font-sans tracking-tight group-hover/header:text-accent-light transition-colors">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground font-sans tracking-tight group-hover/header:text-accent-light transition-colors break-words">
                     {exp.company}
                   </h3>
-                  <div className="flex flex-wrap items-center gap-4 mt-2 font-mono text-xs text-secondary">
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 mt-2 font-mono text-xs text-secondary">
                     <div className="flex items-center gap-1.5">
-                      <MapPin className="w-3.5 h-3.5 text-muted" />
+                      <MapPin className="w-3.5 h-3.5 text-muted shrink-0" />
                       <span>{exp.location}</span>
                     </div>
-                    <span className="text-border">•</span>
+                    <span className="text-border hidden sm:inline">•</span>
                     <div className="flex items-center gap-1.5 text-accent-light font-semibold">
-                      <Calendar className="w-3.5 h-3.5" />
+                      <Calendar className="w-3.5 h-3.5 shrink-0" />
                       <span>{exp.period}</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 w-full md:w-auto">
                   <button
                     type="button"
                     onClick={(e) => {
@@ -97,7 +97,7 @@ export const Experience: React.FC = () => {
                       setIsExpanded((prev) => !prev);
                     }}
                     className={cn(
-                      "flex items-center gap-2 px-4 py-2 rounded-lg font-mono text-xs font-semibold transition-all border",
+                      "flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-mono text-xs font-semibold transition-all border w-full md:w-auto",
                       isExpanded
                         ? "bg-accent/15 border-accent text-accent-light"
                         : "bg-surface hover:bg-surface-light border-border text-foreground hover:border-accent/40"

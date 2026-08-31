@@ -7,9 +7,9 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export const Contact: React.FC = () => {
   return (
-    <section id="contact" className="py-20 lg:py-28 relative bg-[#0C0C0E]">
+    <section id="contact" className="py-20 lg:py-28 relative bg-[#0C0C0E] overflow-hidden">
       {/* Background ambient light */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-accent/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] max-w-full h-[300px] bg-accent/10 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative">
         <ScrollReveal direction="up" distance={24} duration={500}>

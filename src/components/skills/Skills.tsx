@@ -18,7 +18,7 @@ const categoryIconMap: Record<string, any> = {
 
 export const Skills: React.FC = () => {
   return (
-    <section id="skills" className="py-20 lg:py-28 relative bg-[#09090B]">
+    <section id="skills" className="py-20 lg:py-28 relative bg-[#09090B] overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
         <ScrollReveal direction="up" distance={24} duration={500}>
           <SectionHeading

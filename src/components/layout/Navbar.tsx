@@ -78,21 +78,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTerminal }) => {
         {/* Brand / Logo */}
         <a
           href="#"
-          className="group flex items-center gap-2.5 text-foreground hover:text-white transition-colors"
+          className="group flex items-center gap-2 sm:gap-2.5 text-foreground hover:text-white transition-colors min-w-0"
           aria-label="Mina Lotfy Saad Home"
         >
-          <div className="w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center border border-border/80 group-hover:border-accent/60 group-hover:shadow-glow-accent/40 transition-all">
+          <div className="w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center border border-border/80 group-hover:border-accent/60 group-hover:shadow-glow-accent/40 transition-all shrink-0">
             <img
               src={`${getBasePath()}/favicon.svg`}
               alt="Mina Lotfy Saad Logo"
               className="w-full h-full object-cover"
             />
           </div>
-          <div className="flex flex-col">
-            <span className="font-sans font-bold text-sm tracking-tight text-foreground group-hover:text-accent-light transition-colors">
+          <div className="flex flex-col min-w-0">
+            <span className="font-sans font-bold text-xs sm:text-sm tracking-tight text-foreground group-hover:text-accent-light transition-colors truncate">
               MINA LOTFY SAAD
             </span>
-            <span className="font-mono text-[10px] text-muted tracking-wider uppercase">
+            <span className="font-mono text-[9px] sm:text-[10px] text-muted tracking-wider uppercase truncate">
               .NET Backend Dev
             </span>
           </div>

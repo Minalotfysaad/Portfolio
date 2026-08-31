@@ -18,7 +18,7 @@ export default function Home() {
   const [terminalOpen, setTerminalOpen] = useState(false);
 
   return (
-    <main className="min-h-screen bg-background text-foreground flex flex-col selection:bg-accent/30 selection:text-foreground">
+    <main className="min-h-screen bg-background text-foreground flex flex-col selection:bg-accent/30 selection:text-foreground overflow-x-hidden w-full max-w-full">
       {/* Top Fixed Navbar */}
       <Navbar onOpenTerminal={() => setTerminalOpen(true)} />
 

@@ -131,10 +131,10 @@ export const CompetitionsHubCaseStudy: React.FC<CompetitionsHubCaseStudyProps> =
     >
       {/* Header Bar (Always Visible / Clickable) */}
       <div
-        className="p-5 sm:p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-5 cursor-pointer select-none"
+        className="p-4 sm:p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-4 sm:gap-5 cursor-pointer select-none"
         onClick={() => setIsExpanded(!isExpanded)}
       >
-        <div className="flex-1 space-y-2.5 min-w-0">
+        <div className="flex-1 space-y-2.5 min-w-0 w-full">
           {/* Top Identifier & Status Pill */}
           <div className="flex items-center gap-2.5">
             <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-400 font-mono text-[10px] font-bold uppercase tracking-wider">
@@ -144,14 +144,16 @@ export const CompetitionsHubCaseStudy: React.FC<CompetitionsHubCaseStudyProps> =
           </div>
 
           <div>
-            <h3 className="text-xl sm:text-2xl font-bold text-foreground font-sans tracking-tight group-hover/tile:text-purple-400 transition-colors">
+            <h3 className="text-lg sm:text-2xl font-bold text-foreground font-sans tracking-tight group-hover/tile:text-purple-400 transition-colors break-words">
               CompetitionsHub
             </h3>
             <p className="font-sans text-xs sm:text-sm text-secondary/90 mt-1 max-w-3xl leading-relaxed">
               A competition management backend for organizing multi-stage events, participant registration, question-based assessments, judging, scoring, leaderboards, and results publishing.
             </p>
-          </div>          {/* Technology Stack Badges */}
-          <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
+          </div>
+
+          {/* Technology Stack Badges */}
+          <div className="flex flex-wrap items-center gap-1.5 pt-0.5 max-w-full">
             {project.technologies.map((tech) => (
               <span
                 key={tech}
@@ -164,12 +166,12 @@ export const CompetitionsHubCaseStudy: React.FC<CompetitionsHubCaseStudyProps> =
         </div>
 
         {/* Action Controls */}
-        <div className="flex items-center gap-3 shrink-0 pt-2 lg:pt-0" onClick={(e) => e.stopPropagation()}>
+        <div className="flex items-center justify-between sm:justify-end gap-3 shrink-0 pt-2 lg:pt-0 w-full lg:w-auto border-t lg:border-t-0 border-border/40" onClick={(e) => e.stopPropagation()}>
           <a
             href={project.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg font-mono text-xs font-medium border border-border/80 bg-surface/60 text-secondary hover:text-foreground hover:border-purple-400/50 hover:bg-surface transition-all duration-200"
+            className="flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-lg font-mono text-xs font-medium border border-border/80 bg-surface/60 text-secondary hover:text-foreground hover:border-purple-400/50 hover:bg-surface transition-all duration-200"
           >
             <Github className="w-3.5 h-3.5" />
             <span>View on GitHub →</span>
@@ -180,7 +182,7 @@ export const CompetitionsHubCaseStudy: React.FC<CompetitionsHubCaseStudyProps> =
             onClick={() => setIsExpanded(!isExpanded)}
             aria-label={isExpanded ? "Collapse project details" : "Expand project details"}
             className={cn(
-              "w-9 h-9 rounded-lg border flex items-center justify-center transition-all duration-300",
+              "w-9 h-9 rounded-lg border flex items-center justify-center transition-all duration-300 shrink-0",
               isExpanded
                 ? "bg-purple-500/15 border-purple-500 text-purple-400"
                 : "bg-surface/60 border-border/80 text-secondary hover:text-foreground hover:border-purple-400/40"

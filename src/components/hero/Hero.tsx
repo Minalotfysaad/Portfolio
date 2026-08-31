@@ -34,17 +34,17 @@ export const Hero: React.FC = () => {
           {/* Left Column: Hero Content */}
           <div className="lg:col-span-7 flex flex-col items-start text-left lg:pt-10">
             {/* 1. Name */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-foreground font-sans uppercase mb-2 sm:mb-3 leading-none">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-foreground font-sans uppercase mb-2 sm:mb-3 leading-tight break-words">
               {heroData.name}
             </h1>
 
             {/* 2. Professional Title - strongest visual text after name */}
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-mono tracking-tight text-accent-light mb-4 sm:mb-5">
+            <h2 className="text-xl sm:text-3xl md:text-4xl font-bold font-mono tracking-tight text-accent-light mb-4 sm:mb-5 break-words">
               {heroData.role}
             </h2>
 
             {/* 3. Main Description / Value Proposition */}
-            <p className="text-base sm:text-lg text-secondary leading-relaxed max-w-2xl mb-4 font-sans">
+            <p className="text-sm sm:text-base md:text-lg text-secondary leading-relaxed max-w-2xl mb-4 font-sans">
               I build secure, scalable, and maintainable REST APIs using{" "}
               <span className="text-foreground font-semibold">C#</span>,{" "}
               <span className="text-foreground font-semibold">ASP.NET Core</span>,{" "}
@@ -53,23 +53,23 @@ export const Hero: React.FC = () => {
             </p>
 
             {/* 4. Supporting Positioning */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-xs sm:text-sm font-medium font-sans mb-8 shadow-sm">
-              <span className="relative flex h-2 w-2">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl sm:rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-xs sm:text-sm font-medium font-sans mb-8 shadow-sm max-w-full">
+              <span className="relative flex h-2 w-2 shrink-0">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
-              <span>{heroData.availabilityStatus}</span>
+              <span className="leading-snug">{heroData.availabilityStatus}</span>
             </div>
 
             {/* 5. Primary CTAs */}
-            <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-8">
-              <a href="#projects" onClick={handleScrollToProjects}>
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mb-8 w-full sm:w-auto">
+              <a href="#projects" onClick={handleScrollToProjects} className="w-full sm:w-auto">
                 <Button
                   variant="primary"
                   size="lg"
                   icon={<ArrowRight className="w-4 h-4" />}
                   iconPosition="right"
-                  className="font-mono text-xs tracking-wider uppercase font-bold"
+                  className="w-full sm:w-auto font-mono text-xs tracking-wider uppercase font-bold justify-center"
                 >
                   View My Projects
                 </Button>
@@ -80,12 +80,13 @@ export const Hero: React.FC = () => {
                 download="Mina-Lotfy-Saad-CV.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="w-full sm:w-auto"
               >
                 <Button
                   variant="secondary"
                   size="lg"
                   icon={<Download className="w-4 h-4" />}
-                  className="font-mono text-xs tracking-wider uppercase font-semibold"
+                  className="w-full sm:w-auto font-mono text-xs tracking-wider uppercase font-semibold justify-center"
                 >
                   Download CV
                 </Button>
@@ -93,7 +94,7 @@ export const Hero: React.FC = () => {
             </div>
 
             {/* 6. Recruiter Direct Contact Links */}
-            <div className="flex items-center gap-4 pt-5 border-t border-border/70 text-xs font-mono text-secondary">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 pt-5 border-t border-border/70 text-xs font-mono text-secondary max-w-full">
               <span className="text-muted tracking-wider">CONNECT:</span>
               <a
                 href={personalInfo.github}
@@ -102,10 +103,10 @@ export const Hero: React.FC = () => {
                 className="flex items-center gap-1.5 hover:text-foreground transition-colors"
                 aria-label="GitHub Profile"
               >
-                <Github className="w-3.5 h-3.5" />
+                <Github className="w-3.5 h-3.5 shrink-0" />
                 <span>GitHub</span>
               </a>
-              <span className="text-border">•</span>
+              <span className="text-border hidden sm:inline">•</span>
               <a
                 href={personalInfo.linkedin}
                 target="_blank"
@@ -113,16 +114,16 @@ export const Hero: React.FC = () => {
                 className="flex items-center gap-1.5 hover:text-[#0A66C2] transition-colors"
                 aria-label="LinkedIn Profile"
               >
-                <Linkedin className="w-3.5 h-3.5" />
+                <Linkedin className="w-3.5 h-3.5 shrink-0" />
                 <span>LinkedIn</span>
               </a>
-              <span className="text-border">•</span>
+              <span className="text-border hidden sm:inline">•</span>
               <a
                 href={`mailto:${personalInfo.email}`}
                 className="flex items-center gap-1.5 hover:text-accent-light transition-colors"
                 aria-label="Direct Email"
               >
-                <Mail className="w-3.5 h-3.5" />
+                <Mail className="w-3.5 h-3.5 shrink-0" />
                 <span>Email</span>
               </a>
             </div>

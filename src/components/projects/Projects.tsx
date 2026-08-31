@@ -18,7 +18,7 @@ export const Projects: React.FC = () => {
   const competitionsProject = projectsData.find((p) => p.id === "competitionshub-api") || projectsData[2];
 
   return (
-    <section id="projects" className="py-20 lg:py-28 relative bg-[#0C0C0E]">
+    <section id="projects" className="py-20 lg:py-28 relative bg-[#0C0C0E] overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
         <ScrollReveal direction="up" distance={24} duration={500}>
           <SectionHeading
